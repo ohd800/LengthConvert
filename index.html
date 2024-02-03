@@ -1,12 +1,24 @@
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8M2YLYLQDV');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Length Conversion</title>
+    <title>Length Convert</title>
+	<meta name="description" content="Free online length converts -including meter [m], kilometer [km], decimeter [dm], centimeter [cm], cm to inches，mm to inches，meters to feet,etc. ">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Length Conversion</h1>
+    <h1>Length Convert</h1>
 
     <label for="value">Value:</label>
     <input type="number" id="value" placeholder="Enter value">
@@ -35,15 +47,23 @@
         <option value="mile">Mile</option>
     </select>
 
+    <label for="precision">Decimal Precision:</label>
+    <input type="number" id="precision" placeholder="Enter precision" min="0">
+
     <button onclick="convertLength()">Convert</button>
+    <button onclick="clearFields()">Clear</button>
 
     <p id="result">Result: </p>
+
+    <!-- Canvas for Chart.js -->
+    <canvas id="conversionChart" width="400" height="200"></canvas>
 
     <script>
         function convertLength() {
             const value = parseFloat(document.getElementById('value').value);
             const fromType = document.getElementById('fromType').value;
             const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
 
             // Conversion factors
             const conversionFactors = {
@@ -58,11 +78,80 @@
                 // Add other conversion factors as needed
             };
 
-            // Perform conversion
+            // Perform bidirectional conversion
             const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
 
-            // Display result
-            document.getElementById('result').innerText = `Result: ${result}`;
+            // Display result with specified precision
+            document.getElementById('result').innerText = `Result: ${result.toFixed(precision)}\nInverse Result: ${resultInverse.toFixed(precision)}`;
+
+            // Update or create the chart
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (Before)`, `${toType} (After)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // Destroy previous chart if exists
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // Create a new chart
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Conversion Result',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // Adjust the bar thickness as needed
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // Destroy chart if exists
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
         }
     </script>
 </body>
