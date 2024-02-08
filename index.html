@@ -20,49 +20,124 @@
         gtag('config', 'G-8M2YLYLQDV');
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Example styles: First column */
+        #first-column {
+            float: left;
+            width: 80%; /* Adjust the width of the first column */
+            padding: 20px; /* Set padding */
+            box-sizing: border-box; /* Box model, ensures width and height include padding and border */
+        }
+
+        /* Example styles: Second column */
+        #second-column {
+            float: left;
+            width: 20%; /* Adjust the width of the second column */
+            padding: 20px; /* Set padding */
+            box-sizing: border-box; /* Box model, ensures width and height include padding and border */
+        }
+
+        /* Example styles: Query content */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* Set bottom margin */
+        }
+
+        /* Example styles: Conversion links */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* Set bottom margin between links */
+            text-decoration: none;
+            color: #333; /* Set link text color */
+            font-weight: bold; /* Set link text boldness */
+        }
+
+        /* Example styles: Advertisement */
+        #ad-container {
+            width: 100%; /* Make the ad container take full width within the second column */
+            height: 400px; /* Adjust the height of the ad container */
+             /*background-color: #333;  Set background color */
+            padding: 10px; /* Set padding */
+            box-sizing: border-box; /* Box model, ensures width and height include padding and border */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* Set maximum image width not to exceed container width */
+            height: auto; /* Make the image height auto-adjust */
+        }
+    </style>
 </head>
 
 <body>
     <h1>Length Convert</h1>
 
-    <label for="value">Value:</label>
-    <input type="number" id="value" placeholder="Enter value">
+    <!-- First column -->
+    <div id="first-column">
+        <label for="value">Value:</label>
+        <input type="number" id="value" placeholder="Enter value">
 
-    <label for="fromType">From Type:</label>
-    <select id="fromType">
-        <option value="millimeter">Millimeter</option>
-        <option value="centimeter">Centimeter</option>
-        <option value="meter">Meter</option>
-        <option value="kilometer">Kilometer</option>
-        <option value="inch">Inch</option>
-        <option value="feet">Feet</option>
-        <option value="yard">Yard</option>
-        <option value="mile">Mile</option>
-    </select>
+        <label for="fromType">From Type:</label>
+        <select id="fromType">
+            <option value="millimeter">Millimeter</option>
+            <option value="centimeter">Centimeter</option>
+            <option value="meter">Meter</option>
+            <option value="kilometer">Kilometer</option>
+            <option value="inch">Inch</option>
+            <option value="feet">Feet</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Mile</option>
+        </select>
 
-    <label for="toType">To Type:</label>
-    <select id="toType">
-        <option value="millimeter">Millimeter</option>
-        <option value="centimeter">Centimeter</option>
-        <option value="meter">Meter</option>
-        <option value="kilometer">Kilometer</option>
-        <option value="inch">Inch</option>
-        <option value="feet">Feet</option>
-        <option value="yard">Yard</option>
-        <option value="mile">Mile</option>
-    </select>
+        <label for="toType">To Type:</label>
+        <select id="toType">
+            <option value="millimeter">Millimeter</option>
+            <option value="centimeter">Centimeter</option>
+            <option value="meter">Meter</option>
+            <option value="kilometer">Kilometer</option>
+            <option value="inch">Inch</option>
+            <option value="feet">Feet</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Mile</option>
+        </select>
 
-    <label for="precision">Decimal Precision:</label>
-    <input type="number" id="precision" placeholder="Enter precision" min="0">
+        <label for="precision">Decimal Precision:</label>
+        <input type="number" id="precision" placeholder="Enter precision" min="0">
 
-    <button onclick="convertLength()">Convert</button>
-    <button onclick="clearFields()">Clear</button>
+        <button onclick="convertLength()">Convert</button>
+        <button onclick="clearFields()">Clear</button>
 
-    <p id="result">Result: </p>
+        <p id="result">Result: </p>
 
-    <!-- Canvas for Chart.js -->
-    <canvas id="conversionChart" width="400" height="200"></canvas>
+        <!-- Canvas for Chart.js -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+
+        <!-- Conversion shortcut links -->
+        <div id="conversion-links">
+    <h2>Millimeter Conversions</h2>
+    <a href="millimeter-to-centimeter-conversion.html">Millimeter to Centimeter (mm to cm)</a>
+    <a href="#">Millimeter to Meter (mm to m)</a>
+    <a href="#">Millimeter to Kilometer (mm to km)</a>
+    <a href="#">Millimeter to Inch (mm to inches)</a>
+    <a href="#">Millimeter to Feet (mm to ft)</a>
+    <a href="#">Millimeter to Yard (mm to yd)</a>
+    <a href="#">Millimeter to Mile (mm to mi)</a>
+
+    <!-- Add more links as needed -->
+        </div>
+    </div>
+
+    <!-- Second column: Advertisement container -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- Add actual ad content -->
+        </div>
+    </div>
 
     <script>
         function convertLength() {
