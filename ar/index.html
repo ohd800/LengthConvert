@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محول الطول</title>
+    <meta name="description" content="محول طول مجاني عبر الإنترنت - تحويل بين المتر [م] والكيلومتر [كم] والديسيمتر [دم] والسنتيمتر [سم] والسم إلى بوصة ومم إلى بوصة وأمتار إلى قدم وما إلى ذلك.">
+    <meta name="keywords" content="محول طول، محول وحدات، متر، كيلومتر، ديسيمتر، سنتيمتر، بوصة، قدم، ياردة، ميل">
+
+    <!-- أضف تحليلات جوجل الخاصة بك (gtag.js) هنا -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* أمثلة على الأنماط: العمود الأول */
+        #first-column {
+            float: left;
+            width: 80%; /* ضبط عرض العمود الأول */
+            padding: 20px; /* تعيين التبطين */
+            box-sizing: border-box; /* نموذج الصندوق، يضمن أن العرض والارتفاع يشملان التبطين والحدود */
+        }
+
+        /* أمثلة على الأنماط: العمود الثاني */
+        #second-column {
+            float: left;
+            width: 20%; /* ضبط عرض العمود الثاني */
+            padding: 20px; /* تعيين التبطين */
+            box-sizing: border-box; /* نموذج الصندوق، يضمن أن العرض والارتفاع يشملان التبطين والحدود */
+        }
+
+        /* أمثلة على الأنماط: محتوى الاستعلام */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* تعيين التبديل السفلي */
+        }
+
+        /* أمثلة على الأنماط: روابط التحويل */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* تعيين التبديل السفلي بين الروابط */
+            text-decoration: none;
+            color: #333; /* تعيين لون نص الرابط */
+            font-weight: bold; /* تعيين سمك نص الرابط */
+        }
+
+        /* أمثلة على الأنماط: إعلان */
+        #ad-container {
+            width: 100%; /* جعل حاوية الإعلان تأخذ العرض الكامل داخل العمود الثاني */
+            height: 400px; /* ضبط ارتفاع حاوية الإعلان */
+             /*background-color: #333;  تعيين لون الخلفية */
+            padding: 10px; /* تعيين التبطين */
+            box-sizing: border-box; /* نموذج الصندوق، يضمن أن العرض والارتفاع يشملان التبطين والحدود */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* تعيين أقصى عرض للصورة لعدم تجاوز عرض الحاوية */
+            height: auto; /* جعل ارتفاع الصورة يتكيف تلقائيًا */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>محول الطول</h1>
+ <!-- Navigation Links -->
+    <div id="navigation-links">
+        <a href="/">Home</a>
+        <a href="../">English</a>
+       <!-- <a href="/fr">Français</a>
+        <a href="/es">Español</a>
+        <a href="/de">Deutsch</a>
+        <a href="/it">Italiano</a>
+        <a href="/ja">日本語</a>
+        <a href="/ko">한국어</a>
+        <a href="/zh">中文</a>
+        <a href="/ru">Русский</a>
+        <a href="/hi">हिन्दी</a>
+		
+		-->
+		<a href="/ar">العربية</a>
+        <!-- Add more language links as needed -->
+    </div>
+    <!-- العمود الأول -->
+    <div id="first-column">
+<label for="value">القيمة:</label>
+    <input type="number" id="value" placeholder="أدخل القيمة">
+
+    <select id="fromType">
+        <option value="millimeter">مليمتر</option>
+        <option value="centimeter">سنتيمتر</option>
+        <option value="meter">متر</option>
+        <option value="kilometer">كيلومتر</option>
+        <option value="inch">بوصة</option>
+        <option value="feet">قدم</option>
+        <option value="yard">ياردة</option>
+        <option value="mile">ميل</option>
+    </select>
+    <label for="fromType">من نوع:</label>
+
+        <label for="toType">إلى نوع:</label>
+        <select id="toType">
+            <option value="millimeter">مليمتر</option>
+            <option value="centimeter">سنتيمتر</option>
+            <option value="meter">متر</option>
+            <option value="kilometer">كيلومتر</option>
+            <option value="inch">بوصة</option>
+            <option value="feet">قدم</option>
+            <option value="yard">ياردة</option>
+            <option value="mile">ميل</option>
+        </select>
+
+        <label for="precision">الدقة العشرية:</label>
+        <input type="number" id="precision" placeholder="أدخل الدقة" min="0">
+
+        <button onclick="convertLength()">تحويل</button>
+        <button onclick="clearFields()">مسح</button>
+
+        <p id="result">النتيجة: </p>
+
+        <!-- لوحة الرسم لـ Chart.js -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+
+        <!-- روابط اختصار التحويل -->
+        <div id="conversion-links">
+    <h2>تحويل المليمتر</h2>
+    <a href="millimeter-to-centimeter-conversion.html">من مليمتر إلى سنتيمتر (مم إلى سم)</a>
+    <a href="millimetertometerconversion.html">من مليمتر إلى متر (مم إلى م)</a>
+   <a href="MillimetertoKilometerconversion.html">من مليمتر إلى كيلومتر (مم إلى كم)</a>
+  <a href="MillimetertoInchconversion.html">من مليمتر إلى بوصة (مم إلى بوصة)</a>
+  <a href="MillimetertoFeetconversion.html">من مليمتر إلى قدم (مم إلى قدم)</a>
+<a href="MillimetertoYardconversion.html">من مليمتر إلى ياردة (مم إلى يد)</a>
+<a href="MillimetertoMileconversion.html">من مليمتر إلى ميل (مم إلى ميل)</a>
+    <!-- أضف المزيد من الروابط حسب الحاجة -->
+        </div>
+    </div>
+
+    <!-- العمود الثاني: حاوية الإعلانات -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- أضف محتوى الإعلان الفعلي -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // عوامل التحويل
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34
+                // أضف مزيد من عوامل التحويل حسب الحاجة
+            };
+
+            // أداء التحويل ذهابًا وإيابًا
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // عرض النتيجة بالدقة المحددة
+            document.getElementById('result').innerText = `النتيجة: ${result.toFixed(precision)}\nالنتيجة العكسية: ${resultInverse.toFixed(precision)}`;
+
+            // تحديث أو إنشاء الرسم البياني
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (قبل)`, `${toType} (بعد)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // تدمير الرسم البياني السابق إذا كان موجودًا
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // إنشاء رسم بياني جديد
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'نتيجة التحويل',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // ضبط سمك العمود حسب الحاجة
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // تدمير الرسم البياني إذا كان موجودًا
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+</body>
+
+</html>
