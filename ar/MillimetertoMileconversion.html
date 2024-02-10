@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحويل الطول --- من المليمتر إلى الميل (مم إلى ميل)</title>
+    <meta name="description" content="تحويل من المليمتر إلى الميل (مم إلى ميل)، قم بتحويل بين المتر [م]، الكيلومتر [كم]، الديسيمتر [دم]، السنتيمتر [سم]، السم إلى البوصة، مم إلى البوصة، المتر إلى القدم، وما إلى ذلك.">
+    <meta name="keywords" content="تحويل من المليمتر إلى الميل (مم إلى ميل)">
+	<!-- أضف Google Analytics (gtag.js) هنا -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-8M2YLYLQDV');
+</script>
+
+<script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+    /* أمثلة على الأنماط: العمود الأول */
+    #first-column {
+        float: left;
+        width: 80%; /* قم بتعديل عرض العمود الأول */
+        padding: 20px; /* قم بتعيين الحشو */
+        box-sizing: border-box; /* نموذج الصندوق، يضمن أن العرض والارتفاع يشملان الحشو والحدود */
+    }
+
+    /* أمثلة على الأنماط: العمود الثاني */
+    #second-column {
+        float: left;
+        width: 20%; /* قم بتعديل عرض العمود الثاني */
+        padding: 20px; /* قم بتعيين الحشو */
+        box-sizing: border-box; /* نموذج الصندوق، يضمن أن العرض والارتفاع يشملان الحشو والحدود */
+    }
+
+    /* أمثلة على الأنماط: محتوى الاستعلام */
+    #value,
+    #fromType,
+    #toType,
+    #precision,
+    #result,
+    #conversion-links {
+        margin-bottom: 20px; /* قم بتعيين هامش أسفل */
+    }
+
+    /* أمثلة على الأنماط: روابط التحويل */
+    #conversion-links a {
+        display: block;
+        margin-bottom: 10px; /* قم بتعيين هامش أسفل بين الروابط */
+        text-decoration: none;
+        color: #333; /* قم بتعيين لون نص الرابط */
+        font-weight: bold; /* قم بتعيين سمك نص الرابط */
+    }
+
+    /* أمثلة على الأنماط: إعلان */
+    #ad-container {
+        width: 100%; /* اجعل حاوية الإعلان تأخذ عرضًا كاملاً داخل العمود الثاني */
+        height: 400px; /* قم بضبط ارتفاع حاوية الإعلان */
+        /*background-color: #333;  ضع لون الخلفية */
+        padding: 10px; /* قم بتعيين الحشو */
+        box-sizing: border-box; /* نموذج الصندوق، يضمن أن العرض والارتفاع يشملان الحشو والحدود */
+    }
+
+    #ad-container img {
+        max-width: 100%; /* قم بتعيين أقصى عرض للصورة لعدم تجاوز عرض الحاوية */
+        height: auto; /* جعل ارتفاع الصورة يتكيف تلقائيًا */
+    }
+</style>
+</head>
+<body>
+    <h1>تحويل الطول</h1>
+	<!-- العمود الأول -->
+<div id="first-column">
+    <label for="value">القيمة:</label>
+    <input type="number" id="value" placeholder="أدخل القيمة">
+
+    <label for="fromType">نوع المصدر:</label>
+    <select id="fromType">
+        <option value="millimeter" selected>المليمتر</option>
+        <option value="centimeter">السنتيمتر</option>
+        <option value="meter">المتر</option>
+        <option value="kilometer">الكيلومتر</option>
+        <option value="inch">البوصة</option>
+        <option value="feet">القدم</option>
+        <option value="yard">الياردة</option>
+        <option value="mile">الميل</option>
+    </select>
+
+    <label for="toType">نوع الهدف:</label>
+    <select id="toType">
+        <option value="millimeter">المليمتر</option>
+        <option value="centimeter">السنتيمتر</option>
+        <option value="meter" selected>المتر</option>
+        <option value="kilometer">الكيلومتر</option>
+        <option value="inch">البوصة</option>
+        <option value="feet">القدم</option>
+        <option value="yard">الياردة</option>
+        <option value="mile">الميل</option>
+    </select>
+
+    <label for="precision">الدقة العشرية:</label>
+    <input type="number" id="precision" placeholder="أدخل الدقة" min="0">
+
+    <button onclick="convertLength()">تحويل</button>
+    <button onclick="clearFields()">مسح</button>
+
+    <p id="result">النتيجة: </p>
+
+    <!-- لوحة لـ Chart.js -->
+    <canvas id="conversionChart" width="400" height="200"></canvas>
+
+    <!-- تعريف الميل، الأمثلة، الحقائق، مشكلات الممارسة -->
+    <div id="mile-info">
+        <h2>معلومات عن الميل:</h2>
+        <p>
+            <strong>تعريف الميل:</strong> الميل هو وحدة طول تُستخدم بشكل شائع في الولايات المتحدة وبعض البلدان الأخرى. تعرف الميل الدولي بدقة كـ 1,609.344 متر.
+        </p>
+        <h3>أمثلة:</h3>
+        <p>
+            <strong>الاستخدام القياسي:</strong>
+            <br>
+            • يمكن قياس المسافة بين المدن أو البلدات بالأميال.
+            <br>
+            • تعرض لافتات الطرق كثيرًا المسافات بالأميال.
+        </p>
+        <p>
+            <strong>القياسات اليومية:</strong>
+            <br>
+            • تقدير طول رحلة طويلة بالأميال.
+            <br>
+            • التعبير عن كفاءة استهلاك الوقود للسيارة بالأميال لكل جالون (mpg).
+        </p>
+
+        <h3>الحقائق:</h3>
+        <p>
+            <strong>التحويل:</strong>
+            <br>
+            • الميل يُستخدم عادة في النظام الإمبراطوري، ويعادل 1 ميل 5,280 قدم.
+            <br>
+            • يُستخدم الميل الدولي في معظم البلدان للقياسات الموحدة.
+        </p>
+        <p>
+            <strong>الاستخدام على مستوى العالم:</strong>
+            <br>
+            • بينما يسود النظام المتري على نطاق واسع في العالم، يُستخدم الميل بشكل شائع في البلدان التي تتبع النظام الإمبراطوري، خاصة لقياس الطرق والمسافات.
+        </p>
+
+        <h3>مشكلات الممارسة:</h3>
+        <p>
+            <strong>التحويل:</strong>
+            <br>
+            • قم بتحويل 3 أميال إلى كيلومترات.
+            <br>
+            • قم بالتعبير عن 10,000 متر بالأميال.
+        </p>
+        <p>
+            <strong>التطبيق:</strong>
+            <br>
+            • إذا سافرت سيارة بسرعة متوسطة قدرها 60 ميلاً في الساعة، فكم ستسافر في 4 ساعات؟
+            <br>
+            • سباق الماراثون يبلغ طوله حوالي 26.2 ميلاً. قم بتحويل هذه المسافة إلى كيلومترات.
+        </p>
+
+        <h3>الإجابات:</h3>
+        <p>
+            <strong>التحويل:</strong>
+            <br>
+            • 3 أميال = 4.828 كيلومتر (تقريبًا)
+            <br>
+            • 10,000 متر = 6.214 أميال (تقريبًا)
+        </p>
+        <p>
+            <strong>التطبيق:</strong>
+            <br>
+            • المسافة = السرعة × الوقت
+            <br>
+            • المسافة = 60 ميلاً في الساعة × 4 ساعات = 240 ميلاً
+            <br>
+            • 26.2 ميلاً = 42.195 كيلومتر (تقريبًا)
+        </p>
+    </div>
+
+    <!-- روابط اختصار التحويل -->
+    <div id="conversion-links">
+        <h2>تحويل المليمتر</h2>
+        <a href="millimeter-to-centimeter-conversion.html">من المليمتر إلى السنتيمتر (مم إلى سم)</a>
+        <a href="millimetertometerconversion.html">من المليمتر إلى المتر (مم إلى م)</a>
+        <a href="MillimetertoKilometerconversion.html">من المليمتر إلى الكيلومتر (مم إلى كم)</a>
+        <a href="MillimetertoInchconversion.html">من المليمتر إلى البوصة (مم إلى في)</a>
+        <a href="MillimetertoFeetconversion.html">من المليمتر إلى القدم (مم إلى قدم)</a>
+        <a href="MillimetertoYardconversion.html">من المليمتر إلى الياردة (مم إلى يد)</a>
+        <a href="MillimetertoMileconversion.html">من المليمتر إلى الميل (مم إلى ميل)</a>
+        <!-- أضف المزيد من الروابط حسب الحاجة -->
+    </div>
+</div>
+
+<!-- العمود الثاني: حاوية الإعلان -->
+<div id="second-column">
+    <div id="ad-container">
+        <!--<img src=" " alt=" "> -->
+        <!-- أضف محتوى الإعلان الفعلي -->
+    </div>
+</div>
+
+<script>
+    function convertLength() {
+        const value = parseFloat(document.getElementById('value').value);
+        const fromType = document.getElementById('fromType').value;
+        const toType = document.getElementById('toType').value;
+        const precision = parseInt(document.getElementById('precision').value) || 0;
+
+        // عوامل التحويل
+        const conversionFactors = {
+            millimeter: 0.001,
+            centimeter: 0.01,
+            meter: 1,
+            kilometer: 1000,
+            inch: 0.0254,
+            feet: 0.3048,
+            yard: 0.9144,
+            mile: 1609.34
+            // أضف عوامل التحويل الأخرى حسب الحاجة
+        };
+
+        // قم بأداء التحويل ذهابًا وإيابًا
+        const result = value * conversionFactors[fromType] / conversionFactors[toType];
+        const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+        // عرض النتيجة بالدقة المحددة
+        document.getElementById('result').innerText = `النتيجة: ${result.toFixed(precision)}\nالنتيجة العكسية: ${resultInverse.toFixed(precision)}`;
+
+        // تحديث أو إنشاء الرسم البياني
+        updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (قبل)`, `${toType} (بعد)`]);
+    }
+
+    function updateChart(data, labels) {
+        const canvas = document.getElementById('conversionChart');
+        const ctx = canvas.getContext('2d');
+
+        // قم بتدمير الرسم البياني السابق إذا كان موجودًا
+        if (window.myChart) {
+            window.myChart.destroy();
+        }
+
+        // أنشئ رسمًا بيانيًا جديدًا
+        window.myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'نتيجة التحويل',
+                    data: data,
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                    borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                    borderWidth: 1,
+                    barThickness: 20 // قم بضبط سمك العمود حسب الحاجة
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        type: 'logarithmic',
+                        beginAtZero: true,
+                        min: 0.1
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    annotation: {
+                        annotations: {
+                            line1: {
+                                type: 'line',
+                                mode: 'horizontal',
+                                scaleID: 'y',
+                                value: 1,
+                                borderColor: 'black',
+                                borderWidth: 1,
+                            },
+                        },
+                    },
+                },
+            }
+        });
+    }
+
+    function clearFields() {
+        document.getElementById('value').value = '';
+        document.getElementById('fromType').selectedIndex = 0;
+        document.getElementById('toType').selectedIndex = 0;
+        document.getElementById('precision').value = '';
+        document.getElementById('result').innerText = '';
+
+        // قم بتدمير الرسم البياني إذا كان موجودًا
+        if (window.myChart) {
+            window.myChart.destroy();
+        }
+    }
+</script>
+</body>
+</html>

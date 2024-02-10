@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحويل الطول---من المليمتر إلى السنتيمتر (مم إلى سم)</title>
+    <meta name="description" content="تحويل بين المتر [م]، الكيلومتر [كم]، الديسيمتر [دم]، السنتيمتر [سم]، السم إلى البوصة، مم إلى البوصة، المتر إلى القدم، وما إلى ذلك.">
+    <meta name="keywords" content="تحويل من المليمتر إلى السنتيمتر (مم إلى سم)">
+
+    <!-- أضف Google Analytics (gtag.js) الخاص بك هنا -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* أمثلة للأنماط: العمود الأول */
+        #first-column {
+            float: left;
+            width: 80%; /* قم بضبط عرض العمود الأول */
+            padding: 20px; /* قم بتعيين الحشو */
+            box-sizing: border-box; /* نموذج الصندوق، يضمن أن يشمل العرض والارتفاع الحشو والحدود */
+        }
+
+        /* أمثلة للأنماط: العمود الثاني */
+        #second-column {
+            float: left;
+            width: 20%; /* قم بضبط عرض العمود الثاني */
+            padding: 20px; /* قم بتعيين الحشو */
+            box-sizing: border-box; /* نموذج الصندوق، يضمن أن يشمل العرض والارتفاع الحشو والحدود */
+        }
+
+        /* أمثلة للأنماط: محتوى الاستعلام */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* قم بتعيين الحد السفلي */
+        }
+
+        /* أمثلة للأنماط: روابط التحويل */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* قم بتعيين الحد السفلي بين الروابط */
+            text-decoration: none;
+            color: #333; /* قم بتعيين لون النص */
+            font-weight: bold; /* قم بتعيين سمك النص */
+        }
+
+        /* أمثلة للأنماط: حاوية الإعلان */
+        #ad-container {
+            width: 100%; /* جعل حاوية الإعلان تأخذ العرض الكامل في العمود الثاني */
+            height: 400px; /* قم بضبط ارتفاع حاوية الإعلان */
+            /*background-color: #333;  قم بتعيين لون الخلفية */
+            padding: 10px; /* قم بتعيين الحشو */
+            box-sizing: border-box; /* نموذج الصندوق، يضمن أن يشمل العرض والارتفاع الحشو والحدود */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* قم بتعيين أقصى عرض للصورة لعدم تجاوز عرض الحاوية */
+            height: auto; /* اجعل ارتفاع الصورة يتكيف تلقائيًا */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>تحويل الطول</h1>
+
+    <!-- العمود الأول -->
+    <div id="first-column">
+        <label for="value">القيمة:</label>
+        <input type="number" id="value" placeholder="أدخل القيمة">
+
+        <label for="fromType">من نوع:</label>
+        <select id="fromType">
+            <option value="millimeter" selected>المليمتر</option>
+            <option value="centimeter">السنتيمتر</option>
+            <option value="meter">المتر</option>
+            <option value="kilometer">الكيلومتر</option>
+            <option value="inch">البوصة</option>
+            <option value="feet">القدم</option>
+            <option value="yard">الياردة</option>
+            <option value="mile">الميل</option>
+        </select>
+
+        <label for="toType">إلى نوع:</label>
+        <select id="toType">
+            <option value="millimeter">المليمتر</option>
+            <option value="centimeter" selected>السنتيمتر</option>
+            <option value="meter">المتر</option>
+            <option value="kilometer">الكيلومتر</option>
+            <option value="inch">البوصة</option>
+            <option value="feet">القدم</option>
+            <option value="yard">الياردة</option>
+            <option value="mile">الميل</option>
+        </select>
+
+        <label for="precision">الدقة العشرية:</label>
+        <input type="number"
+
+ id="precision" placeholder="أدخل الدقة" min="0">
+
+        <button onclick="convertLength()">تحويل</button>
+        <button onclick="clearFields()">مسح</button>
+
+        <p id="result">النتيجة: </p>
+
+        <!-- لوحة الرسم البياني لـ Chart.js -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+        <!-- تعريف السنتيمتر، أمثلة، حقائق، مشكلات تدريب -->
+        <div id="centimeter-info">
+            <h2>معلومات عن السنتيمتر</h2>
+            <p>
+                <strong>تعريف السنتيمتر:</strong> السنتيمتر (الرمز: سم) هو وحدة الطول في النظام الدولي للوحدات (SI)، والذي هو الشكل الحالي للنظام المتري. يعرف كـ 1/100 متر.
+            </p>
+            <h3>أمثلة</h3>
+            <p>
+                <strong>الاستخدام القياسي:</strong>
+                <ul>
+                    <li>ورقة الورق غالبًا ما تكون قريبة من 21 سنتيمترًا في الطول.</li>
+                    <li>قد يكون طول هاتف ذكي نموذجي حوالي 15 سنتيمترًا.</li>
+                </ul>
+            </p>
+            <p>
+                <strong>القياسات اليومية:</strong>
+                <ul>
+                    <li>قياس طول شخص في السنتيمترات.</li>
+                    <li>يتم قياس أبعاد الأشياء الصغيرة مثل الأقلام أو الكتب غالبًا في السنتيمترات.</li>
+                </ul>
+            </p>
+
+            <h3>حقائق</h3>
+            <p>
+                <strong>البادئة الضعفية:</strong> يستند السنتيمتر إلى وحدة المتر في SI، وتشير البادئة "سنتي" إلى أنه يساوي المئة من المتر.
+            </p>
+            <p>
+                <strong>النظام العشري:</strong> تتبع البادئات الضعفية نظامًا عشريًا، مما يجعل من السهل تحويل بين وحدات مختلفة.
+            </p>
+            <p>
+                <strong>الاستخدام في جميع أنحاء العالم:</strong> يُستخدم السنتيمتر، مثل المتر، على نطاق واسع في البلدان التي اعتمدت النظام المتري للتطبيقات التي تتطلب وحدة أصغر من المتر.
+            </p>
+
+            <h3>مشكلات تدريب</h3>
+            <p>
+                <strong>التحويل:</strong>
+                <ul>
+                    <li>تحويل 250 سنتيمتر إلى أمتار. (الجواب: 250 سم = 2.5 متر)</li>
+                    <li>تعبير عن 0.75 متر في سنتيمتر. (الجواب: 0.75 م = 75 سم)</li>
+                </ul>
+            </p>
+            <p>
+                <strong>التطبيق:</strong>
+                <ul>
+                    <li>إذا كان لدى مستطيل طول 30 سنتيمترًا وعرض 20 سنتيمترًا، فما هي مساحته؟ (الجواب: المساحة = 30 سم × 20 سم = 600 سم²)</li>
+                </ul>
+            </p>
+            <p>
+                <strong>سيناريو الحياة الواقعية:</strong>
+                <ul>
+                    <li>يتم قياس طول شخص كـ 175 سنتيمتر. قم بتحويل هذا الطول إلى أمتار. (الجواب: 175 سم = 1.75 متر)</li>
+                </ul>
+            </p>
+        </div>
+        <!-- روابط اختصار التحويل -->
+        <div id="conversion-links">
+            <h2>تحويل المليمتر</h2>
+            <a href="millimeter-to-centimeter-conversion.html">من المليمتر إلى السنتيمتر (مم إلى سم)</a>
+            <a href="millimetertometerconversion.html">من المليمتر إلى المتر (مم إلى م)</a>
+            <a href="MillimetertoKilometerconversion.html">من المليمتر إلى الكيلومتر (مم إلى كم)</a>
+            <a href="MillimetertoInchconversion.html">من المليمتر إلى البوصة (مم إلى في)</a>
+            <a href="MillimetertoFeetconversion.html">من المليمتر إلى القدم (مم إلى قدم)</a>
+            <a href="MillimetertoYardconversion.html">من المليمتر إلى الياردة (مم إلى ياردة)</a>
+            <a href="MillimetertoMileconversion.html">من المليمتر إلى الميل (مم إلى ميل)</a>
+            <!-- أضف المزيد من ال
+
+روابط حسب الحاجة -->
+        </div>
+    </div>
+
+    <!-- العمود الثاني: حاوية الإعلانات -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- أضف محتوى الإعلان الفعلي -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // عوامل التحويل
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34
+                // أضف مزيد من عوامل التحويل حسب الحاجة
+            };
+
+            // القيام بالتحويل ذهابًا وإيابًا
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // عرض النتيجة بالدقة المحددة
+            document.getElementById('result').innerText = `النتيجة: ${result.toFixed(precision)}\nالنتيجة المعاكسة: ${resultInverse.toFixed(precision)}`;
+
+            // تحديث أو إنشاء الرسم البياني
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (قبل)`, `${toType} (بعد)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // تدمير الرسم البياني السابق إذا كان موجودًا
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // إنشاء رسم بياني جديد
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'نتيجة التحويل',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // قم بتعديل سمك الشريط حسب الحاجة
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // تدمير الرسم البياني إذا كان موجودًا
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+</body>
+
+</html>
+```

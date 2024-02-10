@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحويل الطول---من المليمتر إلى الياردة (مم إلى يد)</title>
+    <meta name="description" content="من المليمتر إلى الياردة (مم إلى يد)، قم بالتحويل بين المتر [م] والكيلومتر [كم] والديسيمتر [ديم] والسنتيمتر [سم] والسم إلى بوصة والمليمتر إلى بوصة والأمتار إلى القدم، وما إلى ذلك.">
+    <meta name="keywords" content="من المليمتر إلى الياردة">
+	<!-- أضف تحليلات Google الخاصة بك (gtag.js) هنا -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-8M2YLYLQDV');
+</script>
+
+<script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+    /* أمثلة على الأنماط: العمود الأول */
+    #first-column {
+        float: left;
+        width: 80%; /* قم بضبط عرض العمود الأول */
+        padding: 20px; /* قم بتعيين الحشو */
+        box-sizing: border-box; /* نموذج الصندوق، يضمن أن يشمل العرض والارتفاع الحشو والحدود */
+    }
+
+    /* أمثلة على الأنماط: العمود الثاني */
+    #second-column {
+        float: left;
+        width: 20%; /* قم بضبط عرض العمود الثاني */
+        padding: 20px; /* قم بتعيين الحشو */
+        box-sizing: border-box; /* نموذج الصندوق، يضمن أن يشمل العرض والارتفاع الحشو والحدود */
+    }
+
+    /* أمثلة على الأنماط: محتوى الاستعلام */
+    #value,
+    #fromType,
+    #toType,
+    #precision,
+    #result,
+    #conversion-links {
+        margin-bottom: 20px; /* قم بتعيين الهامش السفلي */
+    }
+
+    /* أمثلة على الأنماط: روابط التحويل */
+    #conversion-links a {
+        display: block;
+        margin-bottom: 10px; /* قم بتعيين الهامش السفلي بين الروابط */
+        text-decoration: none;
+        color: #333; /* قم بتعيين لون نص الرابط */
+        font-weight: bold; /* قم بتعيين سمك نص الرابط */
+    }
+
+    /* أمثلة على الأنماط: إعلان */
+    #ad-container {
+        width: 100%; /* اجعل حاوية الإعلان تأخذ العرض الكامل ضمن العمود الثاني */
+        height: 400px; /* قم بضبط ارتفاع حاوية الإعلان */
+         /*background-color: #333;  قم بتعيين لون الخلفية */
+        padding: 10px; /* قم بتعيين الحشو */
+        box-sizing: border-box; /* نموذج الصندوق، يضمن أن يشمل العرض والارتفاع الحشو والحدود */
+    }
+
+    #ad-container img {
+        max-width: 100%; /* قم بتعيين أقصى عرض للصورة لعدم تجاوز عرض الحاوية */
+        height: auto; /* جعل ارتفاع الصورة يتكيف تلقائيًا */
+    }
+</style>
+</head>
+<body>
+    <h1>تحويل الطول</h1>
+	<!-- العمود الأول -->
+<div id="first-column">
+    <label for="value">القيمة:</label>
+    <input type="number" id="value" placeholder="أدخل القيمة">
+
+    <label for="fromType">نوع الوحدة الأصلي:</label>
+    <select id="fromType">
+        <option value="millimeter" selected>المليمتر</option>
+        <option value="centimeter">السنتيمتر</option>
+        <option value="meter">المتر</option>
+        <option value="kilometer">الكيلومتر</option>
+        <option value="inch">البوصة</option>
+        <option value="feet">القدم</option>
+        <option value="yard">الياردة</option>
+        <option value="mile">الميل</option>
+    </select>
+
+    <label for="toType">نوع الوحدة المستهدف:</label>
+    <select id="toType">
+        <option value="millimeter">المليمتر</option>
+        <option value="centimeter">السنتيمتر</option>
+        <option value="meter" selected>المتر</option>
+        <option value="kilometer">الكيلومتر</option>
+        <option value="inch">البوصة</option>
+        <option value="feet">القدم</option>
+        <option value="yard">الياردة</option>
+        <option value="mile">الميل</option>
+    </select>
+
+    <label for="precision">الدقة العشرية:</label>
+    <input type="number" id="precision" placeholder="أدخل الدقة" min="0">
+
+    <button onclick="convertLength()">تحويل</button>
+    <button onclick="clearFields()">مسح</button>
+
+    <p id="result">النتيجة: </p>
+
+    <!-- Canvas for Chart.js -->
+    <canvas id="conversionChart" width="400" height="200"></canvas>
+    <!-- تعريف الياردة، أمثلة، حقائق، مشكلات تدريب -->
+    <div id="yard-info">
+        <h2>معلومات عن الياردة:</h2>
+        <p>
+            <strong>تعريف الياردة:</strong> الياردة (الرمز: يد) هي وحدة قياس الطول في النظامين الامبراطوري البريطاني والاعتيادي الأمريكي. يتم تعريفها كثلاثة أقدام أو 36 بوصة.
+        </p>
+        <h3>أمثلة:</h3>
+        <p>
+            <strong>الاستخدام القياسي:</strong>
+            <br>
+            • قد يتم قياس حجم حمام السباحة النموذجي بالياردات.
+            <br>
+            • تُقاس الملاعب الرياضية، مثل ملاعب كرة القدم، غالبًا بالياردات.
+        </p>
+        <p>
+            <strong>القياسات اليومية:</strong>
+            <br>
+            • تقدير طول حديقة في الياردات.
+            <br>
+            • تحديد المسافة بين نقطتين على الخريطة بالياردات.
+        </p>
+
+        <h3>حقائق:</h3>
+        <p>
+            <strong>النظام الامبراطوري والاعتيادي:</strong>
+            <br>
+            • تُستخدم الياردة عادة في الولايات المتحدة والمملكة المتحدة ودول أخرى تتبع النظام الامبراطوري أو الاعتيادي.
+            <br>
+            • غالبًا ما تُستخدم في البناء والتنسيق والرياضة.
+        </p>
+        <p>
+            <strong>العلاقة مع القدم:</strong>
+            <br>
+            • 1 ياردة تعادل 3 أقدام أو 36 بوصة.
+        </p>
+
+        <h3>مشكلات التدريب:</h3>
+        <p>
+            <strong>التحويل:</strong>
+            <br>
+            • حول 10 ياردات إلى قدم.
+            <br>
+            • عبّر عن 90 قدمًا بالياردات.
+        </p>
+        <p>
+            <strong>التطبيق:</strong>
+            <br>
+            • إذا كانت حديقة مستطيلة لها طول يبلغ 20 ياردة وعرض 15 ياردة، فما هي مساحتها؟
+            <br>
+            • يتم قياس ارتفاع شخص كـ 72 بوصة. قم بتحويل هذا الارتفاع إلى ياردة.
+        </p>
+
+        <h3>الإجابات:</h3>
+        <p>
+            <strong>التحويل:</strong>
+            <br>
+            • 10 ياردات = 30 قدم
+            <br>
+            • 90 قدم = 30 ياردة
+        </p>
+        <p>
+            <strong>التطبيق:</strong>
+            <br>
+            • المساحة = الطول × العرض
+            <br>
+            • المساحة = 20 ياردة × 15 ياردة = 300 متر مربع
+            <br>
+            • 72 بوصة = 2 ياردة (نظرًا لأن 1 ياردة = 36 بوصة)
+        </p>
+    </div>
+    <!-- روابط اختصار التحويل -->
+    <div id="conversion-links">
+        <h2>تحويل المليمتر</h2>
+        <a href="millimeter-to-centimeter-conversion.html">من المليمتر إلى السنتيمتر (مم إلى سم)</a>
+        <a href="millimetertometerconversion.html">من المليمتر إلى المتر (مم إلى م)</a>
+        <a href="MillimetertoKilometerconversion.html">من المليمتر إلى الكيلومتر (مم إلى كم)</a>
+        <a href="MillimetertoInchconversion.html">من المليمتر إلى البوصة (مم إلى في)</a>
+        <a href="MillimetertoFeetconversion.html">من المليمتر إلى القدم (مم إلى قدم)</a>
+        <a href="MillimetertoYardconversion.html">من المليمتر إلى الياردة (مم إلى يد)</a>
+        <a href="MillimetertoMileconversion.html">من المليمتر إلى الميل (مم إلى ميل)</a>
+        <!-- أضف المزيد من الروابط حسب الحاجة -->
+    </div>
+</div>
+
+<!-- العمود الثاني: حاوية الإعلان -->
+<div id="second-column">
+    <div id="ad-container">
+        <!--<img src=" " alt=" "> -->
+        <!-- أضف محتوى الإعلان الفعلي -->
+    </div>
+</div>
+
+<script>
+    function convertLength() {
+        const value = parseFloat(document.getElementById('value').value);
+        const fromType = document.getElementById('fromType').value;
+        const toType = document.getElementById('toType').value;
+        const precision = parseInt(document.getElementById('precision').value) || 0;
+
+        // عوامل التحويل
+        const conversionFactors = {
+            millimeter: 0.001,
+            centimeter: 0.01,
+            meter: 1,
+            kilometer: 1000,
+            inch: 0.0254,
+            feet: 0.3048,
+            yard: 0.9144,
+            mile: 1609.34
+            // أضف عوامل التحويل الأخرى حسب الحاجة
+        };
+
+        // قم بتنفيذ التحويل ذهابًا وإيابًا
+        const result = value * conversionFactors[fromType] / conversionFactors[toType];
+        const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+        // عرض النتيجة بالدقة المحددة
+        document.getElementById('result').innerText = `النتيجة: ${result.toFixed(precision)}\nالنتيجة العكسية: ${resultInverse.toFixed(precision)}`;
+
+        // تحديث أو إنشاء الرسم البياني
+        updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (قبل)`, `${toType} (بعد)`]);
+    }
+
+    function updateChart(data, labels) {
+        const canvas = document.getElementById('conversionChart');
+        const ctx = canvas.getContext('2d');
+
+        // قم بتدمير الرسم البياني السابق إذا كان موجودًا
+        if (window.myChart) {
+            window.myChart.destroy();
+        }
+
+        // أنشئ رسمًا بيانيًا جديدًا
+        window.myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'نتيجة التحويل',
+                    data: data,
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                    borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                    borderWidth: 1,
+                    barThickness: 20 // قم بضبط سمك الشريط حسب الحاجة
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        type: 'logarithmic',
+                        beginAtZero: true,
+                        min: 0.1
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    annotation: {
+                        annotations: {
+                            line1: {
+                                type: 'line',
+                                mode: 'horizontal',
+                                scaleID: 'y',
+                                value: 1,
+                                borderColor: 'black',
+                                borderWidth: 1,
+                            },
+                        },
+                    },
+                },
+            }
+        });
+    }
+
+    function clearFields() {
+        document.getElementById('value').value = '';
+        document.getElementById('fromType').selectedIndex = 0;
+        document.getElementById('toType').selectedIndex = 0;
+        document.getElementById('precision').value = '';
+        document.getElementById('result').innerText = '';
+
+        // قم بتدمير الرسم البياني إذا كان موجودًا
+        if (window.myChart) {
+            window.myChart.destroy();
+        }
+    }
+</script>
+</body>
+</html>
