@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>लंबाई परिवर्तन---मिलीमीटर से किलोमीटर (mm से km)</title>
+    <meta name="description" content="मिलीमीटर से किलोमीटर (mm से km), मीटर [m], किलोमीटर [km], डेसीमीटर [dm], सेंटीमीटर [cm], सेंटीमीटर से इंच, मिलीमीटर से इंच, मीटर से फीट आदि के बीच परिवर्तन करें।">
+    <meta name="keywords" content="मिलीमीटर से किलोमीटर">
+
+    <style>
+        /* उदाहरण स्टाइल: पहला स्तंभ */
+        #first-column {
+            float: left;
+            width: 80%; /* पहले स्तंभ की चौड़ाई को समायोजित करें */
+            padding: 20px; /* पैडिंग सेट करें */
+            box-sizing: border-box; /* बॉक्स मॉडल, इसे सुनिश्चित करता है कि चौड़ाई और ऊचाई में पैडिंग और बॉर्डर शामिल हैं */
+        }
+
+        /* उदाहरण स्टाइल: दूसरा स्तंभ */
+        #second-column {
+            float: left;
+            width: 20%; /* दूसरे स्तंभ की चौड़ाई को समायोजित करें */
+            padding: 20px; /* पैडिंग सेट करें */
+            box-sizing: border-box; /* बॉक्स मॉडल, इसे सुनिश्चित करता है कि चौड़ाई और ऊचाई में पैडिंग और बॉर्डर शामिल हैं */
+        }
+
+        /* उदाहरण स्टाइल: क्वेरी सामग्री */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* नीचे की ओर मार्जिन सेट करें */
+        }
+
+        /* उदाहरण स्टाइल: परिवर्तन लिंक */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* लिंक के बीच नीचे की ओर मार्जिन सेट करें */
+            text-decoration: none;
+            color: #333; /* लिंक पाठ का रंग सेट करें */
+            font-weight: bold; /* लिंक पाठ को बोल्ड सेट करें */
+        }
+
+        /* उदाहरण स्टाइल: विज्ञापन */
+        #ad-container {
+            width: 100%; /* दूसरे स्तंभ के भीतर पूर्ण चौड़ाई लेने के लिए */
+            height: 400px; /* विज्ञापन कंटेनर की ऊचाई को समायोजित करें */
+             /*background-color: #333;  बैकग्राउंड कलर सेट करें */
+            padding: 10px; /* पैडिंग सेट करें */
+            box-sizing: border-box; /* बॉक्स मॉडल, इसे सुनिश्चित करता है कि चौड़ाई और ऊचाई में पैडिंग और बॉर्डर शामिल हैं */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* इमेज की अधिकतम चौड़ाई सेट करें, कंटेनर चौड़ाई को पार करना नहीं है */
+            height: auto; /* इमेज की ऊचाई स्वचालित-समायोजित करें */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>लंबाई परिवर्तन</h1>
+
+    <!-- पहला स्तंभ -->
+    <div id="first-column">
+        <label for="value">मूल्य:</label>
+        <input type="number" id="value" placeholder="मूल्य दर्ज करें">
+
+        <label for="fromType">प्रकार से:</label>
+        <select id="fromType">
+            <option value="millimeter" selected>मिलीमीटर</option>
+            <option value="centimeter">सेंटीमीटर</option>
+            <option value="meter">मीटर</option>
+            <option value="kilometer">किलोमीटर</option>
+            <option value="inch">इंच</option>
+            <option value="feet">फीट</option>
+            <option value="yard">यार्ड</option>
+            <option value="mile">मील</option>
+            <option value="decimeter">डेसीमीटर</option>
+            <option value="decameter">डेकामीटर</option>
+            <option value="hectometer">हेक्टोमीटर</option>
+        </select>
+
+        <label for="toType">प्रकार को:</label>
+        <select id="toType">
+            <option value="millimeter">मिलीमीटर</option>
+            <option value="centimeter">सेंटीमीटर</option>
+            <option value="meter">मीटर</option>
+            <option value="kilometer" selected>किलोमीटर</option>
+            <option value="inch">इंच</option>
+            <option value="feet">फीट</option>
+            <option value="yard">यार्ड</option>
+            <option value="mile">मील</option>
+            <option value="decimeter">डेसीमीटर</option>
+            <option value="decameter">डेकामीटर</option>
+            <option value="hectometer">हेक्टोमीटर</option>
+        </select>
+
+        <label for="precision">दशमलव स्थान स्थिरता:</label>
+        <input type="number" id="precision" placeholder="स्थिरता दर्ज करें" min="0">
+
+        <button onclick="convertLength()">परिवर्तन</button>
+        <button onclick="clearFields()">स्पष्ट</button>
+
+        <p id="result">परिणाम: </p>
+
+        <!-- Chart.js के लिए कैनवास -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+        <!-- किलोमीटर परिभाषा, उदाहरण, तथ्य, अभ्यास समस्याएँ -->
+        <div id="kilometer-info">
+            <h2>किलोमीटर जानकारी:</h2>
+            <p>
+                <strong>किलोमीटर परिभाषा:</strong> एक किलोमीटर (प्रतीक: km) अंतर्राष्ट्रीय मानक (एसआई) में लंबाई का एक मात्रक है, मीट्रिक सिस्टम के वर्तमान प्रप्रकार का। इसे 1000 मीटर के रूप में परिभाषित किया गया है।
+            </p>
+            <h3>उदाहरण:</h3>
+            <p>
+                <strong>मानक उपयोग:</strong>
+                <br>
+                • दो शहरों के बीच की दूरी को किलोमीटर में मापा जा सकता है।
+                <br>
+                • एक मैराथन दौड़ लगभग 42.195 किलोमीटर है।
+            </p>
+            <p>
+                <strong>प्रतिदिन के माप:</strong>
+                <br>
+                • किलोमीटर में एक हाइकिंग पथ की लंबाई का अनुमान।
+                <br>
+                • मानचित्र पर स्थानों के बीच की दूरी को व्यक्त करना।
+            </p>
+
+            <h3>तथ्य:</h3>
+            <p>
+                <strong>मीट्रिक प्रीफिक्स:</strong>
+                <br>
+                • किलोमीटर सीआई इकाई मीटर पर आधारित है, और प्रीफिक्स "किलो" इसे एक हजार मीटर के बराबर होने का संकेत करता है।
+            </p>
+            <p>
+                <strong>दशमलव प्रणाली:</strong>
+                <br>
+                • मीट्रिक प्रीफिक्स, सहित ही, दशमलव प्रणाली का पालन करते हैं, जिससे विभिन्न इकाइयों के बीच परिवर्तन करना आसान होता है।
+            </p>
+            <p>
+                <strong>विश्वभर में उपयोग:</strong>
+                <br>
+                • किलोमीटर को विश्वभर में लंबी दूरियों को मापने के लिए व्यापक रूप से उपयोग किया जाता है, खासकर उन देशों में जो मीट्रिक सिस्टम को अपना कर चुके हैं।
+            </p>
+
+            <h3>अभ्यास समस्याएँ:</h3>
+            <p>
+                <strong>परिवर्तन:</strong>
+                <br>
+                • 5000 मीटर को किलोमीटर में परिवर्तित करें।
+                <br>
+                • 2.5 किलोमीटर को मीटर में व्यक्त करें।
+            </p>
+            <p>
+                <strong>अनुप्रयोग:</strong>
+                <br>
+                • यदि एक कार 80 किलोमीटर प्रति घंटे की गति से चलती है, तो वह 3 घंटे में कितनी दूर यात्रा करेगी?
+                <br>
+                • एक आयताकार क्षेत्र की लंबाई 1500 मीटर और चौड़ाई 800 मीटर है। इसका क्षेत्र कितना होगा वर्ग किलोमीटर में?
+            </p>
+
+            <h3>उत्तर:</h3>
+            <p>
+                <strong>परिवर्तन:</strong>
+                <br>
+                • 5000 मीटर = 5 किलोमीटर
+                <br>
+                • 2.5 किलोमीटर = 2500 मीटर
+            </p>
+            <p>
+                <strong>अनुप्रयोग:</strong>
+                <br>
+                • दूरी = गति × समय
+                <br>
+                • दूरी = 80 किलोमीटर/घंटा × 3 घंटे = 240 किलोमीटर
+                <br>
+                • क्षेत्र = लंबाई × चौड़ाई
+                <br>
+                • क्षेत्र = (1500 मीटर × 800 मीटर) / (1000 मीटर/किलोमीटर)^2 = 1.2 वर्ग किलोमीटर
+            </p>
+        </div>
+        <!-- परिवर्तन शॉर्टकट लिंक -->
+        <div id="conversion-links">
+            <h2>मिलीमीटर परिवर्तन</h2>
+            <a href="millimeter-to-centimeter-conversion.html">मिलीमीटर से सेंटीमीटर (mm से cm)</a>
+            <a href="millimetertometerconversion.html">मिलीमीटर से मीटर (mm से m)</a>
+            <a href="MillimetertoKilometerconversion.html">मिलीमीटर से किलोमीटर (mm से km)</a>
+            <a href="MillimetertoInchconversion.html">मिलीमीटर से इंच (mm से in.)</a>
+            <a href="MillimetertoFeetconversion.html">मिलीमीटर से फीट (mm से ft)</a>
+            <a href="MillimetertoYardconversion.html">मिलीमीटर से यार्ड (mm से yd)</a>
+            <a href="MillimetertoMileconversion.html">मिलीमीटर से मील (mm से mi)</a>
+            <!-- आवश्यकता के अनुसार और लिंक जोड़ें -->
+        </div>
+    </div>
+
+    <!-- दूसरा स्तंभ: विज्ञापन कंटेनर -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- वास्तविक विज्ञापन सामग्री जोड़ें -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // परिवर्तन कारक
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+                decimeter: 0.1,
+                decameter: 10,
+                hectometer: 100
+                // आवश्यकता के हिसाब से अन्य परिवर्तन कारक जोड़ें
+            };
+
+            // दोनों दिशा में परिवर्तन करें
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // परिणाम को स्थिरता से प्राप्त करें
+            const formattedResult = result.toFixed(precision);
+            const formattedResultInverse = resultInverse.toFixed(precision);
+
+            // परिणाम पर प्रदर्शित करें
+            document.getElementById('result').innerHTML = `परिणाम: ${value} ${fromType} = ${formattedResult} ${toType}<br>परिणाम: ${value} ${toType} = ${formattedResultInverse} ${fromType}`;
+
+            // ग्राफिक्स चार्ट को अपडेट करें (यदि आवश्यक हो)
+            updateChart(value, result, fromType, toType);
+        }
+
+        function clearFields() {
+            // प्रयोक्ता द्वारा प्रदान किए गए क्षेत्रों को स्पष्ट करें
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').value = 'millimeter';
+            document.getElementById('toType').value = 'kilometer';
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerHTML = 'परिणाम: ';
+
+            // ग्राफिक्स चार्ट को अपडेट करें (यदि आवश्यक हो)
+            clearChart();
+        }
+
+        function updateChart(value, result, fromType, toType) {
+            // यहां ग्राफिक्स चार्ट को अपडेट करने के लिए लॉजिक जोड़ें (यदि आवश्यक हो)
+        }
+
+        function clearChart() {
+            // यहां ग्राफिक्स चार्ट को साफ करने के लिए लॉजिक जोड़ें (यदि आवश्यक हो)
+        }
+    </script>
+</body>
+
+</html>

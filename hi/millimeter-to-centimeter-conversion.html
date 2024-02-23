@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>लंबाई परिवर्तन---मिलीमीटर से सेंटीमीटर (mm से cm)</title>
+    <meta name="description" content="मीटर [m], किलोमीटर [km], डेसीमीटर [dm], सेंटीमीटर [cm], cm से इंच, mm से इंच, मीटर से फीट, आदि के बीच परिवर्तन करें।">
+    <meta name="keywords" content="मिलीमीटर से सेंटीमीटर (mm से cm)">
+
+
+    <style>
+        /* उदाहरण शैली: पहला स्तंभ */
+        #first-column {
+            float: left;
+            width: 80%; /* पहले स्तंभ की चौड़ाई को समायोजित करें */
+            padding: 20px; /* पैडिंग सेट करें */
+            box-sizing: border-box; /* बॉक्स मॉडल, चौड़ाई और ऊचाई में पैडिंग और बॉर्डर शामिल होने का सुनिश्चित करता है */
+        }
+
+        /* उदाहरण शैली: दूसरा स्तंभ */
+        #second-column {
+            float: left;
+            width: 20%; /* दूसरे स्तंभ की चौड़ाई को समायोजित करें */
+            padding: 20px; /* पैडिंग सेट करें */
+            box-sizing: border-box; /* बॉक्स मॉडल, चौड़ाई और ऊचाई में पैडिंग और बॉर्डर शामिल होने का सुनिश्चित करता है */
+        }
+
+        /* उदाहरण शैली: क्वेरी सामग्री */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* नीचे के मार्जिन सेट करें */
+        }
+
+        /* उदाहरण शैली: परिवर्तन लिंक्स */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* लिंक के बीच की नीचे की मार्जिन सेट करें */
+            text-decoration: none;
+            color: #333; /* लिंक पाठ का रंग सेट करें */
+            font-weight: bold; /* लिंक पाठ की मोटाई सेट करें */
+        }
+
+        /* उदाहरण शैली: विज्ञापन */
+        #ad-container {
+            width: 100%; /* दूसरे स्तंभ के भीतर पूरी चौड़ाई लेने के लिए विज्ञापन कंटेनर को सेट करें */
+            height: 400px; /* विज्ञापन कंटेनर की ऊचाई को समायोजित करें */
+             /* बैकग्राउंड कलर सेट करें */
+            padding: 10px; /* पैडिंग सेट करें */
+            box-sizing: border-box; /* बॉक्स मॉडल, चौड़ाई और ऊचाई में पैडिंग और बॉर्डर शामिल होने का सुनिश्चित करता है */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* चित्र की अधिकतम चौड़ाई सेट करें कि कंटेनर चौड़ाई से पार नहीं होनी चाहिए */
+            height: auto; /* छवि की ऊचाई स्वचालित-समायोजित करें */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>लंबाई परिवर्तन</h1>
+
+    <!-- पहला स्तंभ -->
+    <div id="first-column">
+        <label for="value">मूल्य:</label>
+        <input type="number" id="value" placeholder="मूल्य दर्ज करें">
+
+        <label for="fromType">से प्रकार:</label>
+        <select id="fromType">
+            <option value="millimeter" selected>मिलीमीटर</option>
+            <option value="centimeter">सेंटीमीटर</option>
+            <option value="meter">मीटर</option>
+            <option value="kilometer">किलोमीटर</option>
+            <option value="inch">इंच</option>
+            <option value="feet">फीट</option>
+            <option value="yard">यार्ड</option>
+            <option value="mile">मील</option>
+			<option value="decimeter">डेसीमीटर</option>
+			<option value="decameter">डेसामीटर</option>
+			<option value="hectometer">हेक्टोमीटर</option>
+        </select>
+
+        <label for="toType">पर प्रकार:</label>
+        <select id="toType">
+            <option value="millimeter">मिलीमीटर</option>
+            <option value="centimeter" selected>सेंटीमीटर</option>
+            <option value="meter">मीटर</option>
+            <option value="kilometer">किलोमीटर</option>
+            <option value="inch">इंच</option>
+            <option value="feet">फीट</option>
+            <option value="yard">यार्ड</option>
+            <option value="mile">मील</option>			
+			<option value="decimeter">डेसीमीटर</option>
+			<option value="decameter">डेसामीटर</option>
+			<option value="hectometer">हेक्टोमीटर</option>
+		
+        </select>
+
+        <label for="precision">दशमलव स्थान स्थिरता:</label>
+        <input type="number" id="precision" placeholder="स्थान स्थिरता दर्ज करें" min="0">
+
+        <button onclick="convertLength()">परिवर्तन करें</button>
+        <button onclick="clearFields()">साफ करें</button>
+
+        <p id="result">परिणाम: </p>
+
+        <!-- चार्ट.js के लिए कैनवास -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+        <!-- सेंटीमीटर परिभाषा, उदाहरण, तथ्य, अभ्यास समस्याएं -->
+        <div id="centimeter-info">
+            <h2>सेंटीमीटर जानकारी</h2>
+            <p>
+                <strong>सेंटीमीटर की परिभाषा:</strong> एक सेंटीमीटर (प्रतीक: cm) एक अंतरराष्ट्रीय इकाई प्रणाली (एसआई) में लंबाई की एक इकाई है, जो मीट्रिक प्रणाली का वर्तमान रूप है। इसे 1/100 मीटर के रूप में परिभाषित किया गया है।
+            </p>
+            <h3>उदाहरण</h3>
+            <p>
+                <strong>मानक उपयोग:</strong>
+                <ul>
+                    <li>कागज का एक शीट अक्सर लगभग 21 सेंटीमीटर की लंबाई की होती है।</li>
+                    <li>सामान्य स्मार्टफोन की लंबाई लगभग 15 सेंटीमीटर हो सकती है।</li>
+                </ul>
+            </p>
+            <p>
+                <strong>प्रतिदिन की माप:</strong>
+                <ul>
+                    <li>व्यक्ति की ऊचाई को सेंटीमीटर में मापना।</li>
+                    <li>सूची या किताबों जैसे छोटे वस्त्रों के आयाम सेंटीमीटर में मापे जाते हैं।</li>
+                </ul>
+            </p>
+
+            <h3>तथ्य</h3>
+            <p>
+                <strong>मीट्रिक प्रत्यय:</strong> सेंटीमीटर एसआई इकाई मीटर पर आधारित है, और प्रत्यय "सेंटी" इस बात को दिखाता है कि यह एक सौवा मीटर के बराबर है।
+            </p>
+            <p>
+                <strong>दशमलव प्रणाली:</strong> मीट्रिक प्रत्यय दशमलव प्रणाली का पालन करते हैं, जिससे विभिन्न इकाइयों के बीच परिवर्तन करना सरल हो जाता है।
+            </p>
+            <p>
+                <strong>वैश्विक उपयोग:</strong> सेंटीमीटर, मीटर की तरह, उन देशों में व्यापक रूप से प्रयुक्त हो रहा है जिन्होंने आपत्ति प्रणाली को अपनाया है जहां एक मीटर से छोटी इकाई की आवश्यकता है।
+            </p>
+
+            <h3>अभ्यास समस्याएं</h3>
+            <p>
+                <strong>परिवर्तन:</strong>
+                <ul>
+                    <li>250 सेंटीमीटर को मीटर में परिवर्तित करें। (उत्तर: 250 सेंटीमीटर = 2.5 मीटर)</li>
+                    <li>0.75 मीटर को सेंटीमीटर में व्यक्त करें। (उत्तर: 0.75 मीटर = 75 सेंटीमीटर)</li>
+                </ul>
+            </p>
+            <p>
+                <strong>अनुप्रयोग:</strong>
+                <ul>
+                    <li>यदि किसी आयत की लंबाई 30 सेंटीमीटर है और चौड़ाई 20 सेंटीमीटर है, तो इसका क्षेत्र क्या होगा? (उत्तर: क्षेत्र = 30 सेंटीमीटर × 20 सेंटीमीटर = 600 सेंटीमीटर²)</li>
+                </ul>
+            </p>
+            <p>
+                <strong>वास्तविक दुनिया का परिदृश्य:</strong>
+                <ul>
+                    <li>किसी की ऊचाई 175 सेंटीमीटर मापी जाती है। इस ऊचाई को मीटर में परिवर्तित करें। (उत्तर: 175 सेंटीमीटर = 1.75 मीटर)</li>
+                </ul>
+            </p>
+        </div>
+        <!-- परिवर्तन शॉर्टकट लिंक्स -->
+        <div id="conversion-links">
+            <h2>मिलीमीटर परिवर्तन</h2>
+            <a href="millimeter-to-centimeter-conversion.html">मिलीमीटर से सेंटीमीटर (mm से cm)</a>
+            <a href="millimetertometerconversion.html">मिलीमीटर से मीटर (mm से m)</a>
+            <a href="MillimetertoKilometerconversion.html">मिलीमीटर से किलोमीटर (mm से km)</a>
+            <a href="MillimetertoInchconversion.html">मिलीमीटर से इंच (mm से in.)</a>
+            <a href="MillimetertoFeetconversion.html">मिलीमीटर से फीट (mm से ft)</a>
+            <a href="MillimetertoYardconversion.html">मिलीमीटर से यार्ड (mm से yd)</a>
+            <a href="MillimetertoMileconversion.html">मिलीमीटर से मील (mm से mi)</a>
+            <!-- आवश्यक होने पर और लिंक जोड़ें -->
+        </div>
+    </div>
+
+    <!-- दूसरा स्तंभ: विज्ञापन कंटेनर -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- वास्तविक विज्ञापन सामग्री जोड़ें -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // परिवर्तन कारक
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+				decimeter: 0.1,
+				decameter: 10,
+				hectometer: 100
+                // आवश्यक होने पर अन्य परिवर्तन कारक जोड़ें
+            };
+
+            // द्विदिशीय परिवर्तन करें
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // निर्दिष्ट स्थान स्थिरता के साथ परिणाम दिखाएं
+            document.getElementById('result').innerText = `परिणाम: ${result.toFixed(precision)} ${toType} (${value} ${fromType} के लिए)`;
+            document.getElementById('result').innerText += `\nपरिणाम (उल्टा): ${resultInverse.toFixed(precision)} ${fromType} (${value} ${toType} के लिए)`;
+
+            // चार्ट तैयार करें (यदि आवश्यक हो)
+            drawConversionChart(value, fromType, toType, result, resultInverse);
+        }
+
+        function drawConversionChart(value, fromType, toType, result, resultInverse) {
+            // कैनवास को हासिल करें
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // पुराने चार्ट को साफ़ करें
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // नए चार्ट बनाएं
+            ctx.fillStyle = 'rgba(75, 192, 192, 0.2)';
+            ctx.strokeStyle = 'rgba(75, 192, 192, 1)';
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(100, 100);
+            ctx.stroke();
+
+            // चार्ट को अद्यतित करें
+            // आप चार्ट को और भी विस्तारित करने के लिए अपनी आवश्यकताओं के अनुसार कोड बदल सकते हैं
+        }
+
+        function clearFields() {
+            // सभी इनपुट फ़ील्ड साफ़ करें
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').value = 'millimeter';
+            document.getElementById('toType').value = 'centimeter';
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = 'परिणाम: ';
+        }
+    </script>
+</body>
+
+</html>

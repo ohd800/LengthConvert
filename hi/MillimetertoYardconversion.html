@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>लंबाई कनवर्ट---मिलीमीटर से यार्ड (mm से yd)</title>
+    <meta name="description" content="मिलीमीटर से यार्ड (mm से yd), मीटर [m], किलोमीटर [km], डेसीमीटर [dm], सेंटीमीटर [cm], सीएम से इंच, mm से इंच, मीटर से फीट, आदि के बीच परिवर्तन करें।">
+    <meta name="keywords" content="मिलीमीटर से यार्ड">
+
+    <style>
+        /* उदाहरण स्टाइल: पहला स्तंभ */
+        #first-column {
+            float: left;
+            width: 80%; /* पहले स्तंभ की चौड़ाई को समायोजित करें */
+            padding: 20px; /* पैडिंग सेट करें */
+            box-sizing: border-box; /* बॉक्स मॉडल, यह सुनिश्चित करता है कि चौड़ाई और ऊचाई पैडिंग और बॉर्डर को समाहित करती हैं */
+        }
+
+        /* उदाहरण स्टाइल: दूसरा स्तंभ */
+        #second-column {
+            float: left;
+            width: 20%; /* दूसरे स्तंभ की चौड़ाई को समायोजित करें */
+            padding: 20px; /* पैडिंग सेट करें */
+            box-sizing: border-box; /* बॉक्स मॉडल, यह सुनिश्चित करता है कि चौड़ाई और ऊचाई पैडिंग और बॉर्डर को समाहित करती हैं */
+        }
+
+        /* उदाहरण स्टाइल: क्वेरी सामग्री */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* नीचे का मार्जिन सेट करें */
+        }
+
+        /* उदाहरण स्टाइल: परिवर्तन लिंक */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* लिंक के बीच का नीचा मार्जिन सेट करें */
+            text-decoration: none;
+            color: #333; /* लिंक पाठ रंग सेट करें */
+            font-weight: bold; /* लिंक पाठ की मोटाई सेट करें */
+        }
+
+        /* उदाहरण स्टाइल: विज्ञापन */
+        #ad-container {
+            width: 100%; /* विज्ञापन कंटेनर की पूर्ण चौड़ाई लें */
+            height: 400px; /* विज्ञापन कंटेनर की ऊचाई समायोजित करें */
+             /*background-color: #333;  बैकग्राउंड कलर सेट करें */
+            padding: 10px; /* पैडिंग सेट करें */
+            box-sizing: border-box; /* बॉक्स मॉडल, यह सुनिश्चित करता है कि चौड़ाई और ऊचाई पैडिंग और बॉर्डर को समाहित करती हैं */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* अधिकतम छवि चौड़ाई सेट करें ताकि कंटेनर चौड़ाई को पार करना नहीं हो */
+            height: auto; /* छवि की ऊचाई ऑटो समायोजित करें */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>लंबाई कनवर्ट</h1>
+
+    <!-- पहला स्तंभ -->
+    <div id="first-column">
+        <label for="value">मान:</label>
+        <input type="number" id="value" placeholder="मान दर्ज करें">
+
+        <label for="fromType">प्रकार से:</label>
+        <select id="fromType">
+            <option value="millimeter" selected>मिलीमीटर</option>
+            <option value="centimeter">सेंटीमीटर</option>
+            <option value="meter">मीटर</option>
+            <option value="kilometer">किलोमीटर</option>
+            <option value="inch">इंच</option>
+            <option value="feet">फीट</option>
+            <option value="yard">यार्ड</option>
+            <option value="mile">मील</option>			
+			<option value="decimeter">डेसीमीटर</option>
+			<option value="decameter">डेसामीटर</option>
+			<option value="hectometer">हेक्टोमीटर</option>
+        </select>
+
+        <label for="toType">प्रकार को:</label>
+        <select id="toType">
+            <option value="millimeter">मिलीमीटर</option>
+            <option value="centimeter">सेंटीमीटर</option>
+            <option value="meter">मीटर</option>
+            <option value="kilometer">किलोमीटर</option>
+            <option value="inch">इंच</option>
+            <option value="feet">फीट</option>
+            <option value="yard" selected>यार्ड</option>
+            <option value="mile">मील</option>			
+			<option value="decimeter">डेसीमीटर</option>
+			<option value="decameter">डेसामीटर</option>
+			<option value="hectometer">हेक्टोमीटर</option>
+        </select>
+
+        <label for="precision">दशमलव स्थान स्थिरता:</label>
+        <input type="number" id="precision" placeholder="दशमलव स्थान" min="0">
+
+        <button onclick="convertLength()">कनवर्ट करें</button>
+        <button onclick="clearFields()">साफ करें</button>
+
+        <p id="result">परिणाम: </p>
+
+        <!-- Chart.js के लिए कैनवास -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+<!-- यार्ड की परिभाषा, उदाहरण, तथ्य, अभ्यास समस्याएँ -->
+<div id="yard-info">
+    <h2>यार्ड जानकारी:</h2>
+    <p>
+        <strong>यार्ड की परिभाषा:</strong> यार्ड (प्रतीक: yd) संयुक्त राज्य आपत्कालीन और ब्रिटिश इम्पीरियल प्रणालियों में लंबाई का एक मापन इकाई है। इसे 3 फीट या 36 इंच के रूप में परिभाषित किया गया है।
+    </p>
+    <h3>उदाहरण:</h3>
+    <p>
+        <strong>मानक उपयोग:</strong>
+        <br>
+        • सामान्यत: एक सामान्य स्विमिंग पूल का आकार यार्ड में मापा जा सकता है।
+        <br>
+        • स्पोर्ट्स फील्ड, जैसे कि फुटबॉल फील्ड, अक्सर यार्ड में मापे जाते हैं।
+    </p>
+    <p>
+        <strong>दिनचर्या माप:</strong>
+        <br>
+        • एक बगीचे की लंबाई का अनुमान लगाना।
+        <br>
+        • मानचित्र पर दो बिंदुओं के बीच की दूरी को यार्ड में निर्धारित करना।
+    </p>
+
+    <h3>तथ्य:</h3>
+    <p>
+        <strong>इम्पीरियल और सामान्य प्रणाली:</strong>
+        <br>
+        • यार्ड का सामान्यत: संयुक्त राज्य, संयुक्त राज्य की ब्रिटिश इम्पीरियल प्रणाली का उपयोग करने वाले और अन्य देशों में होता है।
+        <br>
+        • इसे अक्सर निर्माण, भूमि सुधार, और खेल में उपयोग किया जाता है।
+    </p>
+    <p>
+        <strong>फीट के साथ संबंध:</strong>
+        <br>
+        • 1 यार्ड 3 फीट या 36 इंच के समान है।
+    </p>
+
+    <h3>अभ्यास समस्याएँ:</h3>
+    <p>
+        <strong>परिवर्तन:</strong>
+        <br>
+        • 10 यार्ड को फीट में कनवर्ट करें।
+        <br>
+        • 90 फीट को यार्ड में व्यक्त करें।
+    </p>
+    <p>
+        <strong>अनुप्रयोग:</strong>
+        <br>
+        • यदि एक चक्रवाती बगीचे की लंबाई 20 यार्ड है और चौड़ाई 15 यार्ड है, तो इसका क्षेत्र क्या है?
+        <br>
+        • किसी की ऊचाई 72 इंच है। इस ऊचाई को यार्ड में कनवर्ट करें।
+    </p>
+
+    <h3>उत्तर:</h3>
+    <p>
+        <strong>परिवर्तन:</strong>
+        <br>
+        • 10 यार्ड = 30 फीट
+        <br>
+        • 90 फीट = 30 यार्ड
+    </p>
+    <p>
+        <strong>अनुप्रयोग:</strong>
+        <br>
+        • क्षेत्र = लंबाई × चौड़ाई
+        <br>
+        • क्षेत्र = 20 यार्ड × 15 यार्ड = 300 वर्ग यार्ड
+        <br>
+        • 72 इंच = 2 यार्ड (क्योंकि 1 यार्ड = 36 इंच)
+    </p>
+</div>
+        <!-- परिवर्तन शॉर्टकट लिंक -->
+        <div id="conversion-links">
+    <h2>मिलीमीटर परिवर्तन</h2>
+    <a href="millimeter-to-centimeter-conversion.html">मिलीमीटर से सेंटीमीटर (mm से cm)</a>
+    <a href="millimetertometerconversion.html">मिलीमीटर से मीटर (mm से m)</a>
+   <a href="MillimetertoKilometerconversion.html">मिलीमीटर से किलोमीटर (mm से km)</a>
+  <a href="MillimetertoInchconversion.html">मिलीमीटर से इंच (mm से in.)</a>
+  <a href="MillimetertoFeetconversion.html">मिलीमीटर से फीट (mm से ft)</a>
+<a href="MillimetertoYardconversion.html">मिलीमीटर से यार्ड (mm से yd)</a>
+<a href="MillimetertoMileconversion.html">मिलीमीटर से मील (mm से mi)</a>
+    <!-- आवश्यकतानुसार और अधिक लिंक जोड़ें -->
+        </div>
+    </div>
+
+    <!-- दूसरा स्तंभ: विज्ञापन कंटेनर -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- वास्तविक विज्ञापन सामग्री जोड़ें -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // परिवर्तन कारक
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+				decimeter: 0.1,
+				decameter: 10,
+				hectometer: 100
+                // आवश्यक होने पर अन्य परिवर्तन कारक जोड़ें
+            };
+
+            // दोनों दिशा में परिवर्तन करें
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // निर्दिष्ट स्थान के साथ परिणाम दिखाएँ
+            document.getElementById('result').innerText = `परिणाम: ${result.toFixed(precision)}\nउलटा परिणाम: ${resultInverse.toFixed(precision)}`;
+
+            // चार्ट को अपडेट करें या बनाएँ
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (पहले)`, `${toType} (बाद)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // पिछले चार्ट को नष्ट करें यदि मौजूद है
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // नया चार्ट बनाएँ
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'मान',
+                        data: data,
+                        backgroundColor: ['#3498db', '#e74c3c'],
+                        borderColor: ['#2980b9', '#c0392b'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function clearFields() {
+            // फ़ॉर्म फ़ील्ड को साफ करें
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').value = 'millimeter';
+            document.getElementById('toType').value = 'yard';
+            document.getElementById('precision').value = '';
+
+            // परिणाम और चार्ट को साफ करें
+            document.getElementById('result').innerText = 'परिणाम: ';
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+</body>
+
+</html>

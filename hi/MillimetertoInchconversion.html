@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>लंबाई कनवर्ट---मिलीमीटर से इंच (mm से in.)</title>
+    <meta name="description" content="मिलीमीटर से इंच (mm से in.)，मीटर [m], किलोमीटर [km], डेसीमीटर [dm], सेंटीमीटर [cm], सेंटीमीटर से इंच, mm से इंच, मीटर से फीट, आदि के बीच परिवर्तन करें।">
+    <meta name="keywords" content="मिलीमीटर से इंच">
+
+
+    <style>
+        /* Example styles: First column */
+        #first-column {
+            float: left;
+            width: 80%; /* पहले स्तंभ की चौड़ाई को समायोजित करें */
+            padding: 20px; /* पैडिंग सेट करें */
+            box-sizing: border-box; /* बॉक्स मॉडल, यह सुनिश्चित करता है कि चौड़ाई और ऊचाई पैडिंग और बॉर्डर को शामिल करते हैं */
+        }
+
+        /* Example styles: Second column */
+        #second-column {
+            float: left;
+            width: 20%; /* दूसरे स्तंभ की चौड़ाई को समायोजित करें */
+            padding: 20px; /* पैडिंग सेट करें */
+            box-sizing: border-box; /* बॉक्स मॉडल, यह सुनिश्चित करता है कि चौड़ाई और ऊचाई पैडिंग और बॉर्डर को शामिल करते हैं */
+        }
+
+        /* Example styles: Query content */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* नीचे की ओर की मान सेट करें */
+        }
+
+        /* Example styles: Conversion links */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* लिंक के बीच की नीचे की मान सेट करें */
+            text-decoration: none;
+            color: #333; /* लिंक पाठ रंग सेट करें */
+            font-weight: bold; /* लिंक पाठ की मोटाई सेट करें */
+        }
+
+        /* Example styles: Advertisement */
+        #ad-container {
+            width: 100%; /* प्राय: दूसरे स्तंभ के भीतर पूरी चौड़ाई ले */
+            height: 400px; /* विज्ञापन कंटेनर की ऊचाई समायोजित करें */
+             /* बैकग्राउंड कलर: #333;  बैकग्राउंड कलर सेट करें */
+            padding: 10px; /* पैडिंग सेट करें */
+            box-sizing: border-box; /* बॉक्स मॉडल, यह सुनिश्चित करता है कि चौड़ाई और ऊचाई पैडिंग और बॉर्डर को शामिल करते हैं */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* छवि की अधिकतम चौड़ाई सेट करें कि कंटेनर चौड़ाई को पार नहीं करेगी */
+            height: auto; /* छवि की ऊचाई स्वचालित रूप से समायोजित करें */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>लंबाई कनवर्ट</h1>
+
+    <!-- First column -->
+    <div id="first-column">
+        <label for="value">मान:</label>
+        <input type="number" id="value" placeholder="मान दर्ज करें">
+
+        <label for="fromType">प्रकार से:</label>
+        <select id="fromType">
+            <option value="millimeter" selected>मिलीमीटर</option>
+            <option value="centimeter">सेंटीमीटर</option>
+            <option value="meter">मीटर</option>
+            <option value="kilometer">किलोमीटर</option>
+            <option value="inch">इंच</option>
+            <option value="feet">फीट</option>
+            <option value="yard">यार्ड</option>
+            <option value="mile">मील</option>
+            <option value="decimeter">डेसीमीटर</option>
+            <option value="decameter">डेसीमीटर</option>
+            <option value="hectometer">हेक्टोमीटर</option>
+        </select>
+
+        <label for="toType">प्रकार को:</label>
+        <select id="toType">
+            <option value="millimeter">मिलीमीटर</option>
+            <option value="centimeter">सेंटीमीटर</option>
+            <option value="meter" >मीटर</option>
+            <option value="kilometer">किलोमीटर</option>
+            <option value="inch" selected>इंच</option>
+            <option value="feet">फीट</option>
+            <option value="yard">यार्ड</option>
+            <option value="mile">मील</option>
+            <option value="decimeter">डेसीमीटर</option>
+            <option value="decameter">डेसीमीटर</option>
+            <option value="hectometer">हेक्टोमीटर</option>
+        </select>
+
+        <label for="precision">दशमलव स्थान:</label>
+        <input type="number" id="precision" placeholder="दशमलव स्थान दर्ज करें" min="0">
+
+        <button onclick="convertLength()">कनवर्ट करें</button>
+        <button onclick="clearFields()">स्पष्ट</button>
+
+        <p id="result">परिणाम: </p>
+
+        <!-- Canvas for Chart.js -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+<!-- Inch Definition, Examples, Facts, Practice Problems -->
+<div id="inch-info">
+    <h2>इंच जानकारी:</h2>
+    <p>
+        <strong>इंच की परिभाषा:</strong> इंच (प्रतीक: in) इम्पीरियल और यूनाइटेड स्टेट्स कस्टमरी सिस्टम में लंबाई की इकाई है। इसे 1/12 फीट के रूप में परिभाषित किया गया है, और एक फीट में 12 इंच होते हैं।
+    </p>
+    <h3>उदाहरण:</h3>
+    <p>
+        <strong>मानक उपयोग:</strong>
+        <br>
+        • कंप्यूटर मॉनिटर का विकर्ण आमतौर पर इंच में मापा जाता है।
+        <br>
+        • व्यक्तियों की ऊचाई इंच में व्यक्त की जा सकती है।
+    </p>
+    <p>
+        <strong>प्रतिदिन की माप:</strong>
+        <br>
+        • कागज या किताब की लंबाई को इंच में मापना।
+        <br>
+        • टीवी स्क्रीन का आकार इंच में निर्दिष्ट करना।
+    </p>
+
+    <h3>तथ्य:</h3>
+    <p>
+        <strong>इम्पीरियल सिस्टम:</strong>
+        <br>
+        • इंच का प्रमुख रूप से इम्पीरियल और यूनाइटेड स्टेट्स कस्टमरी सिस्टम में लंबाई और दूरियों के लिए प्रयुक्त है।
+        <br>
+        • इंच और सेंटीमीटर के बीच परिवर्तन कारक 1 इंच = 2.54 सेंटीमीटर है।
+    </p>
+    <p>
+        <strong>विभाजन:</strong>
+        <br>
+        • इंच को और भी भागों में विभाजित किया जाता है, जैसे कि आधे, चौथाई, आठवीं और सोलहवीं।
+    </p>
+    <p>
+        <strong>विश्वभर में उपयोग:</strong>
+        <br>
+        • हालांकि मीट्रिक सिस्टम व्यापक रूप से विश्वभर में प्रचलित है, कुछ देशों में इंच को कुछ विशिष्ट अनुप्रयोगों के लिए अभी भी सामान्य रूप से उपयोग किया जाता है।
+    </p>
+
+    <h3>अभ्यास समस्याएं:</h3>
+    <p>
+        <strong>परिवर्तन:</strong>
+        <br>
+        • 30 सेंटीमीटर को इंच में परिवर्तित करें।
+        <br>
+        • 18 इंच को सेंटीमीटर में व्यक्त करें।
+    </p>
+    <p>
+        <strong>अनुप्रयोग:</strong>
+        <br>
+        • यदि एक आयताकार फ्रेम की आयाम 24 इंच और 36 इंच हैं, तो इसका क्षेत्र क्या होगा?
+        <br>
+        • किसी की ऊचाई को 68 इंच मापा गया है। इस ऊचाई को सेंटीमीटर में परिवर्तित करें।
+    </p>
+
+    <h3>उत्तर:</h3>
+    <p>
+        <strong>परिवर्तन:</strong>
+        <br>
+        • 30 सेंटीमीटर = 11.81 इंच
+        <br>
+        • 18 इंच = 45.72 सेंटीमीटर
+    </p>
+    <p>
+        <strong>अनुप्रयोग:</strong>
+        <br>
+        • क्षेत्र = लंबाई × चौड़ाई
+        <br>
+        • क्षेत्र = 24 इंच × 36 इंच = 864 वर्ग इंच
+        <br>
+        • 68 इंच = 172.72 सेंटीमीटर
+    </p>
+</div>
+
+        <!-- Conversion shortcut links -->
+        <div id="conversion-links">
+    <h2>मिलीमीटर परिवर्तन</h2>
+    <a href="millimeter-to-centimeter-conversion.html">मिलीमीटर से सेंटीमीटर (mm से cm)</a>
+    <a href="millimetertometerconversion.html">मिलीमीटर से मीटर (mm से m)</a>
+   <a href="MillimetertoKilometerconversion.html">मिलीमीटर से किलोमीटर (mm से km)</a>
+  <a href="MillimetertoInchconversion.html">मिलीमीटर से इंच (mm से in.)</a>
+  <a href="MillimetertoFeetconversion.html">मिलीमीटर से फीट (mm से ft)</a>
+<a href="MillimetertoYardconversion.html">मिलीमीटर से यार्ड (mm से yd)</a>
+<a href="MillimetertoMileconversion.html">मिलीमीटर से मील (mm से mi)</a>
+    <!-- आवश्यक होने पर और भी लिंक जोड़ें -->
+        </div>
+    </div>
+
+    <!-- Second column: Advertisement container -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- वास्तविक विज्ञापन सामग्री जोड़ें -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // Conversion factors
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+				decimeter: 0.1,
+				decameter: 10,
+				hectometer: 100
+                // आवश्यक होने पर अन्य परिवर्तन कारक जोड़ें
+            };
+
+            // Perform bidirectional conversion
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // Display result with specified precision
+            document.getElementById('result').innerText = `परिणाम: ${result.toFixed(precision)}\nउल्टा परिणाम: ${resultInverse.toFixed(precision)}`;
+
+            // Update or create the chart
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (पहले)`, `${toType} (बाद)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // Destroy previous chart if exists
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // Create a new chart
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'परिवर्तन परिणाम',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // आवश्यक होने पर बार मोटाई को समायोजित करें
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        },
+                        x: {
+                            position: 'bottom' // बार का अंत को लेबल के साथ समायोजित करें
+                        }
+                    }
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = 'परिणाम: ';
+        }
+    </script>
+</body>
+
+</html>

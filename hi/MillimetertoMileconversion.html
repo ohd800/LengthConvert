@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>लंबाई परिवर्तन - मिलीमीटर से मील (mm से mi)</title>
+    <meta name="description" content="मिलीमीटर से मील (mm से mi), मीटर [m], किलोमीटर [km], डेसीमीटर [dm], सेंटीमीटर [cm], सीएम से इंच, मिमी से इंच, मीटर से फीट, आदि के बीच परिवर्तन करें।">
+    <meta name="keywords" content="मिलीमीटर से मील (mm से mi)">
+
+    <style>
+        /* उदाहरण स्टाइल्स: पहला स्तंभ */
+        #first-column {
+            float: left;
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* उदाहरण स्टाइल्स: दूसरा स्तंभ */
+        #second-column {
+            float: left;
+            width: 20%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* उदाहरण स्टाइल्स: क्वेरी सामग्री */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px;
+        }
+
+        /* उदाहरण स्टाइल्स: परिवर्तन लिंक */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* उदाहरण स्टाइल्स: विज्ञापन */
+        #ad-container {
+            width: 100%;
+            height: 400px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #ad-container img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>लंबाई परिवर्तन</h1>
+
+    <!-- पहला स्तंभ -->
+    <div id="first-column">
+        <label for="value">मान:</label>
+        <input type="number" id="value" placeholder="मान दर्ज करें">
+
+        <label for="fromType">प्रकार से:</label>
+        <select id="fromType">
+            <option value="millimeter" selected>मिलीमीटर</option>
+            <option value="centimeter">सेंटीमीटर</option>
+            <option value="meter">मीटर</option>
+            <option value="kilometer">किलोमीटर</option>
+            <option value="inch">इंच</option>
+            <option value="feet">फीट</option>
+            <option value="yard">यार्ड</option>
+            <option value="mile">मील</option>
+			<option value="decimeter">डेसीमीटर</option>
+			<option value="decameter">डेकामीटर</option>
+			<option value="hectometer">हेक्टोमीटर</option>
+        </select>
+
+        <label for="toType">प्रकार को:</label>
+        <select id="toType">
+            <option value="millimeter">मिलीमीटर</option>
+            <option value="centimeter">सेंटीमीटर</option>
+            <option value="meter">मीटर</option>
+            <option value="kilometer">किलोमीटर</option>
+            <option value="inch">इंच</option>
+            <option value="feet">फीट</option>
+            <option value="yard">यार्ड</option>
+            <option value="mile" selected>मील</option>
+			<option value="decimeter">डेसीमीटर</option>
+			<option value="decameter">डेकामीटर</option>
+			<option value="hectometer">हेक्टोमीटर</option>
+        </select>
+
+        <label for="precision">दशमलव स्थान स्थिरता:</label>
+        <input type="number" id="precision" placeholder="दशमलव स्थान दर्ज करें" min="0">
+
+        <button onclick="convertLength()">परिवर्तन करें</button>
+        <button onclick="clearFields()">स्पष्ट</button>
+
+        <p id="result">परिणाम: </p>
+
+        <!-- चार्ट.js के लिए कैनवास -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+
+        <!-- मील परिवर्तन, उदाहरण, तथ्य, अभ्यास समस्याएँ -->
+        <div id="mile-info">
+            <h2>मील जानकारी:</h2>
+            <p>
+                <strong>मील की परिभाषा:</strong> मील एक ऐसी लंबाई की मात्रक है जो सामान्यत: संयुक्त राज्य और कुछ अन्य देशों में प्रयुक्त होती है। अंतरराष्ट्रीय मील की परिभाषा से सीधे 1,609.344 मीटर के बराबर है।
+            </p>
+            <h3>उदाहरण:</h3>
+            <p>
+                <strong>मानक उपयोग:</strong>
+                <br>
+                • शहरों या गाँवों के बीच की दूरी को मील में मापा जा सकता है।
+                <br>
+                • हाइवे के साइनों पर अक्सर मील में दूरी दिखाई जाती है।
+            </p>
+            <p>
+                <strong>प्रतिदिन की माप:</strong>
+                <br>
+                • मील में एक लंबी ड्राइव की लंबाई का अनुमान लगाना।
+                <br>
+                • एक कार की ईंधन कुशलता को मील प्रति गैलन (mpg) में व्यक्त करना।
+            </p>
+
+            <h3>तथ्य:</h3>
+            <p>
+                <strong>परिवर्तन:</strong>
+                <br>
+                • मील सामान्यत: इम्पीरियल सिस्टम में प्रयुक्त होती है, और 1 मील को 5,280 फीट के बराबर माना जाता है।
+                <br>
+                • अंतरराष्ट्रीय मील को मापदंडीय माप के लिए अधिकांश देशों में प्रयुक्त किया जाता है।
+            </p>
+            <p>
+                <strong>वैश्विक उपयोग:</strong>
+                <br>
+                • हालांकि मीट्रिक सिस्टम विश्वभर में प्रमुख है, फिर भी मील उन देशों में आमतौर पर प्रयुक्त होती है जो इम्पीरियल सिस्टम का पालन करते हैं, खासकर सड़क और दूरी की माप के लिए।
+            </p>
+
+            <h3>अभ्यास समस्याएँ:</h3>
+            <p>
+                <strong>परिवर्तन:</strong>
+                <br>
+                • 3 मील को किलोमीटर में परिवर्तित करें।
+                <br>
+                • 10,000 मीटर को मील में व्यक्त करें।
+            </p>
+            <p>
+                <strong>अनुप्रयोग:</strong>
+                <br>
+                • यदि कोई गाड़ी औसत गति में 60 मील प्रति घंटा चलती है, तो वह 4 घंटे में कितनी दूर चलेगी?
+                <br>
+                • एक मैराथन दौड़ लगभग 26.2 मील की है। इस दूरी को किलोमीटर में परिवर्तित करें।
+            </p>
+
+            <h3>उत्तर:</h3>
+            <p>
+                <strong>परिवर्तन:</strong>
+                <br>
+                • 3 मील = 4.828 किलोमीटर (लगभग)
+                <br>
+                • 10,000 मीटर = 6.214 मील (लगभग)
+            </p>
+            <p>
+                <strong>अनुप्रयोग:</strong>
+                <br>
+                • दूरी = गति × समय
+                <br>
+                • दूरी = 60 मील प्रति घंटा × 4 घंटे = 240 मील
+                <br>
+                • 26.2 मील = 42.195 किलोमीटर (लगभग)
+            </p>
+        </div>
+
+        <!-- परिवर्तन शॉर्टकट लिंक -->
+        <div id="conversion-links">
+            <h2>मिलीमीटर परिवर्तन</h2>
+            <a href="millimeter-to-centimeter-conversion.html">मिलीमीटर से सेंटीमीटर (mm से cm)</a>
+            <a href="millimetertometerconversion.html">मिलीमीटर से मीटर (mm से m)</a>
+            <a href="MillimetertoKilometerconversion.html">मिलीमीटर से किलोमीटर (mm से km)</a>
+            <a href="MillimetertoInchconversion.html">मिलीमीटर से इंच (mm से in.)</a>
+            <a href="MillimetertoFeetconversion.html">मिलीमीटर से फीट (mm से ft)</a>
+            <a href="MillimetertoYardconversion.html">मिलीमीटर से यार्ड (mm से yd)</a>
+            <a href="MillimetertoMileconversion.html">मिलीमीटर से मील (mm से mi)</a>
+            <!-- आवश्यकतानुसार और लिंक जोड़ें -->
+        </div>
+    </div>
+
+    <!-- दूसरा स्तंभ: विज्ञापन वाला कंटेनर -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!-- <img src=" " alt=" "> -->
+            <!-- वास्तविक विज्ञापन सामग्री जोड़ें -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // परिवर्तन कारक
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+				decimeter: 0.1,
+				decameter: 10,
+				hectometer: 100
+                // आवश्यक होने पर अन्य परिवर्तन कारक जोड़ें
+            };
+
+            // दोपक्षीय परिवर्तन करें
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // निर्दिष्ट स्थिरता के साथ परिणाम प्रदर्शित करें
+            document.getElementById('result').innerText = `परिणाम: ${result.toFixed(precision)}\nउल्टा परिणाम: ${resultInverse.toFixed(precision)}`;
+
+            // चार्ट को अपडेट या बनाएं
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (पहले)`, `${toType} (बाद)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // पिछला चार्ट यदि मौजूद है तो नष्ट करें
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // एक नया चार्ट बनाएं
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'परिवर्तन परिणाम',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // आवश्यकतानुसार बार मोटाई समायोजित करें
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // चार्ट यदि मौजूद है तो नष्ट करें
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+	 <!-- यहाँ अपना Google Analytics (gtag.js) जोड़ें -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>
