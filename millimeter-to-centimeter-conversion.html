@@ -8,19 +8,7 @@
     <meta name="description" content="convert between meter [m], kilometer [km], decimeter [dm], centimeter [cm], cm to inches, mm to inches, meters to feet, etc.">
     <meta name="keywords" content="Millimeter to Centimeter (mm to cm)">
 
-    <!-- Add your Google Analytics (gtag.js) here -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
 
-        gtag('config', 'G-8M2YLYLQDV');
-    </script>
-
-    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         /* Example styles: First column */
         #first-column {
@@ -91,6 +79,9 @@
             <option value="feet">Feet</option>
             <option value="yard">Yard</option>
             <option value="mile">Mile</option>
+			<option value="decimeter">Decimeter</option>
+			<option value="decameter">Decameter</option>
+			<option value="hectometer">Hectometer</option>
         </select>
 
         <label for="toType">To Type:</label>
@@ -102,7 +93,11 @@
             <option value="inch">Inch</option>
             <option value="feet">Feet</option>
             <option value="yard">Yard</option>
-            <option value="mile">Mile</option>
+            <option value="mile">Mile</option>			
+			<option value="decimeter">Decimeter</option>
+			<option value="decameter">Decameter</option>
+			<option value="hectometer">Hectometer</option>
+		
         </select>
 
         <label for="precision">Decimal Precision:</label>
@@ -172,7 +167,7 @@
         <!-- Conversion shortcut links -->
         <div id="conversion-links">
     <h2>Millimeter Conversions</h2>
-    <a href="millimeter-to-centimeter-conversion.html">Millimeter to Centimeter (mm to cm)</a>
+   <a href="millimeter-to-centimeter-conversion.html">Millimeter to Centimeter (mm to cm)</a>
     <a href="millimetertometerconversion.html">Millimeter to Meter (mm to m)</a>
    <a href="MillimetertoKilometerconversion.html">Millimeter to Kilometer (mm to km)</a>
   <a href="MillimetertoInchconversion.html">Millimeter to Inches (mm to in.)</a>
@@ -207,7 +202,10 @@
                 inch: 0.0254,
                 feet: 0.3048,
                 yard: 0.9144,
-                mile: 1609.34
+                mile: 1609.34,
+				decimeter: 0.1,
+				decameter: 10,
+				hectometer: 100
                 // Add other conversion factors as needed
             };
 
@@ -287,6 +285,19 @@
             }
         }
     </script>
+	    <!-- Add your Google Analytics (gtag.js) here -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 
 </html>

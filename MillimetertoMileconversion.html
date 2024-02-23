@@ -8,19 +8,6 @@
     <meta name="description" content="Millimeter to Mile (mm to mi)，convert between meter [m], kilometer [km], decimeter [dm], centimeter [cm], cm to inches, mm to inches, meters to feet, etc.">
     <meta name="keywords" content="Millimeter to Mile (mm to mi)">
 
-    <!-- Add your Google Analytics (gtag.js) here -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-8M2YLYLQDV');
-    </script>
-
-    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         /* Example styles: First column */
         #first-column {
@@ -90,19 +77,25 @@
             <option value="inch">Inch</option>
             <option value="feet">Feet</option>
             <option value="yard">Yard</option>
-            <option value="mile">Mile</option>
+            <option value="mile">Mile</option>			
+			<option value="decimeter">Decimeter</option>
+			<option value="decameter">Decameter</option>
+			<option value="hectometer">Hectometer</option>
         </select>
 
         <label for="toType">To Type:</label>
         <select id="toType">
             <option value="millimeter">Millimeter</option>
             <option value="centimeter">Centimeter</option>
-            <option value="meter" selected>Meter</option>
+            <option value="meter">Meter</option>
             <option value="kilometer">Kilometer</option>
             <option value="inch">Inch</option>
             <option value="feet">Feet</option>
             <option value="yard">Yard</option>
-            <option value="mile">Mile</option>
+            <option value="mile" selected>Mile</option>			
+			<option value="decimeter">Decimeter</option>
+			<option value="decameter">Decameter</option>
+			<option value="hectometer">Hectometer</option>
         </select>
 
         <label for="precision">Decimal Precision:</label>
@@ -224,7 +217,10 @@
                 inch: 0.0254,
                 feet: 0.3048,
                 yard: 0.9144,
-                mile: 1609.34
+                mile: 1609.34,
+				decimeter: 0.1,
+				decameter: 10,
+				hectometer: 100
                 // Add other conversion factors as needed
             };
 
@@ -304,6 +300,19 @@
             }
         }
     </script>
+	 <!-- Add your Google Analytics (gtag.js) here -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 
 </html>
