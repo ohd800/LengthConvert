@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>长度转换---毫米至英里 (mm 到 mi)</title>
+    <meta name="description" content="毫米至英里 (mm 到 mi)，在米 [m]、千米 [km]、分米 [dm]、厘米 [cm]、cm 到英寸、mm 到英寸、米到英尺等之间进行转换。">
+    <meta name="keywords" content="毫米至英里 (mm 到 mi)">
+
+    <style>
+        /* 示例样式：第一列 */
+        #first-column {
+            float: left;
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* 示例样式：第二列 */
+        #second-column {
+            float: left;
+            width: 20%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* 示例样式：查询内容 */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px;
+        }
+
+        /* 示例样式：转换链接 */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* 示例样式：广告 */
+        #ad-container {
+            width: 100%;
+            height: 400px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #ad-container img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>长度转换</h1>
+
+    <!-- 第一列 -->
+    <div id="first-column">
+        <label for="value">数值：</label>
+        <input type="number" id="value" placeholder="输入数值">
+
+        <label for="fromType">起始单位：</label>
+        <select id="fromType">
+            <option value="millimeter" selected>毫米</option>
+            <option value="centimeter">厘米</option>
+            <option value="meter">米</option>
+            <option value="kilometer">千米</option>
+            <option value="inch">英寸</option>
+            <option value="feet">英尺</option>
+            <option value="yard">码</option>
+            <option value="mile">英里</option>
+            <option value="decimeter">分米</option>
+            <option value="decameter">公顷</option>
+            <option value="hectometer">公顷米</option>
+        </select>
+
+        <label for="toType">目标单位：</label>
+        <select id="toType">
+            <option value="millimeter">毫米</option>
+            <option value="centimeter">厘米</option>
+            <option value="meter">米</option>
+            <option value="kilometer">千米</option>
+            <option value="inch">英寸</option>
+            <option value="feet">英尺</option>
+            <option value="yard">码</option>
+            <option value="mile" selected>英里</option>
+            <option value="decimeter">分米</option>
+            <option value="decameter">公顷</option>
+            <option value="hectometer">公顷米</option>
+        </select>
+
+        <label for="precision">小数精度：</label>
+        <input type="number" id="precision" placeholder="输入精度" min="0">
+
+        <button onclick="convertLength()">转换</button>
+        <button onclick="clearFields()">清除</button>
+
+        <p id="result">结果：</p>
+
+        <!-- Chart.js 画布 -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+        
+        <!-- 英里的定义、示例、事实、练习问题 -->
+        <div id="mile-info">
+            <h2>英里信息：</h2>
+            <p>
+                <strong>英里的定义：</strong> 英里是在美国和一些其他国家常用的长度单位。国际英里的定义为精确的1,609.344米。
+            </p>
+            <h3>示例：</h3>
+            <p>
+                <strong>标准用途：</strong>
+                <br>
+                • 城市或镇之间的距离可能以英里为单位。
+                <br>
+                • 公路标志通常以英里显示距离。
+            </p>
+            <p>
+                <strong>日常测量：</strong>
+                <br>
+                • 以英里为单位估算长途驾驶的距离。
+                <br>
+                • 表达汽车的燃油效率，以每加仑英里数（mpg）为单位。
+            </p>
+
+            <h3>事实：</h3>
+            <p>
+                <strong>转换：</strong>
+                <br>
+                • 英里常
+
+用于英制系统，1英里等于5,280英尺。
+                <br>
+                • 国际英里在大多数国家用于标准化测量。
+            </p>
+            <p>
+                <strong>全球使用：</strong>
+                <br>
+                • 尽管国际单位制在全球范围内普遍使用，但在遵循英制系统的国家，尤其是在道路和距离测量中，英里仍然常用。
+            </p>
+
+            <h3>练习问题：</h3>
+            <p>
+                <strong>转换：</strong>
+                <br>
+                • 将3英里转换为千米。
+                <br>
+                • 以英里表示10,000米。
+            </p>
+            <p>
+                <strong>应用：</strong>
+                <br>
+                • 如果一辆车以平均每小时60英里的速度行驶，它将在4小时内行驶多远？
+                <br>
+                • 一场马拉松赛跑大约26.2英里。将这个距离转换为千米。
+            </p>
+
+            <h3>答案：</h3>
+            <p>
+                <strong>转换：</strong>
+                <br>
+                • 3英里 = 4.828千米（约）
+                <br>
+                • 10,000米 = 6.214英里（约）
+            </p>
+            <p>
+                <strong>应用：</strong>
+                <br>
+                • 距离 = 速度 × 时间
+                <br>
+                • 距离 = 60英里/小时 × 4小时 = 240英里
+                <br>
+                • 26.2英里 = 42.195千米（约）
+            </p>
+        </div>
+
+        <!-- 转换快捷链接 -->
+        <div id="conversion-links">
+            <h2>毫米转换</h2>
+            <a href="millimeter-to-centimeter-conversion.html">毫米到厘米 (mm 到 cm)</a>
+            <a href="millimetertometerconversion.html">毫米到米 (mm 到 m)</a>
+            <a href="MillimetertoKilometerconversion.html">毫米到千米 (mm 到 km)</a>
+            <a href="MillimetertoInchconversion.html">毫米到英寸 (mm 到 in.)</a>
+            <a href="MillimetertoFeetconversion.html">毫米到英尺 (mm 到 ft)</a>
+            <a href="MillimetertoYardconversion.html">毫米到码 (mm 到 yd)</a>
+            <a href="MillimetertoMileconversion.html">毫米到英里 (mm 到 mi)</a>
+            <!-- 根据需要添加更多链接 -->
+        </div>
+    </div>
+
+    <!-- 第二列：广告容器 -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- 添加实际广告内容 -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // 转换系数
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+                decimeter: 0.1,
+                decameter: 10,
+                hectometer: 100
+                // 需要时添加其他转换系数
+            };
+
+            // 执行双向转换
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // 以指定精度显示结果
+            document.getElementById('result').innerText = `结果: ${result.toFixed(precision)}\n逆向结果: ${resultInverse.toFixed(precision)}`;
+
+            // 更新或创建图表
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (转换前)`, `${toType} (转换后)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // 如果存在先前的图表，则销毁它
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // 创建新的图表
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '转换结果',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // 根据需要调整条形的厚度
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // 如果存在图表，则销毁它
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+	 <!-- 在此处添加您的 Google Analytics（gtag.js） -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G
+
+-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>

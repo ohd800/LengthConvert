@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>长度转换---毫米到千米（mm到km）</title>
+    <meta name="description" content="毫米到千米（mm到km），在米 [m]、千米 [km]、分米 [dm]、厘米 [cm]、cm 到英寸、mm 到英寸、米到英尺等之间进行转换。">
+    <meta name="keywords" content="毫米到千米">
+
+    <style>
+        /* 示例样式：第一列 */
+        #first-column {
+            float: left;
+            width: 80%; /* 调整第一列的宽度 */
+            padding: 20px; /* 设置内边距 */
+            box-sizing: border-box; /* 盒模型，确保宽度和高度包括内边距和边框 */
+        }
+
+        /* 示例样式：第二列 */
+        #second-column {
+            float: left;
+            width: 20%; /* 调整第二列的宽度 */
+            padding: 20px; /* 设置内边距 */
+            box-sizing: border-box; /* 盒模型，确保宽度和高度包括内边距和边框 */
+        }
+
+        /* 示例样式：查询内容 */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* 设置底部边距 */
+        }
+
+        /* 示例样式：转换链接 */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* 设置链接之间的底部边距 */
+            text-decoration: none;
+            color: #333; /* 设置链接文本颜色 */
+            font-weight: bold; /* 设置链接文本粗细 */
+        }
+
+        /* 示例样式：广告 */
+        #ad-container {
+            width: 100%; /* 使广告容器在第二列内占据整个宽度 */
+            height: 400px; /* 调整广告容器的高度 */
+             /*background-color: #333;  设置背景颜色 */
+            padding: 10px; /* 设置内边距 */
+            box-sizing: border-box; /* 盒模型，确保宽度和高度包括内边距和边框 */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* 设置图片的最大宽度不超过容器宽度 */
+            height: auto; /* 使图片高度自动调整 */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>长度转换</h1>
+
+    <!-- 第一列 -->
+    <div id="first-column">
+        <label for="value">数值：</label>
+        <input type="number" id="value" placeholder="输入数值">
+
+        <label for="fromType">起始类型：</label>
+        <select id="fromType">
+            <option value="millimeter" selected>毫米</option>
+            <option value="centimeter">厘米</option>
+            <option value="meter">米</option>
+            <option value="kilometer">千米</option>
+            <option value="inch">英寸</option>
+            <option value="feet">英尺</option>
+            <option value="yard">码</option>
+            <option value="mile">英里</option>			
+			<option value="decimeter">分米</option>
+			<option value="decameter">分千米</option>
+			<option value="hectometer">公顷</option>
+        </select>
+
+        <label for="toType">目标类型：</label>
+        <select id="toType">
+            <option value="millimeter">毫米</option>
+            <option value="centimeter">厘米</option>
+            <option value="meter">米</option>
+            <option value="kilometer" selected>千米</option>
+            <option value="inch">英寸</option>
+            <option value="feet">英尺</option>
+            <option value="yard">码</option>
+            <option value="mile">英里</option>			
+			<option value="decimeter">分米</option>
+			<option value="decameter">分千米</option>
+			<option value="hectometer">公顷</option>
+        </select>
+
+        <label for="precision">小数精度：</label>
+        <input type="number" id="precision" placeholder="输入精度" min="0">
+
+        <button onclick="convertLength()">转换</button>
+        <button onclick="clearFields()">清除</button>
+
+        <p id="result">结果：</p>
+
+        <!-- Chart.js 的画布 -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+<!-- 千米的定义、示例、事实、练习问题 -->
+<div id="kilometer-info">
+    <h2>千米信息：</h2>
+    <p>
+        <strong>千米定义：</strong> 千米（符号：km）是国际单位制（SI）中的长度单位，是当前形式的公制系统。它定义为1000米。
+    </p>
+    <h3>示例：</h3>
+    <p>
+        <strong>标准用途：</strong>
+        <br>
+        • 两个城市之间的距离可能以千米为单位测量。
+        <br>
+        • 马拉松比赛的长度约为42.195千米。
+    </p>
+    <p>
+        <strong>日常测量：</strong>
+        <br>
+        • 估算一条徒步道的长度，以千米为单位。
+        <br>
+        • 在地图上表示两个地点之间的距离。
+    </p>
+
+    <h3>事实：</h3>
+    <p>
+        <strong>公制前缀：</strong>
+        <br>
+        • 千米基于国际单位米，前缀“千”表示它等于一千米。
+    </p>
+    <p>
+        <strong>十进制制度：</strong>
+        <br>
+        • 公制前缀，包括“千”，遵循
+
+十进制制度，方便不同单位之间的转换。
+    </p>
+    <p>
+        <strong>全球使用：</strong>
+        <br>
+        • 千米在全球范围内被广泛使用，特别是在采用公制系统的国家。
+    </p>
+
+    <h3>练习问题：</h3>
+    <p>
+        <strong>转换：</strong>
+        <br>
+        • 将5000米转换为千米。
+        <br>
+        • 表示2.5千米的米数。
+    </p>
+    <p>
+        <strong>应用：</strong>
+        <br>
+        • 如果一辆汽车以时速80千米行驶，它将在3小时内行驶多远？
+        <br>
+        • 一个矩形场地的长度为1500米，宽度为800米。其面积是多少平方千米？
+    </p>
+
+    <h3>答案：</h3>
+    <p>
+        <strong>转换：</strong>
+        <br>
+        • 5000米 = 5千米
+        <br>
+        • 2.5千米 = 2500米
+    </p>
+    <p>
+        <strong>应用：</strong>
+        <br>
+        • 距离 = 速度 × 时间
+        <br>
+        • 距离 = 80千米/小时 × 3小时 = 240千米
+        <br>
+        • 面积 = 长 × 宽
+        <br>
+        • 面积 = (1500米 × 800米) / (1000米/千米)^2 = 1.2平方千米
+    </p>
+</div>
+        <!-- 转换快捷链接 -->
+        <div id="conversion-links">
+    <h2>毫米转换</h2>
+    <a href="millimeter-to-centimeter-conversion.html">毫米到厘米（mm到cm）</a>
+    <a href="millimetertometerconversion.html">毫米到米（mm到m）</a>
+   <a href="MillimetertoKilometerconversion.html">毫米到千米（mm到km）</a>
+  <a href="MillimetertoInchconversion.html">毫米到英寸（mm到in.）</a>
+  <a href="MillimetertoFeetconversion.html">毫米到英尺（mm到ft）</a>
+<a href="MillimetertoYardconversion.html">毫米到码（mm到yd）</a>
+<a href="MillimetertoMileconversion.html">毫米到英里（mm到mi）</a>
+    <!-- 根据需要添加更多链接 -->
+        </div>
+    </div>
+
+    <!-- 第二列：广告容器 -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- 添加实际广告内容 -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // 转换因子
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+				decimeter: 0.1,
+				decameter: 10,
+				hectometer: 100
+                // 根据需要添加其他转换因子
+            };
+
+            // 执行双向转换
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // 以指定精度显示结果
+            document.getElementById('result').innerText = `结果: ${result.toFixed(precision)}\n逆向结果: ${resultInverse.toFixed(precision)}`;
+
+            // 更新或创建图表
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType}（转换前）`, `${toType}（转换后）`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // 如果存在先前的图表，则销毁它
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // 创建新图表
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '转换结果',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // 根据需要调整条形厚度
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // 如果存在图表，则销毁它
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+    <!-- 在这里添加您的 Google Analytics (gtag.js) 代码 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.data
+
+Layer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>
