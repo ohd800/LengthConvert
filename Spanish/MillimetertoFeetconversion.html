@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversión de Longitud - Milímetros a Pies (mm a ft)</title>
+    <meta name="description" content="Milímetros a pies (mm a ft), convierte entre metro [m], kilómetro [km], decímetro [dm], centímetro [cm], cm a pulgadas, mm a pulgadas, metros a pies, etc.">
+    <meta name="keywords" content="Milímetros a Pies">
+
+
+    <style>
+        /* Estilos de ejemplo: Primer columna */
+        #first-column {
+            float: left;
+            width: 80%; /* Ajustar el ancho de la primera columna */
+            padding: 20px; /* Establecer el relleno */
+            box-sizing: border-box; /* Modelo de caja, asegura que el ancho y alto incluyan el relleno y el borde */
+        }
+
+        /* Estilos de ejemplo: Segunda columna */
+        #second-column {
+            float: left;
+            width: 20%; /* Ajustar el ancho de la segunda columna */
+            padding: 20px; /* Establecer el relleno */
+            box-sizing: border-box; /* Modelo de caja, asegura que el ancho y alto incluyan el relleno y el borde */
+        }
+
+        /* Estilos de ejemplo: Contenido de consulta */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* Establecer el margen inferior */
+        }
+
+        /* Estilos de ejemplo: Enlaces de conversión */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* Establecer el margen inferior entre enlaces */
+            text-decoration: none;
+            color: #333; /* Establecer el color del texto del enlace */
+            font-weight: bold; /* Establecer la negrita del texto del enlace */
+        }
+
+        /* Estilos de ejemplo: Anuncio */
+        #ad-container {
+            width: 100%; /* Hacer que el contenedor de anuncios ocupe todo el ancho dentro de la segunda columna */
+            height: 400px; /* Ajustar la altura del contenedor de anuncios */
+             /*background-color: #333;  Establecer el color de fondo */
+            padding: 10px; /* Establecer el relleno */
+            box-sizing: border-box; /* Modelo de caja, asegura que el ancho y alto incluyan el relleno y el borde */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* Establecer el ancho máximo de la imagen para no exceder el ancho del contenedor */
+            height: auto; /* Hacer que la altura de la imagen se ajuste automáticamente */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Conversión de Longitud</h1>
+
+    <!-- Primera columna -->
+    <div id="first-column">
+        <label for="value">Valor:</label>
+        <input type="number" id="value" placeholder="Ingrese el valor">
+
+        <label for="fromType">Desde Tipo:</label>
+        <select id="fromType">
+            <option value="millimeter" selected>Milímetro</option>
+            <option value="centimeter">Centímetro</option>
+            <option value="meter">Metro</option>
+            <option value="kilometer">Kilómetro</option>
+            <option value="inch">Pulgada</option>
+            <option value="feet">Pie</option>
+            <option value="yard">Yarda</option>
+            <option value="mile">Milla</option>			
+			<option value="decimeter">Decímetro</option>
+			<option value="decameter">Decámetro</option>
+			<option value="hectometer">Hectómetro</option>
+        </select>
+
+        <label for="toType">Hacia Tipo:</label>
+        <select id="toType">
+            <option value="millimeter">Milímetro</option>
+            <option value="centimeter">Centímetro</option>
+            <option value="meter">Metro</option>
+            <option value="kilometer">Kilómetro</option>
+            <option value="inch">Pulgada</option>
+            <option value="feet" selected>Pie</option>
+            <option value="yard">Yarda</option>
+            <option value="mile">Milla</option>
+
+			
+			<option value="decimeter">Decímetro</option>
+			<option value="decameter">Decámetro</option>
+			<option value="hectometer">Hectómetro</option>
+        </select>
+
+        <label for="precision">Precisión Decimal:</label>
+        <input type="number" id="precision" placeholder="Ingrese la precisión" min="0">
+
+        <button onclick="convertLength()">Convertir</button>
+        <button onclick="clearFields()">Limpiar</button>
+
+        <p id="result">Resultado: </p>
+
+        <!-- Canvas para Chart.js -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+<!-- Definición, Ejemplos, Datos, Problemas Prácticos de Pies -->
+<div id="feet-info">
+    <h2>Información sobre Pies:</h2>
+    <p>
+        <strong>Definición de Pies:</strong> El pie (símbolo: ft) es una unidad de longitud en varios sistemas de medida, incluidos el sistema imperial y el sistema customary de Estados Unidos. Un pie se define como 0,3048 metros.
+    </p>
+    <h3>Ejemplos:</h3>
+    <p>
+        <strong>Uso Estándar:</strong>
+        <br>
+        • La altura de una puerta puede ser de alrededor de 7 pies.
+        <br>
+        • Las mediciones inmobiliarias a menudo incluyen dimensiones en pies cuadrados.
+    </p>
+    <p>
+        <strong>Mediciones Diarias:</strong>
+        <br>
+        • Expresar la altura de una persona en pies y pulgadas.
+        <br>
+        • Describir las dimensiones de una habitación o mueble en pies.
+    </p>
+
+    <h3>Datos:</h3>
+    <p>
+        <strong>Sistema Imperial:</strong>
+        <br>
+        • El pie es parte del sistema imperial, comúnmente utilizado en Estados Unidos y algunos otros países.
+        <br>
+        • En el sistema imperial, 1 pie es igual a 12 pulgadas.
+    </p>
+    <p>
+        <strong>Conversión:</strong>
+        <br>
+        • Un pie es equivalente a 0,3048 metros en el sistema métrico.
+        <br>
+        • Hay tres pies en una yarda (3 pies = 1 yarda).
+    </p>
+    <p>
+        <strong>Uso Común:</strong>
+        <br>
+        • Los pies se utilizan con frecuencia para medir la altura, dimensiones de edificios y tamaños de propiedades.
+    </p>
+
+    <h3>Problemas Prácticos:</h3>
+    <p>
+        <strong>Conversión:</strong>
+        <br>
+        • Convertir 15 metros a pies.
+        <br>
+        • Expresar 9 pies en metros.
+    </p>
+    <p>
+        <strong>Aplicación:</strong>
+        <br>
+        • Si una habitación tiene dimensiones de 12 pies por 10 pies, ¿cuál es su área en pies cuadrados?
+        <br>
+        • La altura de una persona se mide como 160 centímetros. Convierte esta altura a pies.
+    </p>
+
+    <h3>Respuestas:</h3>
+    <p>
+        <strong>Conversión:</strong>
+        <br>
+        • 15 metros ≈ 49,213 pies
+        <br>
+        • 9 pies = 2,7432 metros
+    </p>
+    <p>
+        <strong>Aplicación:</strong>
+        <br>
+        • Área = Largo × Ancho
+        <br>
+        • Área = 12 pies × 10 pies = 120 pies cuadrados
+        <br>
+        • 160 centímetros = 5,25 pies
+    </p>
+</div>
+
+        <!-- Enlaces rápidos de conversión -->
+        <div id="conversion-links">
+    <h2>Conversiones de Milímetros</h2>
+    <a href="millimeter-to-centimeter-conversion.html">Milímetro a Centímetro (mm a cm)</a>
+    <a href="millimetertometerconversion.html">Milímetro a Metro (mm a m)</a>
+   <a href="MillimetertoKilometerconversion.html">Milímetro a Kilómetro (mm a km)</a>
+  <a href="MillimetertoInchconversion.html">Milímetro a Pulgadas (mm a in.)</a>
+  <a href="MillimetertoFeetconversion.html">Milímetro a Pies (mm a ft)</a>
+<a href="MillimetertoYardconversion.html">Milímetro a Yarda (mm a yd)</a>
+<a href="MillimetertoMileconversion.html">Milímetro a Milla (mm a mi)</a>
+    <!-- Agregar más enlaces según sea necesario -->
+        </div>
+    </div>
+
+    <!-- Segunda columna: Contenedor de anuncios -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- Agregar contenido real del anuncio -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // Factores de conversión
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+				decimeter: 0.1,
+				decameter: 10,
+				hectometer: 100
+                // Agregar otros factores de conversión según sea necesario
+            };
+
+            // Realizar la conversión bidireccional
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // Mostrar el resultado con la precisión especificada
+            document.getElementById('result').innerText = `Resultado: ${result.toFixed(precision)}\nResultado Inverso: ${resultInverse.toFixed(precision)}`;
+
+            // Actualizar o crear el gráfico
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (Antes)`, `${toType} (Después)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // Destruir el gráfico anterior
+
+ si existe
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // Crear un nuevo gráfico
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Resultado de Conversión',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // Ajustar el grosor de la barra según sea necesario
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // Destruir el gráfico si existe
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+	    <!-- Agregar su Google Analytics (gtag.js) aquí -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>
