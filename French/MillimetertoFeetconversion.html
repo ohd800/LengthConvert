@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversion de longueurs - de millimètres à pieds (mm à ft)</title>
+    <meta name="description" content="Conversion de millimètres à pieds (mm à ft), entre mètres [m], kilomètres [km], décimètres [dm], centimètres [cm], cm à pouces, mm à pouces, mètres à pieds, etc.">
+    <meta name="keywords" content="millimètres à pieds">
+
+    <style>
+        /* Styles d'exemple : première colonne */
+        #first-column {
+            float: left;
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Styles d'exemple : deuxième colonne */
+        #second-column {
+            float: left;
+            width: 20%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Styles d'exemple : contenu de la requête */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px;
+        }
+
+        /* Styles d'exemple : liens de conversion */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Styles d'exemple : publicité */
+        #ad-container {
+            width: 100%;
+            height: 400px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #ad-container img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://www.lengthconvert.com/French"><h1>Conversion de longueurs</h1></a>
+
+    <!-- Première colonne -->
+    <div id="first-column">
+        <label for="value">Valeur :</label>
+        <input type="number" id="value" placeholder="Entrez la valeur">
+
+        <label for="fromType">Unité de départ :</label>
+        <select id="fromType">
+            <option value="millimeter" selected>Millimètre</option>
+            <option value="centimeter">Centimètre</option>
+            <option value="meter">Mètre</option>
+            <option value="kilometer">Kilomètre</option>
+            <option value="inch">Pouce</option>
+            <option value="feet">Pied</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Mile</option>
+			<option value="decimeter">Décimètre</option>
+			<option value="decameter">Décamètre</option>
+			<option value="hectometer">Hectomètre</option>
+        </select>
+
+        <label for="toType">Unité cible :</label>
+        <select id="toType">
+            <option value="millimeter">Millimètre</option>
+            <option value="centimeter">Centimètre</option>
+            <option value="meter">Mètre</option>
+            <option value="kilometer">Kilomètre</option>
+            <option value="inch" selected>Pouce</option>
+            <option value="feet">Pied</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Mile</option>
+			<option value="decimeter">Décimètre</option>
+			<option value="decameter">Décamètre</option>
+			<option value="hectometer">Hectomètre</option>
+        </select>
+
+        <label for="precision">Précision décimale :</label>
+        <input type="number" id="precision" placeholder="Entrez la précision" min="0">
+
+        <button onclick="convertLength()">Convertir</button>
+        <button onclick="clearFields()">Effacer</button>
+
+        <p id="result">Résultat :</p>
+
+        <!-- Toile Chart.js -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+        
+        <!-- Informations sur le pouce : définition, exemples, faits, questions d'exercice -->
+        <div id="inch-info">
+            <h2>Informations sur le pouce :</h2>
+            <p>
+                <strong>Définition du pouce :</strong> Le pouce (symbole : po.) est une unité de mesure de longueur utilisée dans le système impérial et le système américain. Il est défini comme 1/12 d'un pied, avec 1 pied équivalant à 12 pouces.
+            </p>
+            <h3>Exemples :</h3>
+            <p>
+                <strong>Utilisation standard :</strong>
+                <br>
+                • La taille de nombreux écrans, tels que les moniteurs d'ordinateur, est souvent mesurée en pouces.
+                <br>
+                • La hauteur d'une personne peut être indiquée en pouces.
+            </p>
+            <p>
+                <strong>Mesures quotidiennes :</strong>
+                <br>
+                • Mesurer la longueur d'une feuille de papier ou d'un livre en pouces.
+                <br>
+                • Déterminer la taille d'une télévision en pouces.
+            </p>
+
+            <h3>Faits :</h3>
+            <p>
+                <strong>Système impérial :</strong>
+                <br>
+                • Le pouce fait partie du système impérial de mesures, qui est encore utilisé aux États-Unis et dans quelques autres pays.
+            </p>
+            <p>
+                <strong>Conversion métrique :</strong>
+                <br>
+                • Le facteur de conversion entre le pouce et le centimètre est d'environ 2,54 cm par pouce.
+            </p>
+            <p>
+                <strong>Subdivisions :</strong>
+                <br>
+                • Le pouce est subdivisé en demi-pouce, quart de pouce, huitième de pouce, et seizième de pouce, entre autres.
+            </p>
+            <p>
+                <strong>Utilisation mondiale :</strong>
+                <br>
+                • Bien que le système métrique soit plus répandu dans le monde, le pouce reste couramment utilisé dans des contextes spécifiques.
+            </p>
+
+            <h3>Questions d'exercice :</h3>
+            <p>
+                <strong>Conversion :</strong>
+                <br>
+                • Convertir 30 centimètres en pouces.
+                <br>
+                • Exprimer 18 pouces en centimètres.
+            </p>
+            <p>
+                <strong>Application :</strong>
+                <br>
+                • Si les dimensions d'un cadre rectangulaire sont de 24 pouces sur 36 pouces, quelle est sa superficie ?
+                <br>
+                • Si la mesure de la hauteur d'une personne est de 68 pouces, convertissez cette hauteur en centimètres.
+            </p>
+
+            <h3>Réponses :</h3>
+            <p>
+                <strong>Conversion :</strong>
+                <br>
+                • 30 centimètres = 11,81 pouces
+                <br>
+                • 18 pouces = 45,72 centimètres
+            </p>
+            <p>
+                <strong>Application :</strong>
+                <br>
+                • Superficie = Longueur × Largeur
+                <br>
+                • Superficie = 24 pouces × 36 pouces = 864 pouces carrés
+                <br>
+                • 68 pouces = 172,72 centimètres
+            </p>
+        </div>
+
+        <!-- Liens rapides de conversion -->
+        <div id="conversion-links">
+            <h2>Conversion de millimètres</h2>
+            <a href="millimeter-to-centimeter-conversion.html">Millimètres à centimètres (mm à cm)</a>
+            <a href="millimetertometerconversion.html">Millimètres à mètres (mm à m)</a>
+            <a href="MillimetertoKilometerconversion.html">Millimètres à kilomètres (mm à km)</a>
+            <a href="MillimetertoInchconversion.html">Millimètres à pouces (mm à po.)</a>
+            <a href="MillimetertoFeetconversion.html">Millimètres à pieds (mm à ft)</a>
+            <a href="MillimetertoYardconversion.html">Millimètres à yards (mm à yd)</a>
+            <a href="MillimetertoMileconversion.html">Millimètres à miles (mm à mi)</a>
+            <!-- Ajouter davantage de liens selon les besoins -->
+        </div>
+    </div>
+
+    <!-- Deuxième colonne : Conteneur de publicité -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- Ajouter le contenu réel de la publicité -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // Facteurs de conversion
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+                decimeter: 0.1,
+                decameter: 10,
+                hectometer: 100
+                // Ajouter d'autres facteurs de conversion au besoin
+            };
+
+            // Effectuer la conversion bidirectionnelle
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // Afficher le résultat avec la précision spécifiée
+            document.getElementById('result').innerText = `Résultat : ${result.toFixed(precision)}\nRésultat inverse : ${resultInverse.toFixed(precision)}`;
+
+            // Mettre à jour ou créer le graphique
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (avant conversion)`, `${toType} (après conversion)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // Si un graphique précédent existe, le détruire
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // Créer un nouveau graphique
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Résultats de conversion',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // Ajuster la largeur de la barre selon les besoins
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // Si un graphique existe, le détruire
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+    <!-- Ajouter votre Google Analytics (gtag.js) ici -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>

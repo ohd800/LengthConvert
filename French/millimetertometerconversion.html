@@ -1,0 +1,322 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversion de longueurs - de millimètres à mètres (mm à m)</title>
+    <meta name="description" content="Conversion de millimètres à mètres (mm à m), entre mètres [m], kilomètres [km], décimètres [dm], centimètres [cm], cm à pouces, mm à pouces, mètres à pieds, etc.">
+    <meta name="keywords" content="millimètres à mètres">
+
+    <style>
+        /* Styles d'exemple : première colonne */
+        #first-column {
+            float: left;
+            width: 80%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Styles d'exemple : deuxième colonne */
+        #second-column {
+            float: left;
+            width: 20%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Styles d'exemple : contenu de la requête */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px;
+        }
+
+        /* Styles d'exemple : liens de conversion */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Styles d'exemple : publicité */
+        #ad-container {
+            width: 100%;
+            height: 400px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #ad-container img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://www.lengthconvert.com/French"><h1>Conversion de longueurs</h1></a>
+
+    <!-- Première colonne -->
+    <div id="first-column">
+        <label for="value">Valeur :</label>
+        <input type="number" id="value" placeholder="Entrez la valeur">
+
+        <label for="fromType">Unité de départ :</label>
+        <select id="fromType">
+            <option value="millimeter" selected>Millimètre</option>
+            <option value="centimeter">Centimètre</option>
+            <option value="meter">Mètre</option>
+            <option value="kilometer">Kilomètre</option>
+            <option value="inch">Pouce</option>
+            <option value="feet">Pied</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Mile</option>
+			<option value="decimeter">Décimètre</option>
+			<option value="decameter">Décamètre</option>
+			<option value="hectometer">Hectomètre</option>
+        </select>
+
+        <label for="toType">Unité cible :</label>
+        <select id="toType">
+            <option value="millimeter">Millimètre</option>
+            <option value="centimeter">Centimètre</option>
+            <option value="meter" selected>Mètre</option>
+            <option value="kilometer">Kilomètre</option>
+            <option value="inch">Pouce</option>
+            <option value="feet">Pied</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Mile</option>
+			<option value="decimeter">Décimètre</option>
+			<option value="decameter">Décamètre</option>
+			<option value="hectometer">Hectomètre</option>
+        </select>
+
+        <label for="precision">Précision décimale :</label>
+        <input type="number" id="precision" placeholder="Entrez la précision" min="0">
+
+        <button onclick="convertLength()">Convertir</button>
+        <button onclick="clearFields()">Effacer</button>
+
+        <p id="result">Résultat :</p>
+
+        <!-- Toile Chart.js -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+        
+        <!-- Informations sur le mètre : définition, exemples, faits, questions d'exercice -->
+        <div id="meter-info">
+            <h2>Informations sur le mètre :</h2>
+            <p>
+                <strong>Définition du mètre :</strong> Le mètre (symbole : m) est l'unité de base de longueur dans le système international d'unités (SI). Il est défini comme la distance que parcourt la lumière dans le vide en 1/299 792 458 seconde.
+            </p>
+            <h3>Exemples :</h3>
+            <p>
+                <strong>Utilisation standard :</strong>
+                <br>
+                • La longueur typique d'une salle de classe peut être d'environ 10 mètres.
+                <br>
+                • La longueur typique d'une voiture peut être d'environ 4 mètres.
+            </p>
+            <p>
+                <strong>Mesures quotidiennes :</strong>
+                <br>
+                • Mesurer les dimensions d'une pièce en mètres.
+                <br>
+                • Mesurer la hauteur d'une personne, en mètres.
+            </p>
+
+            <h3>Faits :</h3>
+            <p>
+                <strong>Système décimal :</strong>
+                <br>
+                • Le mètre fait partie du système décimal, facilitant les conversions entre différentes unités.
+                <br>
+                • Il est couramment utilisé avec le kilomètre, le centimètre et le millimètre, entre autres unités de mesure.
+            </p>
+            <p>
+                <strong>Utilisation mondiale :</strong>
+                <br>
+                • Le mètre est largement utilisé dans le monde entier dans divers domaines tels que la science, l'ingénierie, la construction et les mesures quotidiennes.
+            </p>
+
+            <h3>Questions d'exercice :</h3>
+            <p>
+                <strong>Conversion :</strong>
+                <br>
+                • Convertir 500 mètres en kilomètres.
+                <br>
+                • Représenter 2,5 kilomètres en mètres.
+            </p>
+            <p>
+                <strong>Application :</strong>
+                <br>
+                • Si la longueur d'un rectangle est de 8 mètres et la largeur de 5 mètres, quelle est sa superficie ?
+                <br>
+                • La hauteur d'une personne mesure 180 centimètres. Convertir cette hauteur en mètres.
+            </p>
+
+            <h3>Réponses :</h3>
+            <p>
+                <strong>Conversion :</strong
+
+>
+                <br>
+                • 500 mètres = 0,5 kilomètre
+                <br>
+                • 2,5 kilomètres = 2500 mètres
+            </p>
+            <p>
+                <strong>Application :</strong>
+                <br>
+                • Superficie = Longueur × Largeur
+                <br>
+                • Superficie = 8 mètres × 5 mètres = 40 mètres carrés
+                <br>
+                • 180 centimètres = 1,8 mètre
+            </p>
+        </div>
+        
+        <!-- Liens rapides de conversion -->
+        <div id="conversion-links">
+            <h2>Conversion de millimètres</h2>
+            <a href="millimeter-to-centimeter-conversion.html">Millimètres à centimètres (mm à cm)</a>
+            <a href="millimetertometerconversion.html">Millimètres à mètres (mm à m)</a>
+            <a href="MillimetertoKilometerconversion.html">Millimètres à kilomètres (mm à km)</a>
+            <a href="MillimetertoInchconversion.html">Millimètres à pouces (mm à po.)</a>
+            <a href="MillimetertoFeetconversion.html">Millimètres à pieds (mm à ft)</a>
+            <a href="MillimetertoYardconversion.html">Millimètres à yards (mm à yd)</a>
+            <a href="MillimetertoMileconversion.html">Millimètres à miles (mm à mi)</a>
+            <!-- Ajouter davantage de liens selon les besoins -->
+        </div>
+    </div>
+
+    <!-- Deuxième colonne : Conteneur de publicité -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- Ajouter le contenu réel de la publicité -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // Facteurs de conversion
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+                decimeter: 0.1,
+                decameter: 10,
+                hectometer: 100
+                // Ajouter d'autres facteurs de conversion au besoin
+            };
+
+            // Effectuer la conversion bidirectionnelle
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // Afficher le résultat avec la précision spécifiée
+            document.getElementById('result').innerText = `Résultat : ${result.toFixed(precision)}\nRésultat inverse : ${resultInverse.toFixed(precision)}`;
+
+            // Mettre à jour ou créer le graphique
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (avant conversion)`, `${toType} (après conversion)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // Si un graphique précédent existe, le détruire
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // Créer un nouveau graphique
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Résultats de conversion',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // Ajuster la largeur de la barre selon les besoins
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // Si un graphique existe, le détruire
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+    <!-- Ajouter votre Google Analytics (gtag.js) ici -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>
+```
