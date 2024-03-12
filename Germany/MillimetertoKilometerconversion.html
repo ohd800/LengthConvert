@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Längenumrechnung---Millimeter zu Kilometer (mm zu km)</title>
+    <meta name="description" content="Millimeter zu Kilometer (mm zu km), Umrechnung zwischen Meter [m], Kilometer [km], Dezimeter [dm], Zentimeter [cm], cm in Zoll, mm in Zoll, Meter in Fuß, etc.">
+    <meta name="keywords" content="Millimeter zu Kilometer">
+
+
+    <style>
+        /* Beispiel-Stile: Erste Spalte */
+        #first-column {
+            float: left;
+            width: 80%; /* Breite der ersten Spalte anpassen */
+            padding: 20px; /* Padding setzen */
+            box-sizing: border-box; /* Box-Modell, stellt sicher, dass Breite und Höhe Padding und Rahmen einschließen */
+        }
+
+        /* Beispiel-Stile: Zweite Spalte */
+        #second-column {
+            float: left;
+            width: 20%; /* Breite der zweiten Spalte anpassen */
+            padding: 20px; /* Padding setzen */
+            box-sizing: border-box; /* Box-Modell, stellt sicher, dass Breite und Höhe Padding und Rahmen einschließen */
+        }
+
+        /* Beispiel-Stile: Abfrageinhalte */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* Unteren Rand setzen */
+        }
+
+        /* Beispiel-Stile: Umrechnungslinks */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* Unteren Rand zwischen den Links setzen */
+            text-decoration: none;
+            color: #333; /* Textfarbe der Links setzen */
+            font-weight: bold; /* Textfettung der Links setzen */
+        }
+
+        /* Beispiel-Stile: Werbung */
+        #ad-container {
+            width: 100%; /* Containerbreite auf volle Breite in der zweiten Spalte setzen */
+            height: 400px; /* Höhe des Anzeigencontainers anpassen */
+             /* Hintergrundfarbe: #333; Hintergrundfarbe setzen */
+            padding: 10px; /* Padding setzen */
+            box-sizing: border-box; /* Box-Modell, stellt sicher, dass Breite und Höhe Padding und Rahmen einschließen */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* Maximale Bildbreite setzen, um die Containerbreite nicht zu überschreiten */
+            height: auto; /* Bildhöhe automatisch anpassen */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Längenumrechnung</h1>
+
+    <!-- Erste Spalte -->
+    <div id="first-column">
+        <label for="value">Wert:</label>
+        <input type="number" id="value" placeholder="Wert eingeben">
+
+        <label for="fromType">Von Typ:</label>
+        <select id="fromType">
+            <option value="millimeter" selected>Millimeter</option>
+            <option value="centimeter">Zentimeter</option>
+            <option value="meter">Meter</option>
+            <option value="kilometer">Kilometer</option>
+            <option value="inch">Zoll</option>
+            <option value="feet">Fuß</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Meile</option>			
+			<option value="decimeter">Dezimeter</option>
+			<option value="decameter">Dekameter</option>
+			<option value="hectometer">Hektometer</option>
+        </select>
+
+        <label for="toType">Zu Typ:</label>
+        <select id="toType">
+            <option value="millimeter">Millimeter</option>
+            <option value="centimeter">Zentimeter</option>
+            <option value="meter">Meter</option>
+            <option value="kilometer" selected>Kilometer</option>
+            <option value="inch">Zoll</option>
+            <option value="feet">Fuß</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Meile</option>			
+			<option value="decimeter">Dezimeter</option>
+			<option value="decameter">Dekameter</option>
+			<option value="hectometer">Hektometer</option>
+        </select>
+
+        <label for="precision">Dezimalgenauigkeit:</label>
+        <input type="number" id="precision" placeholder="Genauigkeit eingeben" min="0">
+
+        <button onclick="convertLength()">Umrechnen</button>
+        <button onclick="clearFields()">Löschen</button>
+
+        <p id="result">Ergebnis: </p>
+
+        <!-- Canvas für Chart.js -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+<!-- Kilometer Definition, Beispiele, Fakten, Übungsaufgaben -->
+<div id="kilometer-info">
+    <h2>Kilometer Informationen:</h2>
+    <p>
+        <strong>Kilometer Definition:</strong> Der Kilometer (Symbol: km) ist eine Längeneinheit im Internationalen Einheitensystem (SI), der aktuellen Form des metrischen Systems. Er ist definiert als 1000 Meter.
+    </p>
+    <h3>Beispiele:</h3>
+    <p>
+        <strong>Standardverwendung:</strong>
+        <br>
+        • Die Entfernung zwischen zwei Städten kann in Kilometern gemessen werden.
+        <br>
+        • Ein Marathonlauf beträgt etwa 42,195 Kilometer.
+    </p>
+    <p>
+        <strong>Alltägliche Messungen:</strong>
+        <br>
+        • Abschätzen der Länge eines Wanderwegs in Kilometern.
+        <br>
+        • Ausdrücken der Entfernung zwischen Orten auf einer Karte.
+    </p>
+
+    <h3>Fakten:</h3>
+    <p>
+        <strong>Metrisches Präfix:</strong>
+        <br>
+        • Der Kilometer basiert auf der SI-Einheit Meter, und das Präfix "Kilo" zeigt an, dass er gleich tausend Metern ist.
+    </p>
+    <p>
+        <strong>Dezimales System:</strong>
+        <br>
+        • Metrische Präfixe wie Kilo- folgen einem dezimalen System, was die Umrechnung zwischen verschiedenen Einheiten erleichtert.
+    </p>
+    <p>
+        <strong>Weltweiter Einsatz:</strong>
+        <br>
+        • Kilometer werden weltweit zur Messung
+
+ längerer Entfernungen verwendet, insbesondere in Ländern, die das metrische System übernommen haben.
+    </p>
+
+    <h3>Übungsaufgaben:</h3>
+    <p>
+        <strong>Umrechnung:</strong>
+        <br>
+        • Wandeln Sie 5000 Meter in Kilometer um.
+        <br>
+        • Drücken Sie 2,5 Kilometer in Meter aus.
+    </p>
+    <p>
+        <strong>Anwendung:</strong>
+        <br>
+        • Wenn ein Auto mit einer Geschwindigkeit von 80 Kilometern pro Stunde fährt, wie weit wird es in 3 Stunden fahren?
+        <br>
+        • Ein rechteckiges Feld hat eine Länge von 1500 Metern und eine Breite von 800 Metern. Wie groß ist seine Fläche in Quadratkilometern?
+    </p>
+
+    <h3>Antworten:</h3>
+    <p>
+        <strong>Umrechnung:</strong>
+        <br>
+        • 5000 Meter = 5 Kilometer
+        <br>
+        • 2,5 Kilometer = 2500 Meter
+    </p>
+    <p>
+        <strong>Anwendung:</strong>
+        <br>
+        • Entfernung = Geschwindigkeit × Zeit
+        <br>
+        • Entfernung = 80 km/h × 3 Stunden = 240 Kilometer
+        <br>
+        • Fläche = Länge × Breite
+        <br>
+        • Fläche = (1500 Meter × 800 Meter) / (1000 Meter/Kilometer)^2 = 1,2 Quadratkilometer
+    </p>
+</div>
+        <!-- Umrechnungsverknüpfungen -->
+        <div id="conversion-links">
+    <h2>Millimeter Umrechnungen</h2>
+    <a href="millimeter-to-centimeter-conversion.html">Millimeter zu Zentimeter (mm zu cm)</a>
+    <a href="millimetertometerconversion.html">Millimeter zu Meter (mm zu m)</a>
+   <a href="MillimetertoKilometerconversion.html">Millimeter zu Kilometer (mm zu km)</a>
+  <a href="MillimetertoInchconversion.html">Millimeter zu Zoll (mm zu in.)</a>
+  <a href="MillimetertoFeetconversion.html">Millimeter zu Fuß (mm zu ft)</a>
+<a href="MillimetertoYardconversion.html">Millimeter zu Yard (mm zu yd)</a>
+<a href="MillimetertoMileconversion.html">Millimeter zu Meile (mm zu mi)</a>
+    <!-- Weitere Links hinzufügen, falls erforderlich -->
+        </div>
+    </div>
+
+    <!-- Zweite Spalte: Anzeigencontainer -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- Fügen Sie den tatsächlichen Anzeigeninhalt ein -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // Umrechnungsfaktoren
+            const conversionFactors = {
+                millimeter: 0,001,
+                centimeter: 0,01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0,0254,
+                feet: 0,3048,
+                yard: 0,9144,
+                mile: 1609,34,
+				decimeter: 0,1,
+				decameter: 10,
+				hectometer: 100
+                // Fügen Sie bei Bedarf weitere Umrechnungsfaktoren hinzu
+            };
+
+            // Bidirektionale Umrechnung durchführen
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // Ergebnis mit angegebener Genauigkeit anzeigen
+            document.getElementById('result').innerText = `Ergebnis: ${result.toFixed(precision)}\nInverses Ergebnis: ${resultInverse.toFixed(precision)}`;
+
+            // Diagramm aktualisieren oder erstellen
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (Vorher)`, `${toType} (Nachher)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // Vorheriges Diagramm zerstören, falls vorhanden
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // Neues Diagramm erstellen
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Umrechnungsergebnis',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // Balkendicke nach Bedarf anpassen
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // Diagramm zerstören, falls vorhanden
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+	 <!-- Google Analytics (gtag.js) hier hinzufügen -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+   
+
+ <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>

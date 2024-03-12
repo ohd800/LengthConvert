@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Längenkonvertierung | cm zu Zoll, Fuß, m, km, dm, mm Diagramm</title>
+    <meta name="description" content="Kostenloser Online-Längenkonverter - Konvertieren Sie zwischen Meter [m], Kilometer [km], Dezimeter [dm], Zentimeter [cm], cm zu Zoll, mm zu Zoll, Meter zu Fuß, etc.">
+    <meta name="keywords" content="Längenkonverter, Einheitenkonverter, Meter, Kilometer, Dezimeter, Zentimeter, Zoll, Fuß, Yard, Meile">
+
+    <style>
+        /* Beispiel-Stile: Erste Spalte */
+        #first-column {
+            float: left;
+            width: 80%; /* Breite der ersten Spalte anpassen */
+            padding: 20px; /* Padding setzen */
+            box-sizing: border-box; /* Box-Modell, stellt sicher, dass Breite und Höhe Padding und Rand einschließen */
+        }
+
+        /* Beispiel-Stile: Zweite Spalte */
+        #second-column {
+            float: left;
+            width: 20%; /* Breite der zweiten Spalte anpassen */
+            padding: 20px; /* Padding setzen */
+            box-sizing: border-box; /* Box-Modell, stellt sicher, dass Breite und Höhe Padding und Rand einschließen */
+        }
+
+        /* Beispiel-Stile: Abfrageinhalt */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* Unteren Rand setzen */
+        }
+
+        /* Beispiel-Stile: Konvertierungslinks */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* Unteren Rand zwischen Links setzen */
+            text-decoration: none;
+            color: #333; /* Link-Textfarbe setzen */
+            font-weight: bold; /* Link-Text-Fett setzen */
+        }
+
+        /* Beispiel-Stile: Werbung */
+        #ad-container {
+            width: 100%; /* Ad-Container volle Breite innerhalb der zweiten Spalte machen */
+            height: 400px; /* Höhe des Ad-Containers anpassen */
+            /*background-color: #333; Hintergrundfarbe setzen */
+            padding: 10px; /* Padding setzen */
+            box-sizing: border-box; /* Box-Modell, stellt sicher, dass Breite und Höhe Padding und Rand einschließen */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* Maximale Bildbreite setzen, um Containerbreite nicht zu überschreiten */
+            height: auto; /* Bildhöhe automatisch anpassen */
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://www.lengthconvert.com"><h1>Längenkonvertierung</h1></a>
+    <!-- Navigationslinks -->
+    <div id="navigation-links">
+        <a href="/">Startseite</a>
+        <a href="/French">Français(Französisch)</a>
+        <a href="/Germany">Deutsch(Germany)</a>
+        <a href="/Portuguese">Português(Portugiesisch)</a>
+        <a href="/Bengali">bāṅālī/বাঙালী(Bengali)</a>
+        <a href="/Indonesian">Bahasa(Indonesisch)</a>
+        <a href="/Chinese">中文(Chinesisch)</a>
+        <a href="/Russian">Русский(Russisch)</a>
+        <a href="/Spanish">Español(Spanisch)</a>
+        <a href="/hi">हिन्दी(Hindi)</a>
+        <a href="/ar">العربية(Arabisch)</a>
+        <!-- Weitere Sprachlinks hinzufügen, wie benötigt -->
+    </div>
+    <!-- Erste Spalte -->
+    <div id="first-column">
+        <label for="value">Wert:</label>
+        <input type="number" id="value" placeholder="Wert eingeben">
+
+        <label for="fromType">Von Typ:</label>
+        <select id="fromType">
+            <option value="millimeter">Millimeter</option>
+            <option value="centimeter">Zentimeter</option>
+            <option value="meter">Meter</option>
+            <option value="kilometer">Kilometer</option>
+            <option value="inch">Zoll</option>
+            <option value="feet">Fuß</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Meile</option>
+            <option value="decimeter">Dezimeter</option>
+            <option value="decameter">Dekameter</option>
+            <option value="hectometer">Hektometer</option>
+        </select>
+
+        <label for="toType">Nach Typ:</label>
+        <select id="toType">
+            <option value="millimeter">Millimeter</option>
+            <option value="centimeter">Zentimeter</option>
+            <option value="meter">Meter</option>
+            <option value="kilometer">Kilometer</option>
+            <option value="inch">Zoll</option>
+            <option value="feet">Fuß</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Meile</option>
+            <option value="decimeter">Dezimeter</option>
+            <option value="decameter">Dekameter</option>
+            <option value="hectometer">Hektometer</option>
+        </select>
+
+        <label for="precision">Dezimalgenauigkeit:</label>
+        <input type="number" id="precision" placeholder="Genauigkeit eingeben" min="0">
+
+        <button onclick="convertLength()">Konvertieren</button>
+        <button onclick="clearFields()">Löschen</button>
+
+        <p id="result">Ergebnis: </p>
+
+        <!-- Canvas für Chart.js -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+
+        <!-- Konvertierungskurzlinks -->
+        <div id="conversion-links">
+            <h2>Millimeter-Konvertierungen</h2>
+            <a href="Germany/millimeter-to-centimeter-conversion.html">Millimeter zu Zentimeter (mm zu cm)</a>
+            <a href="Germany/millimetertometerconversion.html">Millimeter zu Meter (mm zu m)</a>
+            <a href="Germany/MillimetertoKilometerconversion.html">Millimeter zu Kilometer (mm zu km)</a>
+            <a href="Germany/MillimetertoInchconversion.html">Millimeter zu Zoll (mm zu in.)</a>
+            <a href="Germany/MillimetertoFeetconversion.html">Millimeter zu Fuß (mm zu ft)</a>
+            <a href="Germany/MillimetertoYardconversion.html">Millimeter zu Yard (mm zu yd)</a>
+            <a href="Germany/MillimetertoMileconversion.html">Millimeter zu Meile (mm zu mi)</a>
+            <!-- Weitere Links hinzufügen, wie benötigt -->
+        </div>
+    </div>
+
+    <!-- Zweite Spalte: Anzeigencontainer -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- Tatsächlichen Anzeigeninhalt hinzufügen -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // Konversionsfaktoren
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+                decimeter: 0.1,
+                decameter: 10,
+                hectometer: 100
+                // Weitere Konversionsfaktoren hinzufügen, wie benötigt
+            };
+
+            // Bidirektionale Konvertierung durchführen
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // Ergebnis mit angegebener Genauigkeit anzeigen
+            document.getElementById('result').innerText = `Ergebnis: ${result.toFixed(precision)}\nUmgekehrtes Ergebnis: ${resultInverse.toFixed(precision)}`;
+
+            // Diagramm aktualisieren oder erstellen
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (Vorher)`, `${toType} (Nachher)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // Vorheriges Diagramm zerstören, falls vorhanden
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // Neues Diagramm erstellen
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Konvertierungsergebnis',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // Balkendicke nach Bedarf anpassen
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // Diagramm zerstören, falls vorhanden
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+
+    <!-- Google Analytics (gtag.js) hinzufügen -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>

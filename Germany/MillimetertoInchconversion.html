@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Längenumrechner---Millimeter zu Zoll (mm zu in.)</title>
+    <meta name="description" content="Millimeter zu Zoll (mm zu in.), umrechnen zwischen Meter [m], Kilometer [km], Dezimeter [dm], Zentimeter [cm], cm zu Zoll, mm zu Zoll, Meter zu Fuß, usw.">
+    <meta name="keywords" content="Millimeter zu Zoll">
+
+
+    <style>
+        /* Beispiel-Stile: Erste Spalte */
+        #first-column {
+            float: left;
+            width: 80%; /* Breite der ersten Spalte anpassen */
+            padding: 20px; /* Padding festlegen */
+            box-sizing: border-box; /* Box-Modell, stellt sicher, dass Breite und Höhe Padding und Rand einschließen */
+        }
+
+        /* Beispiel-Stile: Zweite Spalte */
+        #second-column {
+            float: left;
+            width: 20%; /* Breite der zweiten Spalte anpassen */
+            padding: 20px; /* Padding festlegen */
+            box-sizing: border-box; /* Box-Modell, stellt sicher, dass Breite und Höhe Padding und Rand einschließen */
+        }
+
+        /* Beispiel-Stile: Abfrageinhalt */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* Unteren Rand festlegen */
+        }
+
+        /* Beispiel-Stile: Umrechnungslinks */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* Unteren Rand zwischen Links festlegen */
+            text-decoration: none;
+            color: #333; /* Textfarbe der Links festlegen */
+            font-weight: bold; /* Fettdruck für Text der Links festlegen */
+        }
+
+        /* Beispiel-Stile: Werbung */
+        #ad-container {
+            width: 100%; /* Werbecontainer volle Breite in der zweiten Spalte nehmen lassen */
+            height: 400px; /* Höhe des Werbecontainers anpassen */
+             /* Hintergrundfarbe: #333; Hintergrundfarbe festlegen */
+            padding: 10px; /* Padding festlegen */
+            box-sizing: border-box; /* Box-Modell, stellt sicher, dass Breite und Höhe Padding und Rand einschließen */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* Maximale Bildbreite festlegen, um die Containerbreite nicht zu überschreiten */
+            height: auto; /* Bildhöhe automatisch anpassen */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Längenumrechner</h1>
+
+    <!-- Erste Spalte -->
+    <div id="first-column">
+        <label for="value">Wert:</label>
+        <input type="number" id="value" placeholder="Wert eingeben">
+
+        <label for="fromType">Von Typ:</label>
+        <select id="fromType">
+            <option value="millimeter" selected>Millimeter</option>
+            <option value="centimeter">Zentimeter</option>
+            <option value="meter">Meter</option>
+            <option value="kilometer">Kilometer</option>
+            <option value="inch">Zoll</option>
+            <option value="feet">Fuß</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Meile</option>			
+			<option value="decimeter">Dezimeter</option>
+			<option value="decameter">Dekameter</option>
+			<option value="hectometer">Hektometer</option>
+			
+        </select>
+
+        <label for="toType">Nach Typ:</label>
+        <select id="toType">
+            <option value="millimeter">Millimeter</option>
+            <option value="centimeter">Zentimeter</option>
+            <option value="meter">Meter</option>
+            <option value="kilometer">Kilometer</option>
+            <option value="inch" selected>Zoll</option>
+            <option value="feet">Fuß</option>
+            <option value="yard">Yard</option>
+            <option value="mile">Meile</option>			
+			<option value="decimeter">Dezimeter</option>
+			<option value="decameter">Dekameter</option>
+			<option value="hectometer">Hektometer</option>
+        </select>
+
+        <label for="precision">Dezimalstellen:</label>
+        <input type="number" id="precision"
+
+ placeholder="Präzision eingeben" min="0">
+
+        <button onclick="convertLength()">Umwandeln</button>
+        <button onclick="clearFields()">Löschen</button>
+
+        <p id="result">Ergebnis: </p>
+
+        <!-- Canvas für Chart.js -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+<!-- Zoll Definition, Beispiele, Fakten, Übungsaufgaben -->
+<div id="inch-info">
+    <h2>Zoll Informationen:</h2>
+    <p>
+        <strong>Zoll Definition:</strong> Ein Zoll (Symbol: in) ist eine Längeneinheit in den Imperial- und United States Customary-Systemen. Es wird als 1/12 eines Fußes definiert, und es gibt 12 Zoll in einem Fuß.
+    </p>
+    <h3>Beispiele:</h3>
+    <p>
+        <strong>Standardnutzung:</strong>
+        <br>
+        • Die diagonale Größe eines Computermonitors wird oft in Zoll gemessen.
+        <br>
+        • Die Höhe von Personen kann in Zoll ausgedrückt werden.
+    </p>
+    <p>
+        <strong>Alltägliche Messungen:</strong>
+        <br>
+        • Messen der Länge eines Blattes Papier oder eines Buches in Zoll.
+        <br>
+        • Festlegen der Größe eines TV-Bildschirms in Zoll.
+    </p>
+
+    <h3>Fakten:</h3>
+    <p>
+        <strong>Imperial System:</strong>
+        <br>
+        • Der Zoll wird hauptsächlich in den Imperial- und United States Customary-Systemen für Längen und Entfernungen verwendet.
+        <br>
+        • Der Umrechnungsfaktor zwischen Zoll und Zentimetern beträgt 1 Zoll = 2,54 Zentimeter.
+    </p>
+    <p>
+        <strong>Unterteilung:</strong>
+        <br>
+        • Ein Zoll wird weiter in Fraktionen unterteilt, wie Halben, Vierteln, Achteln und Sechzehnteln.
+    </p>
+    <p>
+        <strong>Weltweite Verwendung:</strong>
+        <br>
+        • Obwohl das metrische System weltweit verbreitet ist, werden Zoll in den Vereinigten Staaten und einigen anderen Ländern immer noch für bestimmte Anwendungen verwendet.
+    </p>
+
+    <h3>Übungsaufgaben:</h3>
+    <p>
+        <strong>Umrechnung:</strong>
+        <br>
+        • 30 Zentimeter in Zoll umrechnen.
+        <br>
+        • 18 Zoll in Zentimeter umrechnen.
+    </p>
+    <p>
+        <strong>Anwendung:</strong>
+        <br>
+        • Wenn ein rechteckiger Rahmen Abmessungen von 24 Zoll mal 36 Zoll hat, was ist seine Fläche?
+        <br>
+        • Die Höhe einer Person wird als 68 Zoll gemessen. Diese Höhe in Zentimeter umrechnen.
+    </p>
+
+    <h3>Antworten:</h3>
+    <p>
+        <strong>Umrechnung:</strong>
+        <br>
+        • 30 Zentimeter = 11,81 Zoll
+        <br>
+        • 18 Zoll = 45,72 Zentimeter
+    </p>
+    <p>
+        <strong>Anwendung:</strong>
+        <br>
+        • Fläche = Länge × Breite
+        <br>
+        • Fläche = 24 Zoll × 36 Zoll = 864 Quadratzoll
+        <br>
+        • 68 Zoll = 172,72 Zentimeter
+    </p>
+</div>
+
+        <!-- Umrechnungs-Schnellzugriff-Links -->
+        <div id="conversion-links">
+    <h2>Millimeter Umrechnungen</h2>
+    <a href="millimeter-to-centimeter-conversion.html">Millimeter zu Zentimeter (mm zu cm)</a>
+    <a href="millimetertometerconversion.html">Millimeter zu Meter (mm zu m)</a>
+   <a href="MillimetertoKilometerconversion.html">Millimeter zu Kilometer (mm zu km)</a>
+  <a href="MillimetertoInchconversion.html">Millimeter zu Zoll (mm zu in.)</a>
+  <a href="MillimetertoFeetconversion.html">Millimeter zu Fuß (mm zu ft)</a>
+<a href="MillimetertoYardconversion.html">Millimeter zu Yard (mm zu yd)</a>
+<a href="MillimetertoMileconversion.html">Millimeter zu Meile (mm zu mi)</a>
+    <!-- Weitere Links nach Bedarf hinzufügen -->
+        </div>
+    </div>
+
+    <!-- Zweite Spalte: Werbecontainer -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- Tatsächlichen Anzeigeninhalt hinzufügen -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // Umrechnungsfaktoren
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+				decimeter: 0.1,
+				decameter: 10,
+				hectometer: 100
+                // Weitere Umrechnungsfaktoren nach Bedarf hinzufügen
+            };
+
+            // Bidirektionale Umrechnung durchführen
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // Ergebnis mit angegebener Präzision anzeigen
+            document.getElementById('result').innerText = `Ergebnis: ${result.toFixed(precision)}\nUmgekehrtes Ergebnis: ${resultInverse.toFixed(precision)}`;
+
+            // Diagramm aktualisieren oder erstellen
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (Vorher)`, `${toType} (Nachher)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // Vorheriges Diagramm zerstören,
+
+ falls vorhanden
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // Neues Diagramm erstellen
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Umrechnungsergebnis',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // Balkenstärke nach Bedarf anpassen
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // Diagramm zerstören, falls vorhanden
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+	    <!-- Fügen Sie Ihr Google Analytics (gtag.js) hier ein -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>
