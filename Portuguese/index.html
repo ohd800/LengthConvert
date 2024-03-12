@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Comprimento | cm para polegada, pé, m, km, dm, mm gráfico</title>
+    <meta name="description" content="Conversor de comprimento online gratuito - converta entre metro [m], quilômetro [km], decímetro [dm], centímetro [cm], cm para polegadas, mm para polegadas, metros para pés, etc.">
+    <meta name="keywords" content="conversor de comprimento, conversor de unidades, metro, quilômetro, decímetro, centímetro, polegada, pé, jarda, milha">
+
+    <style>
+        /* Exemplo de estilos: Primeira coluna */
+        #first-column {
+            float: left;
+            width: 80%; /* Ajuste a largura da primeira coluna */
+            padding: 20px; /* Defina o preenchimento */
+            box-sizing: border-box; /* Modelo de caixa, garante que largura e altura incluam preenchimento e borda */
+        }
+
+        /* Exemplo de estilos: Segunda coluna */
+        #second-column {
+            float: left;
+            width: 20%; /* Ajuste a largura da segunda coluna */
+            padding: 20px; /* Defina o preenchimento */
+            box-sizing: border-box; /* Modelo de caixa, garante que largura e altura incluam preenchimento e borda */
+        }
+
+        /* Exemplo de estilos: Conteúdo da consulta */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* Defina a margem inferior */
+        }
+
+        /* Exemplo de estilos: Links de conversão */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* Defina a margem inferior entre os links */
+            text-decoration: none;
+            color: #333; /* Defina a cor do texto do link */
+            font-weight: bold; /* Defina a espessura do texto do link */
+        }
+
+        /* Exemplo de estilos: Anúncio */
+        #ad-container {
+            width: 100%; /* Faça o contêiner de anúncios ocupar toda a largura dentro da segunda coluna */
+            height: 400px; /* Ajuste a altura do contêiner de anúncios */
+            padding: 10px; /* Defina o preenchimento */
+            box-sizing: border-box; /* Modelo de caixa, garante que largura e altura incluam preenchimento e borda */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* Defina a largura máxima da imagem para não exceder a largura do contêiner */
+            height: auto; /* Faça a altura da imagem se ajustar automaticamente */
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://www.lengthconvert.com"><h1>Conversor de Comprimento</h1></a>
+    <!-- Links de Navegação -->
+    <div id="navigation-links">
+        <a href="/">Página Inicial</a>
+        <a href="/French">Français (Francês)</a>
+        <a href="/Germany">Deutsch (Alemão)</a>
+        <a href="/Portuguese">Português (Português)</a>
+        <a href="/Bengali">bāṅālī/বাঙালী (Bengali)</a>
+        <a href="/Indonesian">Bahasa (Indonésio)</a>
+        <a href="/Chinese">中文 (Chinês)</a>
+        <a href="/Russian">Русский (Russo)</a>
+        <a href="/Spanish">Español (Espanhol)</a>
+        <a href="/hi">हिन्दी (Hindi)</a>
+        <a href="/ar">العربية (Árabe)</a>
+        <!-- Adicione mais links de idiomas conforme necessário -->
+    </div>
+    <!-- Primeira coluna -->
+    <div id="first-column">
+        <label for="value">Valor:</label>
+        <input type="number" id="value" placeholder="Insira o valor">
+
+        <label for="fromType">De Tipo:</label>
+        <select id="fromType">
+            <option value="millimeter">Milímetro</option>
+            <option value="centimeter">Centímetro</option>
+            <option value="meter">Metro</option>
+            <option value="kilometer">Quilômetro</option>
+            <option value="inch">Polegada</option>
+            <option value="feet">Pé</option>
+            <option value="yard">Jarda</option>
+            <option value="mile">Milha</option>
+            <option value="decimeter">Decímetro</option>
+            <option value="decameter">Decâmetro</option>
+            <option value="hectometer">Hectômetro</option>
+        </select>
+
+        <label for="toType">Para Tipo:</label>
+        <select id="toType">
+            <option value="millimeter">Milímetro</option>
+            <option value="centimeter">Centímetro</option>
+            <option value="meter">Metro</option>
+            <option value="kilometer">Quilômetro</option>
+            <option value="inch">Polegada</option>
+            <option value="feet">Pé</option>
+            <option value="yard">Jarda</option>
+            <option value="mile">Milha</option>
+            <option value="decimeter">Decímetro</option>
+            <option value="decameter">Decâmetro</option>
+            <option value="hectometer">Hectômetro</option>
+        </select>
+
+        <label for="precision">Precisão Decimal:</label>
+        <input type="number" id="precision" placeholder="Insira a precisão" min="0">
+
+        <button onclick="convertLength()">Converter</button>
+        <button onclick="clearFields()">Limpar</button>
+
+        <p id="result">Resultado: </p>
+
+        <!-- Canvas para Chart.js -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+
+        <!-- Links de atalho de conversão -->
+        <div id="conversion-links">
+            <h2>Conversões de Milímetros</h2>
+            <a href="Portuguese/millimeter-to-centimeter-conversion.html">Milímetro para Centímetro (mm para cm)</a>
+            <a href="Portuguese/millimetertometerconversion.html">Milímetro para Metro (mm para m)</a>
+            <a href="Portuguese/MillimetertoKilometerconversion.html">Milímetro para Quilômetro (mm para km)</a>
+            <a href="Portuguese/MillimetertoInchconversion.html">Milímetro para Polegadas (mm para in.)</a>
+            <a href="Portuguese/MillimetertoFeetconversion.html">Milímetro para Pés (mm para ft)</a>
+            <a href="Portuguese/MillimetertoYardconversion.html">Milímetro para Jarda (mm para yd)</a>
+            <a href="Portuguese/MillimetertoMileconversion.html">Milímetro para Milha (mm para mi)</a>
+            <!-- Adicione mais links conforme necessário -->
+        </div>
+    </div>
+
+    <!-- Segunda coluna: Contêiner de Anúncios -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- Adicione o conteúdo real do anúncio -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // Fatores de conversão
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+                decimeter: 0.1,
+                decameter: 10,
+                hectometer: 100
+                // Adicione outros fatores de conversão conforme necessário
+            };
+
+            // Realizar conversão bidirecional
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // Exibir resultado com a precisão especificada
+            document.getElementById('result').innerText = `Resultado: ${result.toFixed(precision)}\nResultado Inverso: ${resultInverse.toFixed(precision)}`;
+
+            // Atualizar ou criar o gráfico
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (Antes)`, `${toType} (Depois)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // Destruir o gráfico anterior se existir
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // Criar um novo gráfico
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Resultado da Conversão',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // Ajustar a espessura da barra conforme necessário
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // Destruir o gráfico se existir
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+
+    <!-- Adicione seu Google Analytics (gtag.js) aqui -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>

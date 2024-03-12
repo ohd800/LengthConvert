@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Comprimento - Milímetro para Polegadas (mm para in.)</title>
+    <meta name="description" content="Milímetro para Polegadas (mm para in.), converta entre metro [m], quilômetro [km], decímetro [dm], centímetro [cm], cm para polegadas, mm para polegadas, metros para pés, etc.">
+    <meta name="keywords" content="Milímetro para Polegadas">
+
+
+    <style>
+        /* Estilos de exemplo: primeira coluna */
+        #first-column {
+            float: left;
+            width: 80%; /* Ajustar a largura da primeira coluna */
+            padding: 20px; /* Definir o preenchimento */
+            box-sizing: border-box; /* Modelo de caixa, garante que largura e altura incluam preenchimento e borda */
+        }
+
+        /* Estilos de exemplo: segunda coluna */
+        #second-column {
+            float: left;
+            width: 20%; /* Ajustar a largura da segunda coluna */
+            padding: 20px; /* Definir o preenchimento */
+            box-sizing: border-box; /* Modelo de caixa, garante que largura e altura incluam preenchimento e borda */
+        }
+
+        /* Estilos de exemplo: conteúdo da consulta */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* Definir margem inferior */
+        }
+
+        /* Estilos de exemplo: links de conversão */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* Definir margem inferior entre links */
+            text-decoration: none;
+            color: #333; /* Definir a cor do texto do link */
+            font-weight: bold; /* Definir a espessura do texto do link */
+        }
+
+        /* Estilos de exemplo: anúncio */
+        #ad-container {
+            width: 100%; /* Fazer o contêiner de anúncios ocupar a largura total dentro da segunda coluna */
+            height: 400px; /* Ajustar a altura do contêiner de anúncios */
+             /*background-color: #333;  Definir a cor de fundo */
+            padding: 10px; /* Definir o preenchimento */
+            box-sizing: border-box; /* Modelo de caixa, garante que largura e altura incluam preenchimento e borda */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* Definir a largura máxima da imagem para não exceder a largura do contêiner */
+            height: auto; /* Fazer a altura da imagem ajustar automaticamente */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Conversor de Comprimento</h1>
+
+    <!-- Primeira coluna -->
+    <div id="first-column">
+        <label for="value">Valor:</label>
+        <input type="number" id="value" placeholder="Digite o valor">
+
+        <label for="fromType">De Tipo:</label>
+        <select id="fromType">
+            <option value="millimeter" selected>Milímetro</option>
+            <option value="centimeter">Centímetro</option>
+            <option value="meter">Metro</option>
+            <option value="kilometer">Quilômetro</option>
+            <option value="inch">Polegada</option>
+            <option value="feet">Pé</option>
+            <option value="yard">Jarda</option>
+            <option value="mile">Milha</option>			
+            <option value="decimeter">Decímetro</option>
+            <option value="decameter">Decâmetro</option>
+            <option value="hectometer">Hectômetro</option>
+        </select>
+
+        <label for="toType">Para Tipo:</label>
+        <select id="toType">
+            <option value="millimeter">Milímetro</option>
+            <option value="centimeter">Centímetro</option>
+            <option value="meter" >Metro</option>
+            <option value="kilometer">Quilômetro</option>
+            <option value="inch" selected>Polegada</option>
+            <option value="feet">Pé</option>
+            <option value="yard">Jarda</option>
+            <option value="mile">Milha</option>			
+            <option value="decimeter">Decímetro</option>
+            <option value="decameter">Decâmetro</option>
+            <option value="hectometer">Hectômetro</option>
+        </select>
+
+        <label for="precision">Precisão Decimal:</label>
+        <input type="number" id="precision" placeholder="Digite a precisão" min="0">
+
+        <button onclick="convertLength()">Converter</button>
+        <button onclick="clearFields()">Limpar</button>
+
+        <p id="result">Resultado: </p>
+
+        <!-- Canvas para Chart.js -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+        <!-- Definição de Polegada, Exemplos, Fatos, Problemas Práticos -->
+        <div id="inch-info">
+            <h2>Informações sobre Polegada:</h2>
+            <p>
+                <strong>Definição de Polegada:</strong> Uma polegada (símbolo: in) é uma unidade de comprimento nos Sistemas Imperial e de Medidas dos Estados Unidos. É definida como 1/12 de um pé, e há 12 polegadas em um pé.
+            </p>
+            <h3>Exemplos:</h3>
+            <p>
+                <strong>Uso Padrão:</strong>
+                <br>
+                • O tamanho diagonal de um monitor de computador é frequentemente medido em polegadas.
+                <br>
+                • Alturas de indivíduos podem ser expressas em polegadas.
+            </p>
+            <p>
+                <strong>Medições Diárias:</strong>
+                <br>
+                • Medir o comprimento de uma folha de papel ou de um livro em polegadas.
+                <br>
+                • Especificar o tamanho de uma tela de TV em polegadas.
+            </p>
+
+            <h3>Fatos:</h3>
+            <p>
+                <strong>Sistema Imperial:</strong>
+                <br>
+                • A polegada é usada principalmente nos Sistemas Imperial e de Medidas dos Estados Unidos para comprimentos e distâncias.
+                <br>
+                • O fator de conversão entre polegadas e centímetros é 1 polegada = 2,54 centímetros.
+            </p>
+            <p>
+                <strong>Divisão:</strong>
+                <br>
+                • Uma polegada é dividida em frações, como metades, quartos, oitavos e dezesseis avos.
+            </p>
+            <p>
+                <strong>Uso Mundial:</strong>
+                <br>
+                • Embora o sistema métrico seja prevalente globalmente, polegadas ainda são comumente usadas nos Estados Unidos e em alguns outros países para certas aplicações.
+            </p>
+
+            <h3>Problemas Práticos:</h3>
+            <p>
+                <strong>Conversão:</strong>
+                <br>
+                • Converter 30 centímetros em polegadas.
+                <br>
+                • Expressar 18 polegadas em centímetros.
+            </p>
+            <p>
+                <strong>Aplicação:</strong>
+                <br>
+                • Se um quadro retangular tem dimensões de 24 polegadas por 36 polegadas, qual é a sua área?
+                <br>
+                • A altura de uma pessoa é medida como 68 polegadas. Converta essa altura para centímetros.
+            </p>
+
+            <h3>Respostas:</h3>
+            <p>
+                <strong>Conversão:</strong>
+                <br>
+                • 30 centímetros = 11,81 polegadas
+                <br>
+                • 18 polegadas = 45,72 centímetros
+            </p>
+            <p>
+                <strong>Aplicação:</strong>
+                <br>
+                • Área = Comprimento × Largura
+                <br>
+                • Área = 24 polegadas × 36 polegadas = 864 polegadas quadradas
+                <br>
+                • 68 polegadas = 172,72 centímetros
+            </p>
+        </div>
+
+        <!-- Links de atalho de conversão -->
+        <div id="conversion-links">
+            <h2>Conversões de Milímetros</h2>
+            <a href="millimeter-to-centimeter-conversion.html">Milímetro para Centímetro (mm para cm)</a>
+            <a href="millimetertometerconversion.html">Milímetro para Metro (mm para m)</a>
+            <a href="MillimetertoKilometerconversion.html">Milímetro para Quilômetro (mm para km)</a>
+            <a href="MillimetertoInchconversion.html">Milímetro para Polegadas (mm para in.)</a>
+            <a href="MillimetertoFeetconversion.html">Milímetro para Pés (mm para ft)</a>
+            <a href="MillimetertoYardconversion.html">Milímetro para Jardas (mm para yd)</a>
+            <a href="MillimetertoMileconversion.html">Milímetro para Milhas (mm para mi)</a>
+            <!-- Adicionar mais links conforme necessário -->
+        </div>
+    </div>
+
+    <!-- Segunda coluna: Contêiner de Anúncios -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- Adicione o conteúdo real do anúncio -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // Fatores de conversão
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+                decimeter: 0.1,
+                decameter: 10,
+                hectometer: 100
+                // Adicionar outros fatores de conversão conforme necessário
+            };
+
+            // Executar conversão bidirecional
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // Exibir resultado com a precisão especificada
+            document.getElementById('result').innerText = `Resultado: ${result.toFixed(precision)}\nResultado Inverso: ${resultInverse.toFixed(precision)}`;
+
+            // Atualizar ou criar o gráfico
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (Antes)`, `${toType} (Depois)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // Destruir o gráfico anterior se existir
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // Criar um novo gráfico
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Resultado da Conversão',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // Ajustar a espessura da barra conforme necessário
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // Destruir o gráfico se existir
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+    <!-- Adicione seu Google Analytics (gtag.js) aqui -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>
