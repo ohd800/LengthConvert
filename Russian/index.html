@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конвертер длины | см в дюймы, футы, м, км, дм, мм</title>
+    <meta name="description" content="Бесплатный онлайн конвертер длины - конвертируйте между метром [м], километром [км], дециметром [дм], сантиметром [см], см в дюймы, мм в дюймы, метры в футы и т.д.">
+    <meta name="keywords" content="конвертер длины, конвертер единиц измерения, метр, километр, дециметр, сантиметр, дюйм, фут, ярд, миля">
+
+    <style>
+        /* Примерные стили: Первый столбец */
+        #first-column {
+            float: left;
+            width: 80%; /* Измените ширину первого столбца */
+            padding: 20px; /* Установите отступы */
+            box-sizing: border-box; /* Модель блока, гарантирует, что ширина и высота включают отступы и границы */
+        }
+
+        /* Примерные стили: Второй столбец */
+        #second-column {
+            float: left;
+            width: 20%; /* Измените ширину второго столбца */
+            padding: 20px; /* Установите отступы */
+            box-sizing: border-box; /* Модель блока, гарантирует, что ширина и высота включают отступы и границы */
+        }
+
+        /* Примерные стили: Содержимое запроса */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* Установите нижний отступ */
+        }
+
+        /* Примерные стили: Ссылки на конвертацию */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* Установите нижний отступ между ссылками */
+            text-decoration: none;
+            color: #333; /* Установите цвет текста ссылки */
+            font-weight: bold; /* Установите жирность текста ссылки */
+        }
+
+        /* Примерные стили: Реклама */
+        #ad-container {
+            width: 100%; /* Сделайте контейнер рекламы полной ширины во втором столбце */
+            height: 400px; /* Измените высоту контейнера рекламы */
+            padding: 10px; /* Установите отступы */
+            box-sizing: border-box; /* Модель блока, гарантирует, что ширина и высота включают отступы и границы */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* Установите максимальную ширину изображения, чтобы не превышать ширину контейнера */
+            height: auto; /* Сделайте высоту изображения автоматически настраиваемой */
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://www.lengthconvert.com"><h1>Конвертер длины</h1></a>
+ <!-- Навигационные ссылки -->
+    <div id="navigation-links">
+        <a href="/">Главная</a>
+        <a href="/French">Французский</a>
+        <a href="/Germany">Немецкий</a>
+        <a href="/Portuguese">Португальский</a>
+        <a href="/Bengali">Бенгальский</a>
+        <a href="/Indonesian">Индонезийский</a>
+        <a href="/Chinese">Китайский</a>
+        <a href="/Russian">Русский</a>
+		<a href="/Spanish">Испанский</a>
+		<a href="/hi">Хинди</a>
+		<a href="/ar">Арабский</a>
+        <!-- Добавьте больше языковых ссылок при необходимости -->
+    </div>
+    <!-- Первый столбец -->
+    <div id="first-column">
+        <label for="value">Значение:</label>
+        <input type="number" id="value" placeholder="Введите значение">
+
+        <label for="fromType">Из типа:</label>
+        <select id="fromType">
+            <option value="millimeter">Миллиметр</option>
+            <option value="centimeter">Сантиметр</option>
+            <option value="meter">Метр</option>
+            <option value="kilometer">Километр</option>
+            <option value="inch">Дюйм</option>
+            <option value="feet">Фут</option>
+            <option value="yard">Ярд</option>
+            <option value="mile">Миля</option>
+			<option value="decimeter">Дециметр</option>
+			<option value="decameter">Декаметр</option>
+			<option value="hectometer">Гектометр</option>
+        </select>
+
+        <label for="toType">В тип:</label>
+        <select id="toType">
+            <option value="millimeter">Миллиметр</option>
+            <option value="centimeter">Сантиметр</option>
+            <option value="meter">Метр</option>
+            <option value="kilometer">Километр</option>
+            <option value="inch">Дюйм</option>
+            <option value="feet">Фут</option>
+            <option value="yard">Ярд</option>
+            <option value="mile">Миля</option>
+			<option value="decimeter">Дециметр</option>
+			<option value="decameter">Декаметр</
+
+option>
+			<option value="hectometer">Гектометр</option>
+        </select>
+
+        <label for="precision">Точность десятичных знаков:</label>
+        <input type="number" id="precision" placeholder="Введите точность" min="0">
+
+        <button onclick="convertLength()">Конвертировать</button>
+        <button onclick="clearFields()">Очистить</button>
+
+        <p id="result">Результат: </p>
+
+        <!-- Холст для Chart.js -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+
+        <!-- Ссылки на конвертацию -->
+        <div id="conversion-links">
+            <h2>Конверсии миллиметров</h2>
+            <a href="Russian/millimeter-to-centimeter-conversion.html">Миллиметры в сантиметры (мм в см)</a>
+            <a href="Russian/millimetertometerconversion.html">Миллиметры в метры (мм в м)</a>
+            <a href="Russian/MillimetertoKilometerconversion.html">Миллиметры в километры (мм в км)</a>
+            <a href="Russian/MillimetertoInchconversion.html">Миллиметры в дюймы (мм в дюймы)</a>
+            <a href="Russian/MillimetertoFeetconversion.html">Миллиметры в футы (мм в фт)</a>
+            <a href="Russian/MillimetertoYardconversion.html">Миллиметры в ярды (мм в ярды)</a>
+            <a href="Russian/MillimetertoMileconversion.html">Миллиметры в мили (мм в ми)</a>
+            <!-- Добавьте больше ссылок при необходимости -->
+        </div>
+    </div>
+
+    <!-- Второй столбец: Контейнер рекламы -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- Добавьте реальное рекламное содержимое -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // Факторы конвертации
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+				decimeter: 0.1,
+				decameter: 10,
+				hectometer: 100
+                // Добавьте другие факторы конвертации при необходимости
+            };
+
+            // Выполнить двунаправленное преобразование
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // Отобразить результат с заданной точностью
+            document.getElementById('result').innerText = `Результат: ${result.toFixed(precision)}\nОбратный результат: ${resultInverse.toFixed(precision)}`;
+
+            // Обновить или создать диаграмму
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (До)`, `${toType} (После)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // Уничтожить предыдущую диаграмму, если существует
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // Создать новую диаграмму
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Результат конверсии',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // Регулировка толщины столбцов по мере необходимости
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // Уничтожить диаграмму, если существует
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+	    <!-- Добавьте свой Google Analytics (gtag.js) здесь -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конвертация длины — Миллиметры в дюймы (мм в дюймы)</title>
+    <meta name="description" content="Миллиметры в дюймы (мм в дюймы), конвертация между метрами [м], километрами [км], дециметрами [дм], сантиметрами [см], см в дюймы, мм в дюймы, метры в футы и т.д.">
+    <meta name="keywords" content="Миллиметры в дюймы">
+
+    <style>
+        /* Пример стилей: Первая колонка */
+        #first-column {
+            float: left;
+            width: 80%; /* Подстройте ширину первой колонки */
+            padding: 20px; /* Установите отступ */
+            box-sizing: border-box; /* Модель блока, гарантирует, что ширина и высота включают отступ и границу */
+        }
+
+        /* Пример стилей: Вторая колонка */
+        #second-column {
+            float: left;
+            width: 20%; /* Подстройте ширину второй колонки */
+            padding: 20px; /* Установите отступ */
+            box-sizing: border-box; /* Модель блока, гарантирует, что ширина и высота включают отступ и границу */
+        }
+
+        /* Пример стилей: Содержимое запроса */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* Установите нижний отступ */
+        }
+
+        /* Пример стилей: Ссылки для конвертации */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* Установите нижний отступ между ссылками */
+            text-decoration: none;
+            color: #333; /* Установите цвет текста ссылки */
+            font-weight: bold; /* Установите жирность текста ссылки */
+        }
+
+        /* Пример стилей: Реклама */
+        #ad-container {
+            width: 100%; /* Займите полную ширину контейнера внутри второй колонки */
+            height: 400px; /* Подстройте высоту контейнера рекламы */
+            /*background-color: #333;  Установите цвет фона */
+            padding: 10px; /* Установите отступ */
+            box-sizing: border-box; /* Модель блока, гарантирует, что ширина и высота включают отступ и границу */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* Установите максимальную ширину изображения, чтобы не превышать ширину контейнера */
+            height: auto; /* Сделайте высоту изображения автоматической */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Конвертация длины</h1>
+
+    <!-- Первая колонка -->
+    <div id="first-column">
+        <label for="value">Значение:</label>
+        <input type="number" id="value" placeholder="Введите значение">
+
+        <label for="fromType">От типа:</label>
+        <select id="fromType">
+            <option value="millimeter" selected>Миллиметр</option>
+            <option value="centimeter">Сантиметр</option>
+            <option value="meter">Метр</option>
+            <option value="kilometer">Километр</option>
+            <option value="inch">Дюйм</option>
+            <option value="feet">Фут</option>
+            <option value="yard">Ярд</option>
+            <option value="mile">Миля</option>			
+			<option value="decimeter">Дециметр</option>
+			<option value="decameter">Декаметр</option>
+			<option value="hectometer">Гектометр</option>
+        </select>
+
+        <label for="toType">К типу:</label>
+        <select id="toType">
+            <option value="millimeter">Миллиметр</option>
+            <option value="centimeter">Сантиметр</option>
+            <option value="meter">Метр</option>
+            <option value="kilometer" selected>Километр</option>
+            <option value="inch">Дюйм</option>
+            <option value="feet">Фут</option>
+            <option value="yard">Ярд</option>
+            <option value="mile">Миля</option>			
+			<option value="decimeter">Дециметр</option>
+			<option value="decameter">Декаметр</option>
+			<option value="hectometer">Гектометр</option>
+        </select>
+
+        <label for="precision">Десятичная точность:</label>
+        <input type="number" id="precision" placeholder="Введите точность" min="0">
+
+        <button onclick="convertLength()">Конвертировать</button>
+        <button onclick="clearFields()">Очистить</button>
+
+        <p id="result">Результат: </p>
+
+        <!-- Canvas for Chart.js -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+        <!-- Информация о дюйме, примеры, факты, практические задачи -->
+        <div id="inch-info">
+            <h2>Информация о дюйме:</h2>
+            <p>
+                <strong>Определение дюйма:</strong> Дюйм (символ: дюйм) — единица измерения длины в системах Imperial и United States Customary. Определен как 1/12 фута, и в футе 12 дюймов.
+            </p>
+            <h3>Примеры:</h3>
+            <p>
+                <strong>Стандартное использование:</strong>
+                <br>
+                • Диагональ размера компьютерного монитора часто измеряется в дюймах.
+                <br>
+                • Рост людей может быть выражен в дюймах.
+            </p>
+            <p>
+                <strong>Повседневные измерения:</strong>
+                <br>
+                • Измерение длины листа бумаги или книги в дюймах.
+                <br>
+                • Указание размера экрана телевизора в дюймах.
+            </p>
+
+            <h3>Факты:</h3>
+            <p>
+                <strong>Имперская система:</strong>
+                <br>
+                • Дюйм в первую очередь используется в системах Imperial и United States Customary для измерения длин и расстояний.
+                <br>
+                • Коэффициент преобразования между дюймами и сантиметрами равен 1 дюйм = 2.54 сантиметра.
+            </p>
+            <p>
+                <strong>Деление:</strong>
+                <br>
+                • Дюйм дополнительно делится на дроби, такие как половины, четверти, восьмые и шестнадцатые.
+            </p>
+            <p>
+                <strong>Мировое использование:</strong>
+                <br>
+                • Несмотря на то что метрическая система преобладает во всем мире, в Соединенных Штатах и некоторых других странах дюймы все еще широко используются для определенных приложений.
+            </p>
+
+            <h3>Практические задачи:</h3>
+            <p>
+                <strong>Конвертация:</strong>
+                <br>
+                • Преобразовать 30 сантиметров в дюймы.
+                <br>
+                • Выразить 18 дюймов в сантиметрах.
+            </p>
+            <p>
+                <strong>Применение:</strong>
+                <br>
+                • Если прямоугольная рама имеет размеры 24 дюйма на 36 дюймов, какова ее площадь?
+                <br>
+                • Рост человека измеряется как 68 дюймов. Преобразуйте этот рост в сантиметры.
+            </p>
+
+            <h3>Ответы:</h3>
+            <p>
+                <strong>Конвертация:</strong>
+                <br>
+                • 30 сантиметров = 11.81 дюйма
+                <br>
+                • 18 дюймов = 45.72 сантиметра
+            </p>
+            <p>
+                <strong>Применение:</strong>
+                <br>
+                • Площадь = Длина × Ширина
+                <br>
+                • Площадь = 24 дюйма × 36 дюймов = 864 квадратных дюйма
+                <br>
+                • 68 дюймов = 172.72 сантиметра
+            </p>
+        </div>
+
+        <!-- Ссылки для конвертации -->
+        <div id="conversion-links">
+            <h2>Конвертация миллиметров</h2>
+            <a href="millimeter-to-centimeter-conversion.html">Миллиметры в сантиметры (мм в см)</a>
+            <a href="millimetertometerconversion.html">Миллиметры в метры (мм в м)</a>
+            <a href="MillimetertoKilometerconversion.html">Миллиметры в километры (мм в км)</a>
+            <a href="MillimetertoInchconversion.html">Миллиметры в дюймы (мм в дюймы)</a>
+            <a href="MillimetertoFeetconversion.html">Миллиметры в футы (мм в фт)</a>
+            <a href="MillimetertoYardconversion.html">Миллиметры в ярды (мм в ярд)</a>
+            <a href="MillimetertoMileconversion.html">Миллиметры в мили (мм в милю)</a>
+            <!-- Добавьте дополнительные ссылки при необходимости -->
+        </div>
+    </div>
+
+    <!-- Вторая колонка: Контейнер рекламы -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- Добавьте фактическое содержание рекламы -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // Факторы конвертации
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+                decimeter: 0.1,
+                decameter: 10,
+                hectometer: 100
+                // Добавьте другие факторы конвертации при необходимости
+            };
+
+            // Выполнение двусторонней конвертации
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // Отображение результата с указанной точностью
+            document.getElementById('result').innerText = `Результат: ${result.toFixed(precision)}\nОбратный результат: ${resultInverse.toFixed(precision)}`;
+
+            // Обновление или создание диаграммы
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (Перед)`, `${toType} (После)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // Уничтожение предыдущей диаграммы, если существует
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // Создание новой диаграммы
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Результат конвертации',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // Подстройте толщину столбца при необходимости
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // Уничтожение диаграммы, если существует
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+    <!-- Добавьте ваш Google Analytics (gtag.js) здесь -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>

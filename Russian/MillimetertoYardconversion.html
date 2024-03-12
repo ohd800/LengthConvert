@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конвертация длины - Миллиметры в Ярды (мм в ярды)</title>
+    <meta name="description" content="Миллиметры в Ярды (мм в ярды), конвертация между метром [м], километром [км], дециметром [дм], сантиметром [см], см в дюймы, мм в дюймы, метры в футы и т.д.">
+    <meta name="keywords" content="Миллиметры в Ярды">
+
+    <style>
+        /* Пример стилей: Первая колонка */
+        #first-column {
+            float: left;
+            width: 80%; /* Регулировка ширины первой колонки */
+            padding: 20px; /* Установка отступа */
+            box-sizing: border-box; /* Модель box, обеспечивает включение отступов и границ в ширину и высоту */
+        }
+
+        /* Пример стилей: Вторая колонка */
+        #second-column {
+            float: left;
+            width: 20%; /* Регулировка ширины второй колонки */
+            padding: 20px; /* Установка отступа */
+            box-sizing: border-box; /* Модель box, обеспечивает включение отступов и границ в ширину и высоту */
+        }
+
+        /* Пример стилей: Содержание запроса */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* Установка нижнего отступа */
+        }
+
+        /* Пример стилей: Ссылки на конвертацию */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* Установка нижнего отступа между ссылками */
+            text-decoration: none;
+            color: #333; /* Установка цвета текста ссылок */
+            font-weight: bold; /* Установка жирности текста ссылок */
+        }
+
+        /* Пример стилей: Реклама */
+        #ad-container {
+            width: 100%; /* Расширение контейнера рекламы на всю ширину второй колонки */
+            height: 400px; /* Регулировка высоты контейнера рекламы */
+            /*background-color: #333;  Установка цвета фона */
+            padding: 10px; /* Установка отступа */
+            box-sizing: border-box; /* Модель box, обеспечивает включение отступов и границ в ширину и высоту */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* Установка максимальной ширины изображения, чтобы не превышать ширину контейнера */
+            height: auto; /* Автоматическая настройка высоты изображения */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Конвертация длины</h1>
+
+    <!-- Первая колонка -->
+    <div id="first-column">
+        <label for="value">Значение:</label>
+        <input type="number" id="value" placeholder="Введите значение">
+
+        <label for="fromType">Из типа:</label>
+        <select id="fromType">
+            <option value="millimeter" selected>Миллиметры</option>
+            <option value="centimeter">Сантиметры</option>
+            <option value="meter">Метры</option>
+            <option value="kilometer">Километры</option>
+            <option value="inch">Дюймы</option>
+            <option value="feet">Футы</option>
+            <option value="yard">Ярды</option>
+            <option value="mile">Мили</option>			
+			<option value="decimeter">Дециметры</option>
+			<option value="decameter">Декаметры</option>
+			<option value="hectometer">Гектометры</option>
+        </select>
+
+        <label for="toType">В тип:</label>
+        <select id="toType">
+            <option value="millimeter">Миллиметры</option>
+            <option value="centimeter">Сантиметры</option>
+            <option value="meter">Метры</option>
+            <option value="kilometer">Километры</option>
+            <option value="inch">Дюймы</option>
+            <option value="feet">Футы</option>
+            <option value="yard" selected>Ярды</option>
+            <option value="mile">Мили</option>			
+			<option value="decimeter">Дециметры</option>
+			<option value="decameter">Декаметры</option>
+			<option value="hectometer">Гектометры</option>
+        </select>
+
+        <label for="precision">Десятичная точность:</label>
+        <input type="number" id="precision" placeholder="Введите точность" min="0">
+
+        <button onclick="convertLength()">Конвертировать</button>
+        <button onclick="clearFields()">Очистить</button>
+
+        <p id="result">Результат: </p>
+
+        <!-- Холст для Chart.js -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+
+        <!-- Информация о Ярде: Определение, Примеры, Факты, Задачи для практики -->
+        <div id="yard-info">
+            <h2>Информация о Ярде:</h2>
+            <p>
+                <strong>Определение Ярда:</strong> Ярд (символ: ярд) - единица измерения длины в системах мер США и Британской имперской системы. Определен как 3 фута или 36 дюймов.
+            </p>
+            <h3>Примеры:</h3>
+            <p>
+                <strong>Стандартное использование:</strong>
+                <br>
+                • Размер типичного бассейна может измеряться в ярдах.
+                <br>
+                • Спортивные поля, такие как футбольные поля, часто измеряются в ярдах.
+            </p>
+            <p>
+                <strong>Ежедневные измерения:</strong>
+                <br>
+                • Оценка длины сада в ярдах.
+                <br>
+                • Определение расстояния между двумя точками на карте в ярдах.
+            </p>
+
+            <h3>Факты:</h3>
+            <p>
+                <strong>Имперская и обычная система:</strong>
+                <br>
+                • Ярд часто используется в Соединенных Штатах, Соединенном Королевстве и других странах, следующих имперской или обычной системе.
+                <br>
+                • Его часто применяют в строительстве, ландшафтном дизайне и спорте.
+            </p>
+            <p>
+                <strong>Связь с футами:</strong>
+                <br>
+                • 1 ярд эквивалентен 3 футам или 36 дюймам.
+            </p>
+
+            <h3>Задачи для практики:</h3>
+            <p>
+                <strong>Конвертация:</strong>
+                <br>
+                • Конвертировать 10 ярдов в футы.
+                <br>
+                • Выразить 90 футов в ярдах.
+            </p>
+            <p>
+                <strong>Применение:</strong>
+                <br>
+                • Если у прямоугольного сада длина 20 ярдов, а ширина 15 ярдов, какова его площадь?
+                <br>
+                • Высота человека измеряется как 72 дюйма. Конвертировать эту высоту в ярды.
+            </p>
+
+            <h3>Ответы:</h3>
+            <p>
+                <strong>Конвертация:</strong>
+                <br>
+                • 10 ярдов = 30 футов
+                <br>
+                • 90 футов = 30 ярдов
+            </p>
+            <p>
+                <strong>Применение:</strong>
+                <br>
+                • Площадь = Длина × Ширина
+                <br>
+                • Площадь = 20 ярдов × 15 ярдов = 300 квадратных ярдов
+                <br>
+                • 72 дюйма = 2 ярда (поскольку 1 ярд = 36 дюймов)
+            </p>
+        </div>
+
+        <!-- Ссылки на конвертацию -->
+        <div id="conversion-links">
+            <h2>Конвертация Миллиметров</h2>
+            <a href="millimeter-to-centimeter-conversion.html">Миллиметры в Сантиметры (мм в см)</a>
+            <a href="millimetertometerconversion.html">Миллиметры в Метры (мм в м)</a>
+            <a href="MillimetertoKilometerconversion.html">Миллиметры в Километры (мм в км)</a>
+            <a href="MillimetertoInchconversion.html">Миллиметры в Дюймы (мм в дюймы)</a>
+            <a href="MillimetertoFeetconversion.html">Миллиметры в Футы (мм в футы)</a>
+            <a href="MillimetertoYardconversion.html">Миллиметры в Ярды (мм в ярды)</a>
+            <a href="MillimetertoMileconversion.html">Миллиметры в Мили (мм в мили)</a>
+            <!-- Добавьте дополнительные ссылки по мере необходимости -->
+        </div>
+    </div>
+
+    <!-- Вторая колонка: Контейнер для рекламы -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- Добавьте реальное содержание рекламы -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // Коэффициенты конвертации
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+				decimeter: 0.1,
+				decameter: 10,
+				hectometer: 100
+                // Добавьте другие коэффициенты конвертации при необходимости
+            };
+
+            // Выполнить двустороннюю конвертацию
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // Показать результат с указанной точностью
+            document.getElementById('result').innerText = `Результат: ${result.toFixed(precision)}\nОбратный результат: ${resultInverse.toFixed(precision)}`;
+
+            // Обновить или создать диаграмму
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (До)`, `${toType} (После)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // Уничтожить предыдущую диаграмму, если она существует
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // Создать новую диаграмму
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Результат конвертации',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // Регулировка толщины полосы по мере необходимости
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // Уничтожить диаграмму, если она существует
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+    <!-- Добавьте свой код Google Analytics (gtag.js) здесь -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>
