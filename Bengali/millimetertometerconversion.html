@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>দৈর্ঘ্য পরিবর্তন---মিলিমিটার থেকে মিটার (মিমি থেকে মি)</title>
+    <meta name="description" content="মিলিমিটার থেকে মিটার (মিমি থেকে মি), মিটার [মি], কিলোমিটার [কিমি], ডেসিমিটার [ডিএম], সেন্টিমিটার [সেমি], সেমি থেকে ইঞ্চি, মিমি থেকে ইঞ্চি, মিটার থেকে ফুট, ইত্যাদি পরস্পরের মধ্যে প্রবর্তন করুন।">
+    <meta name="keywords" content="মিলিমিটার থেকে মিটার">
+
+    <style>
+        /* উদাহরণ স্টাইলগুলি: প্রথম কলাম */
+        #first-column {
+            float: left;
+            width: 80%; /* প্রথম কলামের প্রস্থ পরিবর্তন করুন */
+            padding: 20px; /* প্যাডিং সেট করুন */
+            box-sizing: border-box; /* বক্স মডেল, নিশ্চিত করে যে প্রস্থ এবং উচ্চতা প্যাডিং এবং বর্ডার সহ অন্তর্ভুক্ত */
+        }
+
+        /* উদাহরণ স্টাইলগুলি: দ্বিতীয় কলাম */
+        #second-column {
+            float: left;
+            width: 20%; /* দ্বিতীয় কলামের প্রস্থ পরিবর্তন করুন */
+            padding: 20px; /* প্যাডিং সেট করুন */
+            box-sizing: border-box; /* বক্স মডেল, নিশ্চিত করে যে প্রস্থ এবং উচ্চতা প্যাডিং এবং বর্ডার সহ অন্তর্ভুক্ত */
+        }
+
+        /* উদাহরণ স্টাইলগুলি: জিজ্ঞাসা বিষয় */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* নিচের মার্জিন সেট করুন */
+        }
+
+        /* উদাহরণ স্টাইলগুলি: পরিবর্তন লিঙ্ক */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* লিঙ্ক মধ্যে নিচের মার্জিন সেট করুন */
+            text-decoration: none;
+            color: #333; /* লিঙ্কের টেক্সট রঙ সেট করুন */
+            font-weight: bold; /* লিঙ্কের টেক্সটে প্রচুরতম ভর সেট করুন */
+        }
+
+        /* উদাহরণ স্টাইলগুলি: বিজ্ঞাপন */
+        #ad-container {
+            width: 100%; /* দ্বিতীয় কলামের ভিত্তির প্রস্থতা পূর্ণ করুন */
+            height: 400px; /* বিজ্ঞাপনের প্রস্থ সাজান */
+            padding: 10px; /* প্যাডিং সেট করুন */
+            box-sizing: border-box; /* বক্স মডেল, নিশ্চিত করে যে প্রস্থ এবং উচ্চতা প্যাডিং এবং বর্ডার সহ অন্তর্ভুক্ত */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* ছবির মাধ্যমিক প্রস্থ সীমা অতিক্রম না করতে */
+            height: auto; /* ছবির উচ্চতা স্বয়ংক্রিয়ভাবে সায়জ্য করুন */
+        }
+    </style>
+</
+
+head>
+
+<body>
+    <h1>দৈর্ঘ্য পরিবর্তন</h1>
+
+    <!-- প্রথম কলাম -->
+    <div id="first-column">
+        <label for="value">মান:</label>
+        <input type="number" id="value" placeholder="মান লিখুন">
+
+        <label for="fromType">শুরুর ধরণ:</label>
+        <select id="fromType">
+            <option value="millimeter" selected>মিলিমিটার</option>
+            <option value="centimeter">সেন্টিমিটার</option>
+            <option value="meter">মিটার</option>
+            <option value="kilometer">কিলোমিটার</option>
+            <option value="inch">ইঞ্চি</option>
+            <option value="feet">ফুট</option>
+            <option value="yard">গজ</option>
+            <option value="mile">মাইল</option>			
+			<option value="decimeter">ডেসিমিটার</option>
+			<option value="decameter">ডেকামিটার</option>
+			<option value="hectometer">হেক্টোমিটার</option>
+        </select>
+
+        <label for="toType">শেষের ধরণ:</label>
+        <select id="toType">
+            <option value="millimeter">মিলিমিটার</option>
+            <option value="centimeter">সেন্টিমিটার</option>
+            <option value="meter" selected>মিটার</option>
+            <option value="kilometer">কিলোমিটার</option>
+            <option value="inch">ইঞ্চি</option>
+            <option value="feet">ফুট</option>
+            <option value="yard">গজ</option>
+            <option value="mile">মাইল</option>			
+			<option value="decimeter">ডেসিমিটার</option>
+			<option value="decameter">ডেকামিটার</option>
+			<option value="hectometer">হেক্টোমিটার</option>
+        </select>
+
+        <label for="precision">দশমিক নির্দিষ্টতা:</label>
+        <input type="number" id="precision" placeholder="দশমিক নির্দিষ্টতা লিখুন" min="0">
+
+        <button onclick="convertLength()">পরিবর্তন</button>
+        <button onclick="clearFields()">পরিষ্কার</button>
+
+        <p id="result">ফলাফল: </p>
+
+        <!-- চার্ট.js জন্য ক্যানভাস -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+
+        <!-- মিটার সংজ্ঞা, উদাহরণ, তথ্য, অনুশীলন সমস্যা -->
+        <div id="meter-info">
+            <h2>মিটার তথ্য:</h2>
+            <p>
+                <strong>মিটারের সংজ্ঞা:</strong> মিটার (সিম্বল: মি) আন্তর্জাতিক ইউনিট পদ্ধতিতে দৈর্ঘ্যের মৌলিক ইউনিট। এটি ভ্যাকুয়ামে আলো যাতে অধিকাংশ সময়ে ১/২৯৯,৭৯২,৪৫৮ সেকেন্ডের মধ্যে যাত্রা করে।
+            </p>
+            <h3>উদাহরণ:</h3>
+            <p>
+                <strong>মানদণ্ড ব্যবহার:</strong>
+                <br>
+                • একটি স্থানকে সাধারণত ১০ মিটার দৈর্ঘ্যের হতে পারে।
+                <br>
+                • একটি সাধারণ গাড়ি প্রায় ৪ মিটার দৈর্ঘ্যে হতে পারে।
+            </p>
+            <p>
+                <strong>প্রতিদিনের পরিমাপসমূহ:</strong>
+                <br>
+                • মিটারে একটি কক্ষের মাত্রা পরিমাপ করা।
+                <br>
+                • মিটারে একজন ব্যক্তির উচ্চতা নির্ধারণ করা।
+            </p>
+
+            <h3>তথ্য:</h3>
+            <p>
+                <strong>দশমিক সিস্টেম:</strong>
+                <br>
+                • মিটার দশমিক ভিত্তিক মেট্রিক সিস্টেমের অংশ, এটি পৃথ
+
+ক ইউনিট মধ্যে প্রবর্তন করা সহজ করে।
+                <br>
+                • মিটার সঙ্গে কিলো-, সেন্টি-, এবং মিলি- এর মেট্রিক উপসর্গ সাধারণত ব্যবহৃত হয়।
+            </p>
+            <p>
+                <strong>বিশ্বব্যাপী ব্যবহার:</strong>
+                <br>
+                • মিটার বিভিন্ন ক্ষেত্রে পরিমাপে ব্যাপকভাবে ব্যবহৃত হয়।
+                <br>
+                • বিজ্ঞান, প্রকৌশল, নির্মাণ, এবং প্রতিদিনের পরিমাপে অ্যাপ্লিকেশন সম্পর্কে গবেষণা করা হয়।
+            </p>
+
+            <h3>অনুশীলন সমস্যাসমূহ:</h3>
+            <p>
+                <strong>প্রবর্তন:</strong>
+                <br>
+                • ৫০০ মিটার কিলোমিটারে পরিবর্তন করুন।
+                <br>
+                • ২.৫ কিলোমিটার মিটারে প্রকাশ করুন।
+            </p>
+            <p>
+                <strong>প্রযুক্তি:</strong>
+                <br>
+                • একটি আয়তাকার যদি দৈর্ঘ্য ৮ মিটার এবং প্রস্থ ৫ মিটার হয়, তার ক্ষেত্রফল কত?
+                <br>
+                • একজন ব্যক্তির উচ্চতা ১৮০ সেন্টিমিটার হয়। এই উচ্চতা মিটারে প্রকাশ করুন।
+            </p>
+
+            <h3>উত্তর:</h3>
+            <p>
+                <strong>প্রবর্তন:</strong>
+                <br>
+                • ৫০০ মিটার = ০.৫ কিলোমিটার
+                <br>
+                • ২.৫ কিলোমিটার = ২৫০০ মিটার
+            </p>
+            <p>
+                <strong>প্রযুক্তি:</strong>
+                <br>
+                • ক্ষেত্রফল = দৈর্ঘ্য × প্রস্থ
+                <br>
+                • ক্ষেত্রফল = ৮ মিটার × ৫ মিটার = ৪০ বর্গ মিটার
+                <br>
+                • ১৮০ সেন্টিমিটার = ১.৮ মিটার
+            </p>
+        </div>
+
+        <!-- প্রযুক্তি সংক্ষিপ্ত লিঙ্ক -->
+        <div id="conversion-links">
+            <h2>মিলিমিটার পরিবর্তন</h2>
+            <a href="millimeter-to-centimeter-conversion.html">মিলিমিটার থেকে সেন্টিমিটার (মিমি থেকে সেমি)</a>
+            <a href="millimetertometerconversion.html">মিলিমিটার থেকে মিটার (মিমি থেকে মি)</a>
+            <a href="MillimetertoKilometerconversion.html">মিলিমিটার থেকে কিলোমিটার (মিমি থেকে কিমি)</a>
+            <a href="MillimetertoInchconversion.html">মিলিমিটার থেকে ইঞ্চি (মিমি থেকে ইন.)</a>
+            <a href="MillimetertoFeetconversion.html">মিলিমিটার থেকে ফুট (মিমি থেকে ফি)</a>
+            <a href="MillimetertoYardconversion.html">মিলিমিটার থেকে গজ (মিমি থেকে ইয়ার্ড)</a>
+            <a href="MillimetertoMileconversion.html">মিলিমিটার থেকে মাইল (মিমি থেকে মাই)</a>
+            <!-- প্রয়োজন হলে আরও লিঙ্ক
+
+ যুক্ত করুন -->
+        </div>
+    </div>
+
+    <!-- দ্বিতীয় কলাম (বিজ্ঞাপন) -->
+    <div id="second-column">
+        <div id="ad-container">
+            <img src="ad.jpg" alt="বিজ্ঞাপন">
+        </div>
+    </div>
+
+    <!-- JavaScript স্ক্রিপ্ট -->
+    <script>
+        // দৈর্ঘ্য পরিবর্তন ফাংশন
+        function convertLength() {
+            // ইনপুট মূল্য নেওয়া
+            var value = parseFloat(document.getElementById('value').value);
+            var fromType = document.getElementById('fromType').value;
+            var toType = document.getElementById('toType').value;
+            var precision = parseInt(document.getElementById('precision').value);
+
+            // মিমি থেকে মি, সেন্টিমিটার, ইঞ্চি, এবং ফুটের মুল প্রতিষ্ঠান
+            var base = {
+                'millimeter': value,
+                'centimeter': value / 10,
+                'meter': value / 1000,
+                'kilometer': value / 1000000,
+                'inch': value * 0.0393701,
+                'feet': value * 0.00328084,
+                'yard': value * 0.00109361,
+                'mile': value * 0.000000621371,
+				'decimeter': value / 100,
+				'decameter': value / 10000,
+				'hectometer': value / 100000
+            };
+
+            // প্রতিষ্ঠান থেকে শেষ ইউনিটের মান ক্যালকুলেট করুন
+            var result = base[fromType] * 1 / base[toType];
+
+            // প্রদর্শন ফর্ম্যাট নির্দিষ্টকরণ
+            result = result.toFixed(precision);
+
+            // ফলাফল প্রদর্শন করুন
+            document.getElementById('result').innerHTML = 'ফলাফল: ' + result + ' ' + toType;
+
+            // চার্টে ডাটা প্রদর্শন
+            showChart(base[fromType], base[toType], fromType, toType);
+        }
+
+        // প্রশিক্ষন ফাংশন প্রদান করুন
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerHTML = 'ফলাফল: ';
+        }
+
+        // চার্ট প্রদর্শন করুন
+        function showChart(fromValue, toValue, fromType, toType) {
+            // চার্ট এলিমেন্ট নেওয়া
+            var ctx = document.getElementById('conversionChart').getContext('2d');
+
+            // ডাটা এবং লেবেল সেট
+            var data = {
+                labels: [fromType, toType],
+                datasets: [{
+                    label: 'Conversion',
+                    data: [fromValue, toValue],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+
+            // চার্ট তৈরি এবং কনফিগার করুন
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

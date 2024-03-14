@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>দৈর্ঘ্য রূপান্তর | সেমি থেকে ইঞ্চি, ফুট, মিটার, কিলোমিটার, ডিসিমিটার, মিমি চার্ট</title>
+    <meta name="description" content="ফ্রি অনলাইন দৈর্ঘ্য রূপান্তরকারী - মিটার [মি], কিলোমিটার [কিমি], ডিসিমিটার [ডিমি], সেন্টিমিটার [সেমি], সেমি থেকে ইঞ্চি, মিমি থেকে ইঞ্চি, মিটার থেকে ফুট, ইত্যাদি মধ্যে রূপান্তর করুন।">
+    <meta name="keywords" content="দৈর্ঘ্য রূপান্তরকারী, একক রূপান্তরকারী, মিটার, কিলোমিটার, ডিসিমিটার, সেন্টিমিটার, ইঞ্চি, ফুট, গজ, মাইল">
+
+    <style>
+        /* উদাহরণ স্টাইল: প্রথম কলাম */
+        #first-column {
+            float: left;
+            width: 80%; /* প্রথম কলামের প্রস্থ পরিমাপ সমন্বয় করুন */
+            padding: 20px; /* প্যাডিং সেট করুন */
+            box-sizing: border-box; /* বক্স মডেল, নিশ্চিত করে যে প্রস্থ এবং উচ্চতা প্যাডিং এবং বর্ডার সহজভাবে অন্তর্ভুক্ত থাকে */
+        }
+
+        /* উদাহরণ স্টাইল: দ্বিতীয় কলাম */
+        #second-column {
+            float: left;
+            width: 20%; /* দ্বিতীয় কলামের প্রস্থ পরিমাপ সমন্বয় করুন */
+            padding: 20px; /* প্যাডিং সেট করুন */
+            box-sizing: border-box; /* বক্স মডেল, নিশ্চিত করে যে প্রস্থ এবং উচ্চতা প্যাডিং এবং বর্ডার সহজভাবে অন্তর্ভুক্ত থাকে */
+        }
+
+        /* উদাহরণ স্টাইল: অনুসন্ধান বিষয়বস্তু */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* নিম্নবর্তী মার্জিন সেট করুন */
+        }
+
+        /* উদাহরণ স্টাইল: রূপান্তর লিঙ্ক */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* লিঙ্ক মাঝে নিম্নবর্তী মার্জিন সেট করুন */
+            text-decoration: none;
+            color: #333; /* লিঙ্কের টেক্সট রঙ সেট করুন */
+            font-weight: bold; /* লিঙ্কের টেক্সট দৃঢ়তা সেট করুন */
+        }
+
+        /* উদাহরণ স্টাইল: বিজ্ঞাপন */
+        #ad-container {
+            width: 100%; /* দ্বিতীয় কলামের মধ্যে বিজ্ঞাপন স্থানান্তর নিশ্চিত করুন */
+            height: 400px; /* বিজ্ঞাপন ধারণের উচ্চতা সংশোধন করুন */
+            padding: 10px; /* প্যাডিং সেট করুন */
+            box-sizing: border-box; /* বক্স মডেল, নিশ্চিত করে যে প্রস্থ এবং উচ্চ
+
+তা প্যাডিং এবং বর্ডার সহজভাবে অন্তর্ভুক্ত থাকে */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* চিত্রের সর্বোচ্চ প্রস্থ সেট করুন যাতে কন্টেন্টের প্রস্থ ছাড়া না যায় */
+            height: auto; /* চিত্রের উচ্চতা অটো এডজাস্ট করুন */
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://www.lengthconvert.com"><h1>দৈর্ঘ্য রূপান্তর</h1></a>
+ <!-- নেভিগেশন লিঙ্ক -->
+    <div id="navigation-links">
+        <a href="/">হোম</a>
+		<a href="/French">ফরাসি (ফরাসি)</a>
+        <a href="/Germany">জার্মান (জার্মান)</a>
+        <a href="/Portuguese">পর্তুগিজ (পর্তুগিজ)</a>
+        <a href="/Bengali">বাংলা/বাঙালী (বাংলা)</a>
+        <a href="/Indonesian">বাহাসা (ইন্দোনেশিয়ান)</a>
+        <a href="/Chinese">চীনা (চীনা)</a>
+        <a href="/Russian">রাশিয়ান (রাশিয়ান)</a>
+		<a href="/Spanish">স্পেনীয় (স্পেনীয়)</a>
+		<a href="/hi">হিন্দি (হিন্দি)</a>
+		<a href="/ar">আরবি (আরবি)</a>
+        <!-- প্রয়োজন হলে আরো ভাষার লিঙ্ক যোগ করুন -->
+    </div>
+    <!-- প্রথম কলাম -->
+    <div id="first-column">
+        <label for="value">মান:</label>
+        <input type="number" id="value" placeholder="মান লিখুন">
+
+        <label for="fromType">থেকে প্রকার:</label>
+        <select id="fromType">
+            <option value="millimeter">মিমি</option>
+            <option value="centimeter">সেন্টিমিটার</option>
+            <option value="meter">মিটার</option>
+            <option value="kilometer">কিলোমিটার</option>
+            <option value="inch">ইঞ্চি</option>
+            <option value="feet">ফুট</option>
+            <option value="yard">গজ</option>
+            <option value="mile">মাইল</option>
+			<option value="decimeter">ডিসিমিটার</option>
+			<option value="decameter">ডেসিমিটার</option>
+			<option value="hectometer">হেক্টোমিটার</option>
+        </select>
+
+        <label for="toType">প্রকার:</label>
+        <select id="toType">
+            <option value="millimeter">মিমি</option>
+            <option value="centimeter">সেন্টিমিটার</option>
+            <option value="meter">মিটার</option>
+            <option value="kilometer">কিলোমিটার</option>
+            <option value="inch">ইঞ্চি</option>
+            <option value="feet">ফুট</option>
+            <option value="yard">গজ</option>
+            <option value="mile">মাইল</option>
+			<option value="decimeter">ডিসিমিটার</option>
+			<option value="decameter">ডেসিমিটার</option>
+			<option value="hectometer">হেক্টোমিটার</option>
+        </select>
+
+        <label for="precision">দশমিক নির্ধারণ:</label>
+        <input type="number" id="precision" placeholder="দশমিক নির্ধারণ লিখুন" min="0">
+
+        <button onclick="convertLength()">রূপান্তর করুন</button>
+        <button onclick="clearFields()">পরিষ্কার করুন</button>
+
+        <p id="result">ফলাফল: </p>
+
+        <!-- চার্ট.js এর জন্য ক্যানভাস -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+
+        <!-- রূপান্তর শর্টকাট লিঙ্ক -->
+        <div id="conversion-links">
+    <h2>মিমি রূপান্তর</h2>
+    <a href="Bengali/millimeter-to-centimeter-conversion.html">মিমি থেকে সেন্টিমিটার (মিমি থেকে সেমি)</a>
+    <a href="Bengali/millimetertometerconversion.html">মিমি থেকে মিটার (মিমি থেকে মি)</a>
+   <a href="Bengali/MillimetertoKilometerconversion.html">মিমি থেকে কিলোমিটার (মিমি থেকে কিমি)</a>
+  <a href="Bengali/MillimetertoInchconversion.html">মিমি থেকে ইঞ্চি (মিমি থেকে ইঞ্চি)</a>
+  <a href="Bengali/MillimetertoFeetconversion.html">মিমি থেকে ফুট (মিমি থেকে ফুট)</a>
+<a href="Bengali/MillimetertoYardconversion.html">মিমি থেকে গজ (মিমি থেকে গজ)</a>
+<a href="Bengali/MillimetertoMileconversion.html">মিমি থেকে মাইল (মিমি থেকে মাইল)</a>
+    <!-- আরো লিঙ্ক যোগ করুন যদি প্রয়োজন হয় -->
+        </div>
+    </div>
+
+    <!-- দ্বিতীয় কলাম: বিজ্ঞাপন সংযোগ ধারণকারী -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- বাস্তব বিজ্ঞাপন সামগ্রী যোগ করুন -->
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // রূপান্তর ফ্যাক্টর
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+				decimeter: 0.1,
+				decameter: 10,
+				hectometer: 100
+                // প্রয়োজন হলে অন্যান্য রূপান্তর ফ্যাক্টর যোগ করুন
+            };
+
+            // উভয়দিকে রূপান্তর করুন
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // নির্ধারিত প্রিসিশন দিয়ে ফলাফল প্রদর্শন করুন
+            document.getElementById('result').innerText = `ফলাফল: ${result.toFixed(precision)}\nপ্রতিবিম্বিত ফলাফল: ${resultInverse.toFixed(precision)}`;
+
+            // চার্ট আপডেট বা তৈরি করুন
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (পূর্ববর্তী)`, `${toType} (পরে)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // আগের চার্ট ধ্বংস করুন যদি বিদ্যমান হয়
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // নতুন চার্ট তৈরি করুন
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'রূপান্তর ফলাফল',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // প্রয়োজন অনুযায়ী বারের মোটামো সমন্বয় করুন
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // চার্ট ধ্বংস করুন যদি বিদ্যমান হয়
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+
+
+	
+	    <!-- আপনার গুগল অ্যানালিটিক্স (জিট্যাগ.জেএস) যোগ করুন -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+	<script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>

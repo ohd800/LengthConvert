@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>দৈর্ঘ্য রূপান্তর---মিমি থেকে সেমি (মিমি থেকে সেমি)</title>
+    <meta name="description" content="মিটার [মি], কিলোমিটার [কিমি], ডেসিমিটার [ডিমি], সেন্টিমিটার [সেমি], ইঞ্চি থেকে সেমি, মিমি থেকে সেমি, মিটার থেকে ফুট, ইত্যাদি মধ্যে রূপান্তর করুন।">
+    <meta name="keywords" content="মিমি থেকে সেমি (মিমি থেকে সেমি)">
+
+
+    <style>
+        /* উদাহরণ স্টাইলগুলি: প্রথম কলাম */
+        #first-column {
+            float: left;
+            width: 80%; /* প্রথম কলামের প্রস্থ সংশোধন করুন */
+            padding: 20px; /* প্যাডিং সেট করুন */
+            box-sizing: border-box; /* বক্স মডেল, প্রস্থ এবং উচ্চা প্যাডিং এবং বর্ডার সহ অন্তর্ভুক্ত করে নিশ্চিত করে */
+        }
+
+        /* উদাহরণ স্টাইলগুলি: দ্বিতীয় কলাম */
+        #second-column {
+            float: left;
+            width: 20%; /* দ্বিতীয় কলামের প্রস্থ সংশোধন করুন */
+            padding: 20px; /* প্যাডিং সেট করুন */
+            box-sizing: border-box; /* বক্স মডেল, প্রস্থ এবং উচ্চা প্যাডিং এবং বর্ডার সহ অন্তর্ভুক্ত করে নিশ্চিত করে */
+        }
+
+        /* উদাহরণ স্টাইলগুলি: ক্যানভাস কনটেন্ট */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* নিচের মার্জিন সেট করুন */
+        }
+
+        /* উদাহরণ স্টাইলগুলি: রূপান্তর লিঙ্ক */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* লিঙ্কগুলি মাঝে নিচের মার্জিন সেট করুন */
+            text-decoration: none;
+            color: #333; /* লিঙ্ক টেক্সট রং সেট করুন */
+            font-weight: bold; /* লিঙ্ক টেক্সটের প্রবলতা সেট করুন */
+        }
+
+        /* উদাহরণ স্টাইলগুলি: বিজ্ঞাপন */
+        #ad-container {
+            width: 100%; /* বিজ্ঞাপনের ধাপনের পূর্ণ প্রস্থ নিন */
+            height: 400px; /* বিজ্ঞাপন ধাপনের উচ্চতা সংশোধন করুন */
+             /* ব্যাকগ্রাউন্ড কালার সেট করুন */
+            padding: 10px; /* প্যাডিং সেট করুন */
+            box-sizing: border-box; /* বক্স মডেল, প্রস্থ এবং উচ্চা প্যাডিং এবং বর্ডার সহ অন্তর্ভুক্ত করে নিশ্চিত করে */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* ইমেজের প্রস্থ প্রতিনিধিত্ব না হয় কন্টেন্টার প্রস্থের বেশি */
+            height: auto; /* ইমেজের উচ্চতা অটো-অ্যাডজাস্ট কর
+
+ুন */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>দৈর্ঘ্য রূপান্তর</h1>
+
+    <!-- প্রথম কলাম -->
+    <div id="first-column">
+        <label for="value">মান:</label>
+        <input type="number" id="value" placeholder="মান লিখুন">
+
+        <label for="fromType">প্রকার:</label>
+        <select id="fromType">
+            <option value="millimeter" selected>মিমি</option>
+            <option value="centimeter">সেমি</option>
+            <option value="meter">মিটার</option>
+            <option value="kilometer">কিলোমিটার</option>
+            <option value="inch">ইঞ্চি</option>
+            <option value="feet">ফুট</option>
+            <option value="yard">গজ</option>
+            <option value="mile">মাইল</option>
+			<option value="decimeter">ডেসিমিটার</option>
+			<option value="decameter">ডেসিমিটার</option>
+			<option value="hectometer">হেক্টোমিটার</option>
+        </select>
+
+        <label for="toType">প্রকার:</label>
+        <select id="toType">
+            <option value="millimeter">মিমি</option>
+            <option value="centimeter" selected>সেমি</option>
+            <option value="meter">মিটার</option>
+            <option value="kilometer">কিলোমিটার</option>
+            <option value="inch">ইঞ্চি</option>
+            <option value="feet">ফুট</option>
+            <option value="yard">গজ</option>
+            <option value="mile">মাইল</option>			
+			<option value="decimeter">ডেসিমিটার</option>
+			<option value="decameter">ডেসিমিটার</option>
+			<option value="hectometer">হেক্টোমিটার</option>
+		
+        </select>
+
+        <label for="precision">দশমিক নির্ধারণ:</label>
+        <input type="number" id="precision" placeholder="দশমিক নির্ধারণ লিখুন" min="0">
+
+        <button onclick="convertLength()">রূপান্তর করুন</button>
+        <button onclick="clearFields()">মুছুন</button>
+
+        <p id="result">ফলাফল: </p>
+
+        <!-- চার্টের জন্য ক্যানভাস -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+        <!-- সেন্টিমিটার সংজ্ঞা, উদাহরণ, তথ্য, প্র্যাকটিস সমস্যা -->
+    <div id="centimeter-info">
+        <h2>সেন্টিমিটার তথ্য</h2>
+        <p>
+            <strong>সেন্টিমিটারের সংজ্ঞা:</strong> সেন্টিমিটার (প্রতীক: সেমি) একক মিট্রিক সিস্টেম অব ইউনিট (এসআই) -এ দৈর্ঘ্যের একটি ইউনিট, যা বর্তমান মেট্রিক সিস্টেমের বর্তমান রূপ। এটি এক শতকরা মিটারের 1/100 এর সমান।
+        </p>
+        <h3>উদাহরণ</h3>
+        <p>
+            <strong>মানদণ্ড ব্যবহার:</strong>
+            <ul>
+                <li>একটি কাগজের শীট সাধারণত 21 সেন্টিমিটারের কাছাকাছি হয়।</li>
+                <li>একটি প্রায় স্মার্টফোনের দৈর্ঘ্য প্রায় 15 সেন্টিমিটার হতে পারে।</li>
+            </ul>
+        </p>
+        <p>
+            <strong>প্রতিদিনের পরিমাপগুলি:</strong>
+            <ul>
+                <li>সেন্টিমিটারে একজন ব্যক্তির উচ্চতা মাপা।</li>
+                <li>ছোট বস্তুদের মাত্রা যেমন পেন্সিল বা বই সেন্টিমিটারে পরিমাপ করা হয়।</li>
+            </ul>
+        </p>
+
+        <h3>তথ্য</h3>
+        <p>
+            <strong>মেট্রিক
+
+ প্রিফিক্স:</strong> সেন্টিমিটারটি এসআই ইউনিট মিটারের উপর ভিত্তি করে, এবং "সেন্টি" প্রিফিক্স এটিকে মিটারের 1/100 এর সমান হওয়ার নিশ্চিততা দেয়।
+        </p>
+        <p>
+            <strong>দশমিক সিস্টেম:</strong> মেট্রিক প্রিফিক্সগুলি দশমিক সিস্টেম অনুসরণ করে, যা বিভিন্ন ইউনিট মধ্যে রূপান্তর করা সহজ করে।
+        </p>
+        <p>
+            <strong>বিশ্বব্যাপী ব্যবহার:</strong> সেন্টিমিটার, যেমন মিটার, যেসব দেশের মেট্রিক সিস্টেম অনুসরণ করে সেখানে এক মিটারের নিকটবর্তী এককের প্রয়োজনীয়তায় চ্যালেংজিং এর জন্য ব্যবহৃত হয়।
+        </p>
+
+        <h3>প্র্যাকটিস সমস্যা</h3>
+        <p>
+            <strong>রূপান্তরঃ</strong>
+            <ul>
+                <li>250 সেন্টিমিটার কত মিটারে রূপান্তর করুন। (উত্তর: 250 সেন্টিমিটার = 2.5 মিটার)</li>
+                <li>0.75 মিটার কে সেন্টিমিটারে প্রকাশ করুন। (উত্তর: 0.75 মিটার = 75 সেন্টিমিটার)</li>
+            </ul>
+        </p>
+        <p>
+            <strong>অনুশীলন:</strong>
+            <ul>
+                <li>একটি রেক্টেঙ্গল যেখানে দৈর্ঘ্য 30 সেন্টিমিটার এবং প্রস্থ 20 সেন্টিমিটার, তার ক্ষেত্রফল কত? (উত্তর: ক্ষেত্রফল = 30 সেন্টিমিটার × 20 সেন্টিমিটার = 600 সেন্টিমিটার²)</li>
+            </ul>
+        </p>
+        <p>
+            <strong>রিয়েল-ওয়ার্ল্ড সিনারিও:</strong>
+            <ul>
+                <li>একজন ব্যক্তির উচ্চতা যদি 175 সেন্টিমিটার হয়, তারা এই উচ্চতা কে মিটারে রূপান্তর করুন। (উত্তর: 175 সেন্টিমিটার = 1.75 মিটার)</li>
+            </ul>
+        </p>
+    </div>
+        <!-- রূপান্তর শর্টকাট লিঙ্ক -->
+        <div id="conversion-links">
+    <h2>মিমি রূপান্তর</h2>
+   <a href="millimeter-to-centimeter-conversion.html">মিমি থেকে সেন্টিমিটার (মিমি থেকে সেমি)</a>
+    <a href="millimetertometerconversion.html">মিমি থেকে মিটার (মিমি থেকে মিটার)</a>
+   <a href="MillimetertoKilometerconversion.html">মিমি থেকে কিলোমিটার (মিমি থেকে কিমি)</a>
+  <a href="MillimetertoInchconversion.html">মিমি থেকে ইঞ্চি (মিমি থেকে in.)</a>
+  <a href="MillimetertoFeetconversion.html">মিমি থেকে ফুট (মিমি থেকে ft)</a>
+<a href="MillimetertoYardconversion.html">মিমি থেকে গজ (মিমি থেকে yd)</a>
+<a href="MillimetertoMileconversion.html">ম
+
+িমি থেকে মাইল (মিমি থেকে mi)</a>
+<a href="Millimetertodecimeterconversion.html">মিমি থেকে ডেসিমিটার (মিমি থেকে ডিমি)</a>
+<a href="Millimetertodecameterconversion.html">মিমি থেকে ডেকামিটার (মিমি থেকে ডেমি)</a>
+<a href="Millimetertohectometerconversion.html">মিমি থেকে হেক্টোমিটার (মিমি থেকে হেমি)</a>
+</div>
+    </div>
+
+    <!-- দ্বিতীয় কলাম: বিজ্ঞাপন স্থানান্তরের জন্য -->
+    <div id="second-column">
+        <div id="ad-container">
+            <h2>বিজ্ঞাপন</h2>
+            <a href="https://example.com">
+                <img src="ad.jpg" alt="বিজ্ঞাপন">
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function convertLength() {
+            // মান, প্রকার, দশমিক নির্ধারণ থেকে মান গ্রহণ করুন
+            var value = parseFloat(document.getElementById("value").value);
+            var fromType = document.getElementById("fromType").value;
+            var toType = document.getElementById("toType").value;
+            var precision = parseInt(document.getElementById("precision").value);
+
+            // রূপান্তর করুন
+            var result;
+            if (fromType === "millimeter" && toType === "centimeter") {
+                result = value / 10;
+            } else if (fromType === "centimeter" && toType === "millimeter") {
+                result = value * 10;
+            } else {
+                // অন্যান্য রূপান্তর
+                result = "এই রূপান্তর সমর্থিত হয় না।";
+            }
+
+            // ফলাফল প্রদর্শন করুন
+            if (!isNaN(result)) {
+                document.getElementById("result").innerHTML = "ফলাফল: " + result.toFixed(precision) + " " + toType;
+            } else {
+                document.getElementById("result").innerHTML = result;
+            }
+        }
+
+        function clearFields() {
+            // সমস্ত ফিল্ড মুছুন
+            document.getElementById("value").value = "";
+            document.getElementById("precision").value = "";
+            document.getElementById("result").innerHTML = "ফলাফল: ";
+        }
+    </script>
+</body>
+
+</html>

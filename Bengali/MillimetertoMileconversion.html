@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>লম্বা পরিবর্তন---মিলিমিটার থেকে মাইল (মিমি থেকে মাইল)</title>
+    <meta name="description" content="মিলিমিটার থেকে মাইল (মিমি থেকে মাইল), মিটার [মি], কিলোমিটার [কেমি], ডেসিমিটার [ডিএম], সেন্টিমিটার [সেমি], ইঞ্চি, মিমি থেকে ইঞ্চি, মিটার থেকে ফুট, ইত্যাদি মধ্যে প্রবর্তন করুন।">
+    <meta name="keywords" content="মিলিমিটার থেকে মাইল (মিমি থেকে মাইল)">
+
+    <style>
+        /* উদাহরণ স্টাইল: প্রথম কলাম */
+        #first-column {
+            float: left;
+            width: 80%; /* প্রথম কলামের প্রস্থতা সংশোধন করুন */
+            padding: 20px; /* প্যাডিং নির্ধারণ করুন */
+            box-sizing: border-box; /* বক্স মডেল, দিয়ে নিশ্চিত করুন প্রস্থ এবং উচ্চতা প্যাডিং এবং বর্ডার সহ অন্তর্ভুক্ত হয় */
+        }
+
+        /* উদাহরণ স্টাইল: দ্বিতীয় কলাম */
+        #second-column {
+            float: left;
+            width: 20%; /* দ্বিতীয় কলামের প্রস্থতা সংশোধন করুন */
+            padding: 20px; /* প্যাডিং নির্ধারণ করুন */
+            box-sizing: border-box; /* বক্স মডেল, দিয়ে নিশ্চিত করুন প্রস্থ এবং উচ্চতা প্যাডিং এবং বর্ডার সহ অন্তর্ভুক্ত হয় */
+        }
+
+        /* উদাহরণ স্টাইল: ক্যুয়েরি সন্ধান */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* নীচের মান নির্ধারণ করুন */
+        }
+
+        /* উদাহরণ স্টাইল: প্রবর্তন লিঙ্ক */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* লিঙ্কগুলির মধ্যে নীচের মান নির্ধারণ করুন */
+            text-decoration: none;
+            color: #333; /* লিঙ্ক পাঠের রং নির্ধারণ করুন */
+            font-weight: bold; /* লিঙ্ক পাঠের প্রস্থতা নির্ধারণ করুন */
+        }
+
+        /* উদাহরণ স্টাইল: বিজ্ঞাপন */
+        #ad-container {
+            width: 100%; /* দ্বিতীয় কলামে বিজ্ঞাপন কন্টেনার পূর্ণ প্রস্থতা নিতে সেট করুন */
+            height: 400px; /* বিজ্ঞাপন কন্টেনারের উচ্চতা সংশোধন করুন */
+             /* নির্ধারণ করুন প্রায়শই সংগ্রহের রং */
+            padding: 10px; /* প্যাডিং নির্ধারণ করুন */
+            box-sizing: border-box; /* বক্স মডেল, দিয়ে নিশ্চিত করুন প্রস্থ এবং উচ্চতা প্যাডিং এবং বর্ডার সহ অন্তর্ভুক্ত হয় */
+        }
+
+        #ad-container img {
+
+
+            max-width: 100%; /* চিত্রের সর্বোচ্চ প্রস্থ সেট করুন যাতে কন্টেনারের প্রস্থের অতিক্রম না হয় */
+            height: auto; /* চিত্রের উচ্চতা অটো-যোগাযোগ করুন */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>লম্বা পরিবর্তন</h1>
+
+    <!-- প্রথম কলাম -->
+    <div id="first-column">
+        <label for="value">মান:</label>
+        <input type="number" id="value" placeholder="মান লিখুন">
+
+        <label for="fromType">মূল প্রকার:</label>
+        <select id="fromType">
+            <option value="millimeter" selected>মিলিমিটার</option>
+            <option value="centimeter">সেন্টিমিটার</option>
+            <option value="meter">মিটার</option>
+            <option value="kilometer">কিলোমিটার</option>
+            <option value="inch">ইঞ্চি</option>
+            <option value="feet">ফুট</option>
+            <option value="yard">গজ</option>
+            <option value="mile">মাইল</option>			
+			<option value="decimeter">ডেসিমিটার</option>
+			<option value="decameter">ডেকামিটার</option>
+			<option value="hectometer">হেক্টোমিটার</option>
+        </select>
+
+        <label for="toType">লক্ষ্য প্রকার:</label>
+        <select id="toType">
+            <option value="millimeter">মিলিমিটার</option>
+            <option value="centimeter">সেন্টিমিটার</option>
+            <option value="meter">মিটার</option>
+            <option value="kilometer">কিলোমিটার</option>
+            <option value="inch">ইঞ্চি</option>
+            <option value="feet">ফুট</option>
+            <option value="yard">গজ</option>
+            <option value="mile" selected>মাইল</option>			
+			<option value="decimeter">ডেসিমিটার</option>
+			<option value="decameter">ডেকামিটার</option>
+			<option value="hectometer">হেক্টোমিটার</option>
+        </select>
+
+        <label for="precision">দশমিক নির্ধারণ:</label>
+        <input type="number" id="precision" placeholder="দশমিক লিখুন" min="0">
+
+        <button onclick="convertLength()">পরিবর্তন</button>
+        <button onclick="clearFields()">সাফ</button>
+
+        <p id="result">ফলাফল: </p>
+
+        <!-- চার্টের জন্য ক্যানভাস -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+
+        <!-- মাইল সংজ্ঞা, উদাহরণ, তথ্য, অনুশীলন সমস্যা -->
+        <div id="mile-info">
+            <h2>মাইল তথ্য:</h2>
+            <p>
+                <strong>মাইল সংজ্ঞা:</strong> একটি মাইল একক সাধারণত মার্কিন যুক্তরাষ্ট্র এবং কিছু অন্যান্য দেশে ব্যবহৃত একক। আন্তর্জাতিক মাইলটি সঠিকভাবে ১,৬০৯.৩৪ মিটার।
+            </p>
+            <h3>উদাহরণ:</h3>
+            <p>
+                <strong>স্ট্যান্ডার্ড ব্যবহার:</strong>
+                <br>
+                • শহর বা শহরের মধ্যে দূরত্ব মাপা হতে পারে মাইলে।
+                <br>
+                • মহাসড়ক চিহ্নিত বিস্তারে মাইলে দূরত্ব প্রদর্শন করে।
+            </p>
+            <p>
+                <strong>প্রতিদিনের পরিমাপগুলি:</strong>
+                <br>
+                • মাইলে দীর্ঘ ড্রাইভের দৈর্ঘ্য অনুমেয়।
+                <br>
+                • একটি গাড়ির ইঞ্জিনের কার্যক্ষমতা মাইল প্রতি গ্যালনে
+
+ (এমপিজি) প্রকাশ করা।
+            </p>
+
+            <h3>তথ্য:</h3>
+            <p>
+                <strong>প্রবর্তন:</strong>
+                <br>
+                • মাইলটি প্রায়শই ইমপেরিয়াল প্রণালীতে ব্যবহৃত হয়, এবং ১ মাইল সমতুল্য ৫,২৮০ ফুট।
+                <br>
+                • আন্তর্জাতিক মাইলটি প্রযোজ্য মাপনের জন্য বেশিরভাগ দেশে ব্যবহৃত হয়।
+            </p>
+            <p>
+                <strong>বিশ্বব্যাপী ব্যবহার:</strong>
+                <br>
+                • যখন মেট্রিক পদ্ধতি বিশ্বব্যাপী, তখন মাইলটি এখনও সড়ক এবং দূরত্ব পরিমাপের জন্য বেশিরভাগ ইমপেরিয়াল পদ্ধতিতে ব্যবহৃত হয়, বিশেষত যে দেশে এটি অনুসরণ করে।
+            </p>
+
+            <h3>অনুশীলন সমস্যাগুলি:</h3>
+            <p>
+                <strong>প্রবর্তন:</strong>
+                <br>
+                • ৩ মাইল কিলোমিটারে পরিণত করুন।
+                <br>
+                • ১০,০০০ মিটার মাইলে পরিণত করুন।
+            </p>
+            <p>
+                <strong>অ্যাপ্লিকেশন:</strong>
+                <br>
+                • যদি একটি গাড়ি গড়ে ৬০ মাইল প্রতি ঘণ্টায় গতি করে, তবে ৪ ঘণ্টায় গাড়ি কতটি দূরত্ব কত?
+                <br>
+                • একটি ম্যারাথন রেস প্রায়শই ২৬.২ মাইল। এই দূরত্বটি কিলোমিটারে পরিণত করুন।
+            </p>
+
+            <h3>উত্তর:</h3>
+            <p>
+                <strong>প্রবর্তন:</strong>
+                <br>
+                • ৩ মাইল = ৪.৮২৮ কিলোমিটার (প্রায়শই)
+                <br>
+                • ১০,০০০ মিটার = ৬.২১৪ মাইল (প্রায়শই)
+            </p>
+            <p>
+                <strong>অ্যাপ্লিকেশন:</strong>
+                <br>
+                • দূরত্ব = গতি × সময়
+                <br>
+                • দূরত্ব = ৬০ মাইল/ঘণ্টা × ৪ ঘণ্টা = ২৪০ মাইল
+                <br>
+                • ২৬.২ মাইল = ৪২.১৯৫ কিলোমিটার (প্রায়শই)
+            </p>
+        </div>
+
+        <!-- প্রবর্তন শর্টকাট লিঙ্ক -->
+        <div id="conversion-links">
+            <h2>মিলিমিটার প্রবর্তন</h2>
+            <a href="millimeter-to-centimeter-conversion.html">মিলিমিটার থেকে সেন্টিমিটার (মিমি থেকে সেমি)</a>
+            <a href="millimetertometerconversion.html">মিলিমিটার থেকে মিটার (মিমি থেকে মি)</a>
+            <a href="MillimetertoKilometerconversion.html">মিলিমিটার থেকে কিলোমিটার (মিমি থেকে কেমি)</a>
+            <a href="MillimetertoInchconversion.html">মিলিমিটার থেকে ইঞ্চি (মিমি থেকে
+
+ ইঞ্চি)</a>
+            <a href="MillimetertoFeetconversion.html">মিলিমিটার থেকে ফুট (মিমি থেকে ফুট)</a>
+            <a href="MillimetertoYardconversion.html">মিলিমিটার থেকে গজ (মিমি থেকে গজ)</a>
+            <a href="MillimetertoMileconversion.html">মিলিমিটার থেকে মাইল (মিমি থেকে মাইল)</a>			
+			<a href="Millimetertodecimeterconversion.html">মিলিমিটার থেকে ডেসিমিটার (মিমি থেকে ডিএম)</a>
+			<a href="Millimetertodecameterconversion.html">মিলিমিটার থেকে ডেকামিটার (মিমি থেকে ডেকা)</a>
+			<a href="Millimetertohectometerconversion.html">মিলিমিটার থেকে হেক্টোমিটার (মিমি থেকে হেক্টো)</a>
+        </div>
+    </div>
+
+    <!-- দ্বিতীয় কলাম -->
+    <div id="second-column">
+        <div id="ad-container">
+            <h2>বিজ্ঞাপন</h2>
+            <a href="https://example.com">
+                <img src="ad.jpg" alt="বিজ্ঞাপন">
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // পরিবর্তনের ফাংশন
+        function convertLength() {
+            // ইনপুট মান গ্রহণ করুন
+            var value = parseFloat(document.getElementById('value').value);
+            var fromType = document.getElementById('fromType').value;
+            var toType = document.getElementById('toType').value;
+            var precision = parseInt(document.getElementById('precision').value);
+
+            // প্রবর্তন ফর্মুলা
+            var result;
+            switch (fromType) {
+                case 'millimeter':
+                    switch (toType) {
+                        case 'mile':
+                            result = value * 0.000000621371;
+                            break;
+                        // Add more conversion cases as needed...
+                    }
+                    break;
+                // Add more conversion cases as needed...
+            }
+
+            // ফলাফল প্রদর্শন করুন
+            document.getElementById('result').textContent = 'ফলাফল: ' + result.toFixed(precision) + ' ' + toType;
+        }
+
+        // ফিল্ড সাফ করুন ফাংশন
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('precision').value = '';
+            document.getElementById('result').textContent = 'ফলাফল: ';
+        }
+    </script>
+</body>
+
+</html>

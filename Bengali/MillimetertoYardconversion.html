@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>লম্বা পরিবর্তন---মিলিমিটার থেকে গজ (মিমি থেকে গজ)</title>
+    <meta name="description" content="মিলিমিটার থেকে গজ (মিমি থেকে গজ), মিটার [এম], কিলোমিটার [কিমি], ডেসিমিটার [ডিএম], সেন্টিমিটার [সেমি], সেমি থেকে ইঞ্চ, মিমি থেকে ইঞ্চ, মিটার থেকে ফুট, ইত্যাদি এর মধ্যে পরিবর্তন করুন।">
+    <meta name="keywords" content="মিমি থেকে গজ">
+
+    <style>
+        /* উদাহরণের স্টাইলগুলি: প্রথম কলাম */
+        #first-column {
+            float: left;
+            width: 80%; /* প্রথম কলামের প্রস্থ সাজান */
+            padding: 20px; /* প্যাডিং নির্ধারণ করুন */
+            box-sizing: border-box; /* বক্স মডেল, প্রস্থ এবং উচ্চা প্যাডিং এবং বর্ডার সহ অন্তর্ভুক্ত করা নিশ্চিত করুন */
+        }
+
+        /* উদাহরণের স্টাইলগুলি: দ্বিতীয় কলাম */
+        #second-column {
+            float: left;
+            width: 20%; /* দ্বিতীয় কলামের প্রস্থ সাজান */
+            padding: 20px; /* প্যাডিং নির্ধারণ করুন */
+            box-sizing: border-box; /* বক্স মডেল, প্রস্থ এবং উচ্চা প্যাডিং এবং বর্ডার সহ অন্তর্ভুক্ত করা নিশ্চিত করুন */
+        }
+
+        /* উদাহরণের স্টাইলগুলি: কুয়েরি বিষয়বস্তু */
+        #value,
+        #fromType,
+        #toType,
+        #precision,
+        #result,
+        #conversion-links {
+            margin-bottom: 20px; /* নিম্নাংশ মার্জিন নির্ধারণ করুন */
+        }
+
+        /* উদাহরণের স্টাইলগুলি: পরিবর্তন লিঙ্ক */
+        #conversion-links a {
+            display: block;
+            margin-bottom: 10px; /* লিঙ্ক মধ্যে নিম্নাংশ মার্জিন নির্ধারণ করুন */
+            text-decoration: none;
+            color: #333; /* লিঙ্ক লেখার রঙ নির্ধারণ করুন */
+            font-weight: bold; /* লিঙ্ক লেখার ধারাবাহিকতা নির্ধারণ করুন */
+        }
+
+        /* উদাহরণের স্টাইলগুলি: বিজ্ঞাপন */
+        #ad-container {
+            width: 100%; /* বিজ্ঞাপনের কন্টেন্টেনারটি দ্বিতীয় কলামের মধ্যে পূর্ণ প্রস্থতা নিতে দিন */
+            height: 400px; /* বিজ্ঞাপনের কন্টেন্টেনারটির উচ্চতা পরিবর্তন করুন */
+             /* ব্যাকগ্রাউন্ড রঙ নির্ধারণ করুন */
+            padding: 10px; /* প্যাডিং নির্ধারণ করুন */
+            box-sizing: border-box; /* বক্স মডেল, প্রস্থ এবং উচ্চা প্যাডিং এবং বর্ডার সহ অন্তর্ভুক্ত করা নিশ্চিত করুন */
+        }
+
+        #ad-container img {
+            max-width: 100%; /* ইমেজ প
+
+্রস্থ প্রস্থতার সীমা নির্ধারণ করুন */
+            height: auto; /* ইমেজ উচ্চতা স্বয়ংক্রিয়ভাবে সায়জ্য করুন */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>লম্বা পরিবর্তন</h1>
+
+    <!-- প্রথম কলাম -->
+    <div id="first-column">
+        <label for="value">মান:</label>
+        <input type="number" id="value" placeholder="মান লিখুন">
+
+        <label for="fromType">থেকে প্রকার:</label>
+        <select id="fromType">
+            <option value="millimeter" selected>মিলিমিটার</option>
+            <option value="centimeter">সেন্টিমিটার</option>
+            <option value="meter">মিটার</option>
+            <option value="kilometer">কিলোমিটার</option>
+            <option value="inch">ইঞ্চি</option>
+            <option value="feet">ফুট</option>
+            <option value="yard">গজ</option>
+            <option value="mile">মাইল</option>			
+			<option value="decimeter">ডেসিমিটার</option>
+			<option value="decameter">ডেকামিটার</option>
+			<option value="hectometer">হেক্টোমিটার</option>
+        </select>
+
+        <label for="toType">প্রকার:</label>
+        <select id="toType">
+            <option value="millimeter">মিলিমিটার</option>
+            <option value="centimeter">সেন্টিমিটার</option>
+            <option value="meter">মিটার</option>
+            <option value="kilometer">কিলোমিটার</option>
+            <option value="inch">ইঞ্চি</option>
+            <option value="feet">ফুট</option>
+            <option value="yard" selected>গজ</option>
+            <option value="mile">মাইল</option>			
+			<option value="decimeter">ডেসিমিটার</option>
+			<option value="decameter">ডেকামিটার</option>
+			<option value="hectometer">হেক্টোমিটার</option>
+        </select>
+
+        <label for="precision">দশমিক সঠিকতা:</label>
+        <input type="number" id="precision" placeholder="পরিশোধ লিখুন" min="0">
+
+        <button onclick="convertLength()">পরিবর্তন করুন</button>
+        <button onclick="clearFields()">পরিষ্কার করুন</button>
+
+        <p id="result">ফলাফল: </p>
+
+        <!-- চার্ট.js জন্য ক্যানভাস -->
+        <canvas id="conversionChart" width="400" height="200"></canvas>
+
+        <!-- পরিবর্তনের সংক্ষিপ্ত লিঙ্ক -->
+        <div id="conversion-links">
+            <h2>মিলিমিটার পরিবর্তন</h2>
+            <a href="millimeter-to-centimeter-conversion.html">মিলিমিটার থেকে সেন্টিমিটার (মিমি থেকে সেমি)</a>
+            <a href="millimetertometerconversion.html">মিলিমিটার থেকে মিটার (মিমি থেকে মিটার)</a>
+            <a href="MillimetertoKilometerconversion.html">মিলিমিটার থেকে কিলোমিটার (মিমি থেকে কিমি)</a>
+            <a href="MillimetertoInchconversion.html">মিলিমিটার থেকে ইঞ্চি (মিমি থেকে ইঞ্চ)</a>
+            <a href="MillimetertoFeetconversion.html">মিলিমিটার থেকে ফুট (মিমি থেকে ফিট)</a>
+            <a href="MillimetertoYardconversion.html">মিলিমিটার থেকে গজ (মিমি থেকে গজ)</a>
+            <a href="MillimetertoMileconversion.html">মিলিমিটার থেকে মাইল (মিমি থেকে মাইল)</a>
+            <!-- প্রয়োজন অনুসারে আরও লিঙ্ক যুক্ত করুন -->
+        </div>
+    </div>
+
+    <!-- দ্বিতীয় কলাম: বিজ্ঞাপন কন্টেনার -->
+    <div id="second-column">
+        <div id="ad-container">
+            <!--<img src=" " alt=" "> -->
+            <!-- বাস্তব বিজ্ঞাপনের বিষয়বস্ত যুক্ত করুন -->
+        </div
+
+>
+    </div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromType = document.getElementById('fromType').value;
+            const toType = document.getElementById('toType').value;
+            const precision = parseInt(document.getElementById('precision').value) || 0;
+
+            // পরিবর্তনের ফ্যাক্টরগুলি
+            const conversionFactors = {
+                millimeter: 0.001,
+                centimeter: 0.01,
+                meter: 1,
+                kilometer: 1000,
+                inch: 0.0254,
+                feet: 0.3048,
+                yard: 0.9144,
+                mile: 1609.34,
+				decimeter: 0.1,
+				decameter: 10,
+				hectometer: 100
+                // প্রয়োজন অনুসারে অন্যান্য পরিবর্তন ফ্যাক্টরগুলি যুক্ত করুন
+            };
+
+            // সমরূপ পরিবর্তন পালন করুন
+            const result = value * conversionFactors[fromType] / conversionFactors[toType];
+            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+
+            // নির্ধারিত পরিশোধের সাথে ফলাফল প্রদর্শন করুন
+            document.getElementById('result').innerText = `ফলাফল: ${result.toFixed(precision)}\nবিপরীত ফলাফল: ${resultInverse.toFixed(precision)}`;
+
+            // চার্ট আপডেট করুন বা তৈরি করুন
+            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (পূর্বে)`, `${toType} (পরে)`]);
+        }
+
+        function updateChart(data, labels) {
+            const canvas = document.getElementById('conversionChart');
+            const ctx = canvas.getContext('2d');
+
+            // পূর্ববর্তী চার্ট ধ্বংস করুন যদি অস্তিত্বে থাকে
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+
+            // একটি নতুন চার্ট তৈরি করুন
+            window.myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'পরিবর্তনের ফলাফল',
+                        data: data,
+                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
+                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
+                        borderWidth: 1,
+                        barThickness: 20 // প্রয়োজন অনুসারে বারের মোটামুটি সাজান
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            beginAtZero: true,
+                            min: 0.1
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        annotation: {
+                            annotations: {
+                                line1: {
+                                    type: 'line',
+                                    mode: 'horizontal',
+                                    scaleID: 'y',
+                                    value: 1,
+                                    borderColor: 'black',
+                                    borderWidth: 1,
+                                },
+                            },
+                        },
+                    },
+                }
+            });
+        }
+
+        function clearFields() {
+            document.getElementById('value').value = '';
+            document.getElementById('fromType').selectedIndex = 0;
+            document.getElementById('toType').selectedIndex = 0;
+            document.getElementById('precision').value = '';
+            document.getElementById('result').innerText = '';
+
+            // চার্ট ধ্বংস করুন যদি অস্তিত্বে থাকে
+            if (window.myChart) {
+                window.myChart.destroy();
+            }
+        }
+    </script>
+	<!-- আপনার গুগল অ্যানালিটিক্স (gtag.js) যুক্ত করুন -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-8M2YLYLQDV');
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+
+</html>
