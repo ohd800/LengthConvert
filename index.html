@@ -4,259 +4,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Length Convert | cm to inch,feet,m,km,dm,mm | chart</title>
-    <meta name="description" content="Free online length converter - convert between meter [m], kilometer [km], decimeter [dm], centimeter [cm], cm to inches, mm to inches, meters to feet, etc.">
-    <meta name="keywords" content="length converter, unit converter, meter, kilometer, decimeter, centimeter, inch, feet, yard, mile">
-
+       <title>Length Convert | cm to inch,feet,m,km,dm,mm chart</title>
+    <meta name="description" content="Free online length convert - convert between meter [m], kilometer [km], decimeter [dm], centimeter [cm], cm to inches, mm to inches, meters to feet, etc.">
+    <meta name="keywords" content="length convert">
     <style>
-        /* Example styles: First column */
-        #first-column {
-            float: left;
-            width: 80%; /* Adjust the width of the first column */
-            padding: 20px; /* Set padding */
-            box-sizing: border-box; /* Box model, ensures width and height include padding and border */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Example styles: Second column */
-        #second-column {
-            float: left;
-            width: 20%; /* Adjust the width of the second column */
-            padding: 20px; /* Set padding */
-            box-sizing: border-box; /* Box model, ensures width and height include padding and border */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
         }
 
-        /* Example styles: Query content */
-        #value,
-        #fromType,
-        #toType,
-        #precision,
-        #result,
-        #conversion-links {
-            margin-bottom: 20px; /* Set bottom margin */
+        nav {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
         }
 
-        /* Example styles: Conversion links */
-        #conversion-links a {
-            display: block;
-            margin-bottom: 10px; /* Set bottom margin between links */
+        nav a {
+            color: #333;
             text-decoration: none;
-            color: #333; /* Set link text color */
-            font-weight: bold; /* Set link text boldness */
+            margin: 0 10px;
         }
 
-        /* Example styles: Advertisement */
-        #ad-container {
-            width: 100%; /* Make the ad container take full width within the second column */
-            height: 400px; /* Adjust the height of the ad container */
-             /*background-color: #333;  Set background color */
-            padding: 10px; /* Set padding */
-            box-sizing: border-box; /* Box model, ensures width and height include padding and border */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
         }
 
-        #ad-container img {
-            max-width: 100%; /* Set maximum image width not to exceed container width */
-            height: auto; /* Make the image height auto-adjust */
+        .converter {
+            flex: 1;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .converter h2 {
+            margin-top: 0;
+        }
+
+        .converter label,
+        .converter select,
+        .converter input {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .converter button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .result {
+            flex: 1;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .result h2 {
+            margin-top: 0;
+        }
+
+        .result p {
+            margin-bottom: 0;
         }
     </style>
 </head>
 
 <body>
-    <a href="https://www.lengthconvert.com"><h1>Length Convert</h1></a>
- <!-- Navigation Links -->
-    <div id="navigation-links">
+    <header>
+        <h1>Length Converter</h1>
+    </header>
+
+    <nav>
         <a href="/">Home</a>
-		        <a href="/French">Français(French)</a>
+        <a href="/French">Français(French)</a>
         <a href="/Germany">Deutsch(Germany)</a>
         <a href="/Portuguese">Português(Portuguese)</a>
         <a href="/Bengali">bāṅālī/বাঙালী(Bengali)</a>
         <a href="/Indonesian">Bahasa(Indonesian)</a>
         <a href="/Chinese">中文(Chinese)</a>
         <a href="/Russian">Русский(Russian)</a>
-		<a href="/Spanish">Español(Spanish)</a>
-		<a href="/hi">हिन्दी(Hindi)</a>
-		<a href="/ar">العربية(Arabic)</a>
-        <!-- Add more language links as needed -->
-    </div>
-    <!-- First column -->
-    <div id="first-column">
-        <label for="value">Value:</label>
-        <input type="number" id="value" placeholder="Enter value">
+        <a href="/Spanish">Español(Spanish)</a>
+        <a href="/hi">हिन्दी(Hindi)</a>
+        <a href="/ar">العربية(Arabic)</a>
+    </nav>
 
-        <label for="fromType">From Type:</label>
-        <select id="fromType">
-            <option value="millimeter">Millimeter</option>
-            <option value="centimeter">Centimeter</option>
-            <option value="meter">Meter</option>
-            <option value="kilometer">Kilometer</option>
-            <option value="inch">Inch</option>
-            <option value="feet">Feet</option>
-            <option value="yard">Yard</option>
-            <option value="mile">Mile</option>
-			<option value="decimeter">Decimeter</option>
-			<option value="decameter">Decameter</option>
-			<option value="hectometer">Hectometer</option>
-        </select>
+    <div class="container">
+        <div class="converter">
+            <h2>Length Conversion</h2>
+            <label for="value">Value:</label>
+            <input type="number" id="value" placeholder="Enter value">
 
-        <label for="toType">To Type:</label>
-        <select id="toType">
-            <option value="millimeter">Millimeter</option>
-            <option value="centimeter">Centimeter</option>
-            <option value="meter">Meter</option>
-            <option value="kilometer">Kilometer</option>
-            <option value="inch">Inch</option>
-            <option value="feet">Feet</option>
-            <option value="yard">Yard</option>
-            <option value="mile">Mile</option>
-			<option value="decimeter">Decimeter</option>
-			<option value="decameter">Decameter</option>
-			<option value="hectometer">Hectometer</option>
-        </select>
+            <label for="fromType">From Type:</label>
+            <select id="fromType">
+                <option value="millimeter">Millimeter</option>
+                <option value="centimeter">Centimeter</option>
+                <option value="meter">Meter</option>
+                <option value="kilometer">Kilometer</option>
+                <option value="inch">Inch</option>
+                <option value="feet">Feet</option>
+                <option value="yard">Yard</option>
+                <option value="mile">Mile</option>
+                <option value="decimeter">Decimeter</option>
+                <option value="decameter">Decameter</option>
+                <option value="hectometer">Hectometer</option>
+            </select>
 
-        <label for="precision">Decimal Precision:</label>
-        <input type="number" id="precision" placeholder="Enter precision" min="0">
+            <label for="toType">To Type:</label>
+            <select id="toType">
+                <option value="millimeter">Millimeter</option>
+                <option value="centimeter">Centimeter</option>
+                <option value="meter">Meter</option>
+                <option value="kilometer">Kilometer</option>
+                <option value="inch">Inch</option>
+                <option value="feet">Feet</option>
+                <option value="yard">Yard</option>
+                <option value="mile">Mile</option>
+                <option value="decimeter">Decimeter</option>
+                <option value="decameter">Decameter</option>
+                <option value="hectometer">Hectometer</option>
+            </select>
 
-        <button onclick="convertLength()">Convert</button>
-        <button onclick="clearFields()">Clear</button>
+            <label for="precision">Decimal Precision:</label>
+            <input type="number" id="precision" placeholder="Enter precision" min="0">
 
-        <p id="result">Result: </p>
-
-        <!-- Canvas for Chart.js -->
-        <canvas id="conversionChart" width="400" height="200"></canvas>
-
-        <!-- Conversion shortcut links -->
-        <div id="conversion-links">
-    <h2>Millimeter Conversions</h2>
-    <a href="millimeter-to-centimeter-conversion.html">Millimeter to Centimeter (mm to cm)</a>
-    <a href="millimetertometerconversion.html">Millimeter to Meter (mm to m)</a>
-   <a href="MillimetertoKilometerconversion.html">Millimeter to Kilometer (mm to km)</a>
-  <a href="MillimetertoInchconversion.html">Millimeter to Inches (mm to in.)</a>
-  <a href="MillimetertoFeetconversion.html">Millimeter to Feet (mm to ft)</a>
-<a href="MillimetertoYardconversion.html">Millimeter to Yard (mm to yd)</a>
-<a href="MillimetertoMileconversion.html">Millimeter to Mile (mm to mi)</a>
-    <!-- Add more links as needed -->
+            <button onclick="convertLength()">Convert</button>
+            <button onclick="clearFields()">Clear</button>
         </div>
-    </div>
 
-    <!-- Second column: Advertisement container -->
-    <div id="second-column">
-        <div id="ad-container">
-            <!--<img src=" " alt=" "> -->
-            <!-- Add actual ad content -->
+        <div class="result">
+            <h2>Result</h2>
+            <p id="result">Result: </p>
         </div>
     </div>
 
     <script>
-        function convertLength() {
-            const value = parseFloat(document.getElementById('value').value);
-            const fromType = document.getElementById('fromType').value;
-            const toType = document.getElementById('toType').value;
-            const precision = parseInt(document.getElementById('precision').value) || 0;
+function convertLength() {
+    const value = parseFloat(document.getElementById('value').value);
+    const fromType = document.getElementById('fromType').value;
+    const toType = document.getElementById('toType').value;
+    const precision = parseInt(document.getElementById('precision').value) || 0;
 
-            // Conversion factors
-            const conversionFactors = {
-                millimeter: 0.001,
-                centimeter: 0.01,
-                meter: 1,
-                kilometer: 1000,
-                inch: 0.0254,
-                feet: 0.3048,
-                yard: 0.9144,
-                mile: 1609.34,
-				decimeter: 0.1,
-				decameter: 10,
-				hectometer: 100
-                // Add other conversion factors as needed
-            };
+    // Conversion factors
+    const conversionFactors = {
+        millimeter: 0.001,
+        centimeter: 0.01,
+        meter: 1,
+        kilometer: 1000,
+        inch: 0.0254,
+        feet: 0.3048,
+        yard: 0.9144,
+        mile: 1609.34,
+        decimeter: 0.1,
+        decameter: 10,
+        hectometer: 100
+        // Add other conversion factors as needed
+    };
 
-            // Perform bidirectional conversion
-            const result = value * conversionFactors[fromType] / conversionFactors[toType];
-            const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
+    // Perform bidirectional conversion
+    const result = value * conversionFactors[fromType] / conversionFactors[toType];
+    const resultInverse = value / (conversionFactors[fromType] / conversionFactors[toType]);
 
-            // Display result with specified precision
-            document.getElementById('result').innerText = `Result: ${result.toFixed(precision)}\nInverse Result: ${resultInverse.toFixed(precision)}`;
+    // Display result with specified precision
+    document.getElementById('result').innerText = `Result: ${result.toFixed(precision)}\nInverse Result: ${resultInverse.toFixed(precision)}`;
+}
+</script>
 
-            // Update or create the chart
-            updateChart([value.toFixed(2), result.toFixed(2)], [`${fromType} (Before)`, `${toType} (After)`]);
-        }
-
-        function updateChart(data, labels) {
-            const canvas = document.getElementById('conversionChart');
-            const ctx = canvas.getContext('2d');
-
-            // Destroy previous chart if exists
-            if (window.myChart) {
-                window.myChart.destroy();
-            }
-
-            // Create a new chart
-            window.myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Conversion Result',
-                        data: data,
-                        backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(192, 75, 75, 0.2)'],
-                        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(192, 75, 75, 1)'],
-                        borderWidth: 1,
-                        barThickness: 20 // Adjust the bar thickness as needed
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            type: 'logarithmic',
-                            beginAtZero: true,
-                            min: 0.1
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        annotation: {
-                            annotations: {
-                                line1: {
-                                    type: 'line',
-                                    mode: 'horizontal',
-                                    scaleID: 'y',
-                                    value: 1,
-                                    borderColor: 'black',
-                                    borderWidth: 1,
-                                },
-                            },
-                        },
-                    },
-                }
-            });
-        }
-
-        function clearFields() {
-            document.getElementById('value').value = '';
-            document.getElementById('fromType').selectedIndex = 0;
-            document.getElementById('toType').selectedIndex = 0;
-            document.getElementById('precision').value = '';
-            document.getElementById('result').innerText = '';
-
-            // Destroy chart if exists
-            if (window.myChart) {
-                window.myChart.destroy();
-            }
-        }
-    </script>
-	
-	    <!-- Add your Google Analytics (gtag.js) here -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8M2YLYLQDV"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-8M2YLYLQDV');
-    </script>
-	<script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
-
 </html>
